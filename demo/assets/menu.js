@@ -78,6 +78,7 @@ const MENU_DATA = [
 ];
 
 function getBasePath() {
+    if (window.__rootLevel) return 'demo/';
     const path = window.location.pathname;
     const parts = path.split('/');
     const demoIdx = parts.findIndex(p => p === 'demo');
@@ -216,7 +217,7 @@ function initMenu() {
 
     const logoLink = document.querySelector('.site_title');
     if (logoLink) {
-        logoLink.href = getBasePath() + 'index.html';
+        logoLink.href = window.__rootLevel ? 'demo/camp/camp_list.html' : (getBasePath() + 'camp/camp_list.html');
     }
 }
 

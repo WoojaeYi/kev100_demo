@@ -23,7 +23,7 @@ function layoutInject(opts) {
 <div class="col-md-3 left_col menu_fixed">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border:0;">
-      <a href="${base}index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a>
+      <a href="${base}camp/camp_list.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a>
     </div>
     <div class="clearfix"></div>
     <div class="profile clearfix">
@@ -66,7 +66,7 @@ function layoutInject(opts) {
       <div class="col-md-6 d-none d-sm-block">
         <div class="locationWrap text-right mr-3 float-right" style="line-height:30px;">
           <ul class="locationList" style="list-style:none;padding:0;margin:0;display:flex;gap:6px;align-items:center;">
-            <li><i class="fa fa-home"></i> <a href="${base}index.html">홈</a></li>
+            <li><i class="fa fa-home"></i> <a href="${base}camp/camp_list.html">홈</a></li>
             ${breadcrumbHtml}
           </ul>
         </div>
