@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>게시물 통합검색 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+.table-info .total strong { color:#0e424f; font-weight:700; }
+.keyword-highlight { background:#fff3cd; border-radius:2px; padding:0 2px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li>
+    </ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-search mr-2" style="color:#1f8dab;font-size:17px;"></i>게시물 통합검색</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>게시판관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">게시물 통합검색</li>
+        </ul>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>사이트 &nbsp;</label>
+          <select class="form-control" style="width:180px;"><option value="">∷ 전체사이트 ∷</option><option>K-EV100 서비스 포털</option></select>
+          <select class="form-control" style="width:160px;"><option value="">∷ 전체 게시판 ∷</option><option>공지사항</option><option>FAQ</option><option>Q&A</option></select>
+        </div>
+        <div class="input-group">
+          <label>키워드 &nbsp;</label>
+          <select class="form-control" style="width:110px;"><option>제목</option><option>내용</option><option>작성자</option><option>제목+내용</option></select>
+          <input type="text" class="form-control" style="width:280px;" placeholder="검색어를 입력하세요" value="캠페인">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>초기화</button>
+        </div>
+      </div>
+
+      <div class="table-info">
+        <div class="total">"<strong>캠페인</strong>" 검색결과 총 <strong>23</strong>건</div>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>게시판</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>관리</th></tr></thead>
+          <tbody id="searchBody"></tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-10 / 23건</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+const items = [
+  {no:23,bbs:'공지사항',title:'2026년 K-EV100 캠페인 신청 안내',writer:'관리자',date:'2026-03-28',views:1245},
+  {no:22,bbs:'Q&A',title:'캠페인 신청 취소 가능한가요?',writer:'김민준',date:'2026-03-27',views:89},
+  {no:21,bbs:'공지사항',title:'K-EV100 캠페인 연장신청 방법 안내',writer:'관리자',date:'2026-03-26',views:876},
+  {no:20,bbs:'FAQ',title:'캠페인 참여 기업 자격 요건은?',writer:'관리자',date:'2026-03-25',views:542},
+  {no:19,bbs:'Q&A',title:'캠페인 전환 목표 수정이 가능한가요',writer:'이서연',date:'2026-03-24',views:67},
+  {no:18,bbs:'공지사항',title:'2026년 캠페인 심사 결과 발표',writer:'관리자',date:'2026-03-23',views:2341},
+  {no:17,bbs:'Q&A',title:'캠페인 신청 서류 재제출 요청',writer:'박지호',date:'2026-03-22',views:45},
+  {no:16,bbs:'FAQ',title:'EV100 캠페인 의미와 목적',writer:'관리자',date:'2026-03-21',views:1089},
+  {no:15,bbs:'Q&A',title:'캠페인 기간 중 차량 처분 시 처리 방법',writer:'최지우',date:'2026-03-20',views:112},
+  {no:14,bbs:'공지사항',title:'캠페인 참여기업 현황 공개 안내',writer:'관리자',date:'2026-03-19',views:678},
+];
+document.getElementById('searchBody').innerHTML = items.map(d=>`
+  <tr>
+    <td>${d.no}</td>
+    <td><span style="background:#e8f4f8;color:#0e424f;padding:2px 8px;border-radius:10px;font-size:12px;">${d.bbs}</span></td>
+    <td class="t-a-left"><a href="bbs_read.html">${d.title.replace('캠페인','<span class="keyword-highlight">캠페인</span>')}</a></td>
+    <td>${d.writer}</td>
+    <td>${d.date}</td>
+    <td>${d.views.toLocaleString()}</td>
+    <td><a href="bbs_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-eye mr-1"></i>조회</a></td>
+  </tr>`).join('');
+</script>
+</body></html>

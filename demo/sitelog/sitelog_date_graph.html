@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사이트 접속 통계 - 날짜별 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.chart-wrap { background:#fff; border:1px solid #e3eaf0; border-radius:8px; padding:24px; margin-bottom:24px; }
+.chart-title { font-size:15px; font-weight:700; color:#0e424f; margin-bottom:16px; }
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-bar-chart mr-2" style="color:#1f8dab;font-size:17px;"></i>사이트 접속 통계 - 날짜별</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>통계</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">날짜별 접속 통계</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>조회 기간 &nbsp;</label>
+          <select class="form-control" style="width:100px;">
+            <option>2026년</option><option>2025년</option><option>2024년</option>
+          </select>
+          <select class="form-control" style="width:90px;">
+            <option>3월</option><option>2월</option><option>1월</option>
+          </select>
+          <select class="form-control" style="width:160px;">
+            <option value="">∷ 사이트 전체 ∷</option>
+            <option>K-EV100 서비스 포털</option>
+            <option>K-EV100 관리자 포털</option>
+          </select>
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>조회</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title"><i class="fa fa-bar-chart mr-1"></i>2026년 3월 일별 접속자 수</div>
+        <canvas id="dateChart" height="80"></canvas>
+      </div>
+
+      <div class="table-info">
+        <div class="total">2026년 3월 총 접속자: <strong style="color:#0e424f;">8,342명</strong></div>
+      </div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead>
+            <tr><th>날짜</th><th>접속자 수</th><th>페이지뷰</th><th>평균 체류시간</th><th>전일 대비</th></tr>
+          </thead>
+          <tbody id="dateTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const days = Array.from({length:31}, (_,i) => (i+1) + '일');
+const visitors = [245,312,289,401,356,298,187,265,322,378,412,395,341,228,195,287,334,421,398,445,389,302,213,278,361,418,392,365,295,248,312];
+const pageviews = visitors.map(v => Math.round(v * 3.2));
+
+const ctx = document.getElementById('dateChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: days,
+    datasets: [{
+      label: '접속자 수',
+      data: visitors,
+      backgroundColor: 'rgba(31,141,171,0.7)',
+      borderColor: '#1f8dab',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      yAxes: [{ ticks: { beginAtZero: true } }]
+    },
+    legend: { display: false }
+  }
+});
+
+const tbody = document.getElementById('dateTableBody');
+tbody.innerHTML = visitors.map((v,i) => {
+  const diff = i === 0 ? '-' : (v - visitors[i-1] >= 0 ? '<span style="color:#388e3c;">▲ '+(v-visitors[i-1])+'</span>' : '<span style="color:#e53935;">▼ '+Math.abs(v-visitors[i-1])+'</span>');
+  return `<tr><td>2026-03-${String(i+1).padStart(2,'0')}</td><td>${v.toLocaleString()}</td><td>${pageviews[i].toLocaleString()}</td><td>${Math.floor(Math.random()*3+1)}분 ${Math.floor(Math.random()*59+1)}초</td><td>${diff}</td></tr>`;
+}).join('');
+</script>
+</body></html>

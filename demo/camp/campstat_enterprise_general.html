@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기업 일반 현황 | K-EV100 관리자</title>
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+/* JSP .criteria 스타일 */
+.x_title h2 .criteria {
+  font-size: 11px;
+  color: #888;
+  font-weight: 400;
+  margin-left: 6px;
+}
+/* statChart 높이 — JSP h300/h400 대응 */
+.statChart       { height: 300px; }
+.statChart.h400  { height: 400px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-building mr-2" style="color:#1f8dab;font-size:17px;"></i>기업 일반 현황</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페인 관리</li><li><i class="fa fa-angle-right"></i></li><li>캠페인 통계</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">기업 일반 현황</li></ul></div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- ── 년도별 무공해차 전환 계획 및 실적 현황 (JSP: canvas_campplanResultYearlyStatList) ── -->
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>년도별 무공해차 전환 계획 및 실적 현황<span class="criteria">(캠페인 참여 승인 기업 기준 / 내연기관차제외 / 전기+수소차 기준)</span></h2>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <div id="canvas_campplanResultYearlyStatList" class="statChart h400"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 가입경로별 / 기업분류별 ── -->
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>가입경로별 현황<span class="criteria">(승인 계정 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_acccountStatByJoinPathCd" class="statChart"></div></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>기업분류별 현황<span class="criteria">(승인 계정 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByEntClsCd" class="statChart"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 기업형태별 / 사업분야별 ── -->
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>기업형태별 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByEntTypCd" class="statChart"></div></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>사업분야별 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByBizClsCd" class="statChart"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 종업원수별 / 가입년도별 ── -->
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>종업원수별 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByEmpCntCd" class="statChart"></div></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>가입년도별 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByJoinYear" class="statChart"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 목표년도별 / 유종별 ── -->
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>목표년도별 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByGoalYear" class="statChart"></div></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>보유차량 - 유종별 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByEnergy" class="statChart"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 차종별 / 구매·임차별 ── -->
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>보유차량 - 차종별 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByCarType" class="statChart"></div></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>보유차량 - 구매/임차별 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByInType" class="statChart"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 50대 이상/미만 / 충전기별 ── -->
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>보유차량 - 50대 이상/미만 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByFiftyGreaterAndLess" class="statChart"></div></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="x_panel">
+            <div class="x_title"><h2>보유 충전기 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByCharger" class="statChart"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 사업분야 및 유종별 보유 현황 (full-width bar) ── -->
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="x_panel">
+            <div class="x_title"><h2>사업분야 및 유종별 보유 현황<span class="criteria">(캠페인 참여 승인 기업 기준)</span></h2><div class="clearfix"></div></div>
+            <div class="x_content"><div id="canvas_enterpiseStatByBizClsCdAndEnergy" class="statChart h400"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content-area -->
+  </div><!-- /right_col -->
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+
+/* ============================================================
+   JSP: campDwr.getEnterpiseStatAll / getCampplanResultYearlyStatList 응답 구조와 동일한 샘플 데이터
+   ============================================================ */
+var COLORS = ['#26B99A','#3f5872','#BDC3C7','#3498DB','#9B59B6','#8abb6f','#759c6a','#bfd3b7'];
+
+var jsonResult = {
+  // 가입경로별
+  acccountStatByJoinPathCd: {
+    datas:[{name:'온라인',value:842},{name:'오프라인',value:215},{name:'대리인',value:143},{name:'기타',value:47}], sumValue:1247
+  },
+  // 기업분류별
+  enterpiseStatByEntClsCd: {
+    datas:[{name:'대기업',value:89},{name:'중견기업',value:213},{name:'중소기업',value:945}], sumValue:1247
+  },
+  // 기업형태별
+  enterpiseStatByEntTypCd: {
+    datas:[{name:'주식회사',value:783},{name:'유한회사',value:241},{name:'개인사업자',value:156},{name:'기타',value:67}], sumValue:1247
+  },
+  // 사업분야별
+  enterpiseStatByBizClsCd: {
+    datas:[{name:'렌트리스',value:318},{name:'금융',value:142},{name:'제조',value:261},{name:'운수',value:327},{name:'물류·유통',value:148},{name:'기타',value:51}], sumValue:1247
+  },
+  // 종업원수별
+  enterpiseStatByEmpCntCd: {
+    datas:[{name:'50인 미만',value:612},{name:'50~299인',value:453},{name:'300인 이상',value:182}], sumValue:1247
+  },
+  // 가입년도별
+  enterpiseStatByJoinYear: {
+    datas:[{name:'2022년',value:98},{name:'2023년',value:231},{name:'2024년',value:418},{name:'2025년',value:389},{name:'2026년',value:111}], sumValue:1247
+  },
+  // 목표년도별
+  enterpiseStatByGoalYear: {
+    datas:[{name:'2027년',value:143},{name:'2028년',value:208},{name:'2029년',value:312},{name:'2030년',value:584}], sumValue:1247
+  },
+  // 유종별
+  enterpiseStatByEnergy: {
+    datas:[{name:'경유',value:12408},{name:'휘발유',value:9821},{name:'전기',value:5124},{name:'수소',value:732},{name:'LPG',value:347}], sumValue:28432
+  },
+  // 차종별
+  enterpiseStatByCarType: {
+    datas:[{name:'승용차',value:17843},{name:'승합차',value:6214},{name:'화물차',value:4375}], sumValue:28432
+  },
+  // 구매/임차별
+  enterpiseStatByInType: {
+    datas:[{name:'구매',value:18741},{name:'리스',value:6203},{name:'렌트',value:3488}], sumValue:28432
+  },
+  // 50대 이상/미만
+  enterpiseStatByFiftyGreaterAndLess: {
+    datas:[{name:'50대 미만',value:813},{name:'50대 이상',value:434}], sumValue:1247
+  },
+  // 충전기별
+  enterpiseStatByCharger: {
+    datas:[{name:'완속충전기',value:2841},{name:'급속충전기',value:1203},{name:'수소충전기',value:184}], sumValue:4228
+  }
+};
+
+// 년도별 계획/실적 데이터 (bar chart)
+var yearlyLabels   = ['2022','2023','2024','2025','2026','2027','2028','2029','2030'];
+var yearlyDatasets = [
+  { name:'전환 계획', type:'bar', data:[320,580,940,1320,1780,2340,3100,4200,5800],
+    itemStyle:{color:'#3498DB'}, barGap:'20%' },
+  { name:'전환 실적', type:'bar', data:[210,430,760,1020,1350,0,0,0,0],
+    itemStyle:{color:'#26B99A'}, barGap:'20%' }
+];
+
+/* ── ECharts 공통 파이차트 함수 ── */
+function drawPieChart(canvasId, dataset, colors) {
+  var el = document.getElementById(canvasId);
+  if (!el) return;
+  var chart = echarts.init(el);
+  var isEmpty = !dataset || !dataset.sumValue;
+  var datas = (dataset && dataset.datas) ? dataset.datas : [];
+
+  chart.setOption({
+    tooltip: {
+      trigger:'item',
+      formatter: function(p){
+        if(p.name==='데이터 없음') return '데이터 없음';
+        return p.name + ' : ' + p.value.toLocaleString() + ' (' + p.percent.toFixed(1) + '%)';
+      },
+      textStyle:{fontFamily:"'Noto Sans KR', sans-serif"}
+    },
+    legend:{
+      orient:'horizontal', bottom:0, left:'center',
+      textStyle:{fontSize:11, fontFamily:"'Noto Sans KR', sans-serif"},
+      data: datas.map(function(d){return d.name;})
+    },
+    color: colors,
+    series:[
+      {
+        type:'pie', radius:['38%','62%'], center:['50%','44%'],
+        avoidLabelOverlap:true,
+        label:{show:!isEmpty, fontSize:11, fontFamily:"'Noto Sans KR', sans-serif",
+          formatter:function(p){return p.value.toLocaleString()+'\n('+p.percent.toFixed(0)+'%)';}},
+        labelLine:{show:!isEmpty, length:8, length2:6},
+        itemStyle:{borderRadius:4, borderColor:'#fff', borderWidth:1},
+        data: isEmpty
+          ? [{value:1,name:'데이터 없음',itemStyle:{color:'#eee'},label:{show:false},labelLine:{show:false},tooltip:{show:false}}]
+          : datas,
+        emphasis:{label:{show:true,fontSize:12,fontWeight:'bold'}}
+      },
+      {
+        name:'전체', type:'pie', radius:['0','28%'], center:['50%','44%'], silent:true,
+        label:{show:true, position:'center',
+          formatter:function(){return '총\n'+(dataset?dataset.sumValue.toLocaleString():0);},
+          fontSize:12, fontWeight:'bold', color:'#333', lineHeight:18,
+          fontFamily:"'Noto Sans KR', sans-serif"},
+        labelLine:{show:false},
+        data:[{value:isEmpty?1:dataset.sumValue, name:'전체'}],
+        itemStyle:{color:'none', borderWidth:0},
+        tooltip:{show:false}
+      }
+    ]
+  });
+  return chart;
+}
+
+/* ── ECharts 묶음 막대 차트 ── */
+function drawBarEChart(canvasId, labels, datasets) {
+  var el = document.getElementById(canvasId);
+  if (!el) return;
+  var chart = echarts.init(el);
+  var series = datasets.map(function(ds) {
+    return {
+      name: ds.name, type: ds.type || 'bar',
+      data: ds.data,
+      itemStyle: ds.itemStyle,
+      barGap: ds.barGap || '10%',
+      emphasis: { focus:'series' }
+    };
+  });
+  chart.setOption({
+    tooltip:{ trigger:'axis', axisPointer:{type:'shadow'},
+      textStyle:{fontFamily:"'Noto Sans KR', sans-serif"} },
+    legend:{ bottom:0, textStyle:{fontFamily:"'Noto Sans KR', sans-serif"} },
+    grid:{ left:'3%', right:'4%', bottom:'60px', containLabel:true },
+    xAxis:{ type:'category', data:labels,
+      axisLabel:{fontFamily:"'Noto Sans KR', sans-serif"} },
+    yAxis:{ type:'value', name:'대(기업)',
+      axisLabel:{fontFamily:"'Noto Sans KR', sans-serif"} },
+    series: series
+  });
+  return chart;
+}
+
+/* ── 초기화 ── */
+$(function() {
+  // 파이 차트 — JSP charList와 동일한 순서
+  var pieCharts = [
+    drawPieChart('canvas_acccountStatByJoinPathCd',         jsonResult.acccountStatByJoinPathCd,         COLORS),
+    drawPieChart('canvas_enterpiseStatByEntClsCd',          jsonResult.enterpiseStatByEntClsCd,          COLORS),
+    drawPieChart('canvas_enterpiseStatByEntTypCd',          jsonResult.enterpiseStatByEntTypCd,          COLORS),
+    drawPieChart('canvas_enterpiseStatByBizClsCd',          jsonResult.enterpiseStatByBizClsCd,          COLORS),
+    drawPieChart('canvas_enterpiseStatByEmpCntCd',          jsonResult.enterpiseStatByEmpCntCd,          COLORS),
+    drawPieChart('canvas_enterpiseStatByJoinYear',          jsonResult.enterpiseStatByJoinYear,          COLORS),
+    drawPieChart('canvas_enterpiseStatByGoalYear',          jsonResult.enterpiseStatByGoalYear,          COLORS),
+    drawPieChart('canvas_enterpiseStatByEnergy',            jsonResult.enterpiseStatByEnergy,            COLORS),
+    drawPieChart('canvas_enterpiseStatByCarType',           jsonResult.enterpiseStatByCarType,           COLORS),
+    drawPieChart('canvas_enterpiseStatByInType',            jsonResult.enterpiseStatByInType,            COLORS),
+    // JSP 별도처리 — 50대 기준: 파란/빨간 2색
+    drawPieChart('canvas_enterpiseStatByFiftyGreaterAndLess',
+      jsonResult.enterpiseStatByFiftyGreaterAndLess, ['#3498DB','#E74C3C']),
+    drawPieChart('canvas_enterpiseStatByCharger',           jsonResult.enterpiseStatByCharger,           COLORS),
+  ];
+
+  // 막대 차트
+  drawBarEChart('canvas_campplanResultYearlyStatList', yearlyLabels, yearlyDatasets);
+  drawBarEChart('canvas_enterpiseStatByBizClsCdAndEnergy',
+    ['렌트리스','금융','제조','운수','물류·유통','기타'],
+    [
+      {name:'경유',   type:'bar', data:[180,62,110,140,80,25], itemStyle:{color:'#3f5872'}},
+      {name:'휘발유', type:'bar', data:[210,74,128,160,90,30], itemStyle:{color:'#BDC3C7'}},
+      {name:'전기',   type:'bar', data:[241,79,127,148,58,29], itemStyle:{color:'#26B99A'}},
+      {name:'수소',   type:'bar', data:[ 57,16, 31, 39,14, 7], itemStyle:{color:'#3498DB'}}
+    ]
+  );
+
+  // 리사이즈 대응
+  window.addEventListener('resize', function(){
+    pieCharts.forEach(function(c){if(c)c.resize();});
+  });
+});
+</script>
+</body>
+</html>

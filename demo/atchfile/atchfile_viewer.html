@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>첨부파일 뷰어 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.viewer-wrap { background:#fff; border:1px solid #e3eaf0; border-radius:8px; padding:24px; }
+.viewer-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid #e5ecf1; }
+.file-info-box { background:#f8fbfc; border:1px solid #e3eaf0; border-radius:6px; padding:16px 20px; margin-bottom:20px; }
+.file-info-box .fi-row { display:flex; gap:32px; flex-wrap:wrap; }
+.file-info-box .fi-item { display:flex; flex-direction:column; gap:4px; }
+.file-info-box .fi-label { font-size:11.5px; color:#888; font-weight:500; }
+.file-info-box .fi-value { font-size:13.5px; color:#1a2332; font-weight:600; }
+.preview-area { background:#f5f5f5; border:1px solid #e0e0e0; border-radius:6px; min-height:400px; display:flex; align-items:center; justify-content:center; }
+.preview-icon { text-align:center; }
+.preview-icon .fa { font-size:80px; color:#aaa; }
+.preview-icon p { color:#999; margin-top:12px; font-size:13px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-file mr-2" style="color:#1f8dab;font-size:17px;"></i>첨부파일 뷰어</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>파일관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">첨부파일 뷰어</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="viewer-wrap">
+        <div class="viewer-header">
+          <h4 style="margin:0;font-size:15px;font-weight:700;color:#0e424f;"><i class="fa fa-file-pdf-o mr-2" style="color:#e53935;"></i>K-EV100_캠페인_신청서_2026.pdf</h4>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-secondary btn-sm"><i class="fa fa-download mr-1"></i>다운로드</button>
+            <button class="btn btn-dark btn-sm" onclick="window.history.back()"><i class="fa fa-arrow-left mr-1"></i>뒤로가기</button>
+          </div>
+        </div>
+
+        <div class="file-info-box">
+          <div class="fi-row">
+            <div class="fi-item"><span class="fi-label">파일명</span><span class="fi-value">K-EV100_캠페인_신청서_2026.pdf</span></div>
+            <div class="fi-item"><span class="fi-label">파일크기</span><span class="fi-value">2.4 MB</span></div>
+            <div class="fi-item"><span class="fi-label">파일유형</span><span class="fi-value">PDF 문서</span></div>
+            <div class="fi-item"><span class="fi-label">업로드일</span><span class="fi-value">2026-03-25</span></div>
+            <div class="fi-item"><span class="fi-label">다운로드 수</span><span class="fi-value">47회</span></div>
+          </div>
+        </div>
+
+        <div class="preview-area">
+          <div class="preview-icon">
+            <div class="fa fa-file-pdf-o" style="font-size:80px;color:#e53935;"></div>
+            <p>PDF 미리보기는 실제 서버 환경에서 제공됩니다.</p>
+            <button class="btn btn-primary mt-2"><i class="fa fa-download mr-1"></i>파일 다운로드</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 3;</script>
+</body></html>

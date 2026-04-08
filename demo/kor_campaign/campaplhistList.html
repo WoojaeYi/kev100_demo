@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 신청 이력</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+body { background: #fff; padding: 24px 28px; min-width: auto; }
+.popup-title { font-size: 15px; font-weight: 700; color: #0e424f; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid #e5ecf1; }
+</style>
+</head>
+<body>
+  <div class="popup-title"><i class="fa fa-history"></i> 캠페인 신청 이력</div>
+  <table class="listTable">
+    <thead>
+      <tr>
+        <th>순번</th>
+        <th>변경일시</th>
+        <th>처리상태</th>
+        <th>담당자메모</th>
+        <th>승인여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2</td>
+        <td>2026-03-31 10:25</td>
+        <td><span class="use">승인완료</span></td>
+        <td>서류 확인 완료</td>
+        <td style="color:#388e3c;font-weight:500;">승인</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2026-03-31 10:20</td>
+        <td><span class="ing">신청/접수중</span></td>
+        <td>신규 접수</td>
+        <td style="color:#c62828;font-weight:500;">미승인</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="display:flex;justify-content:center;margin-top:16px;">
+    <button class="btn btn-default" onclick="window.close()">닫기</button>
+  </div>
+</body>
+</html>

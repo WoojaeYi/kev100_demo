@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기업별 상세 현황 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area{padding:24px 28px;}
+/* ── iframe 팝업 모달 (Bootstrap CSS 없이 동작하는 최소 스타일) ── */
+#statModal {
+  display: none;
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 99999 !important;
+  outline: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#statModal.show { display: block !important; }
+.modal-backdrop-custom {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 99998;
+}
+#statModal .modal-dialog {
+  position: relative;
+  max-width: 92vw;
+  width: 92vw;
+  margin: 24px auto;
+  pointer-events: all;
+}
+#statModal .modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,.22);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+#statModal .modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0e424f;
+  color: #fff;
+  padding: 12px 20px;
+}
+#statModal .modal-header .modal-title { font-size:15px; font-weight:600; font-family:'Noto Sans KR',sans-serif; margin:0; color:#fff !important; }
+#statModal .modal-header .close { color:#fff; opacity:.85; font-size:22px; background:none; border:none; cursor:pointer; padding:0; }
+#statModal .modal-body { padding:0; height:82vh; }
+#statIframe { width:100%; height:100%; border:none; display:block; }
+.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.table-info .total{font-size:13px;color:#666;}
+.table-info .total strong{color:#0e424f;font-weight:700;}
+.stat-dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.statbox{background:#fff;border:1px solid #e3eaf0;border-radius:8px;padding:16px 20px;}
+.statbox span{font-size:12px;color:#888;}
+.statbox .value{font-size:22px;font-weight:700;color:#0e424f;}
+.progress-bar-wrap{background:#e0e8ec;border-radius:4px;height:6px;margin-top:4px;}
+.progress-bar-fill{background:#1f8dab;height:6px;border-radius:4px;}
+/* 듀얼 range 슬라이더 */
+.rate-slider-wrap {
+  position: relative;
+  width: 220px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+}
+.rate-slider-track {
+  position: absolute;
+  left: 0; right: 0;
+  height: 4px;
+  background: #d9d9d9;
+  border-radius: 4px;
+  z-index: 1;
+}
+.rate-slider-range {
+  position: absolute;
+  height: 4px;
+  background: #1f8dab;
+  border-radius: 4px;
+  z-index: 2;
+}
+.rate-range {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  pointer-events: none;
+  z-index: 3;
+}
+.rate-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #1f8dab;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  pointer-events: all;
+  transition: background 0.15s;
+}
+.rate-range::-webkit-slider-thumb:hover { background: #176f8c; }
+.rate-range::-moz-range-thumb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #1f8dab;
+  border: 2px solid #fff;
+  cursor: pointer;
+  pointer-events: all;
+}
+.rate-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f8dab;
+  white-space: nowrap;
+  min-width: 90px;
+}
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-building mr-2" style="color:#1f8dab;font-size:17px;"></i>기업별 상세 현황</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페인통계</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">기업별 상세 현황</li></ul>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>속성 검색 &nbsp;</label>
+          <select class="form-control" style="width:120px;"><option value="">∷ 기업형태 ∷</option><option>대기업</option><option>중견기업</option><option>중소기업</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 업종분류 ∷</option><option>제조업</option><option>서비스업</option><option>건설업</option><option>운수업</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 사업분야 ∷</option><option>IT서비스</option><option>에너지</option><option>물류</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 종업원수 ∷</option><option>50인 미만</option><option>50~299인</option><option>300인 이상</option></select>
+          <select class="form-control" style="width:110px;"><option value="">∷ 참여년도 ∷</option><option>2026년</option><option>2025년</option><option>2024년</option></select>
+          <select class="form-control" style="width:110px;"><option value="">∷ 목표년도 ∷</option><option>2030년</option><option>2035년</option></select>
+        </div>
+        <div class="input-group mb-2">
+          <label>날짜 검색 &nbsp;</label>
+          <select class="form-control" style="width:110px;"><option value="procDtm">승인일시</option></select>
+          <input type="date" class="form-control" style="width:140px;" placeholder="yyyy-mm-dd">
+          <span style="line-height:32px;padding:0 4px;">~</span>
+          <input type="date" class="form-control" style="width:140px;" placeholder="yyyy-mm-dd">
+        </div>
+        <!-- 전환율 슬라이더 -->
+        <div class="input-group mb-2" style="align-items:center;flex-wrap:wrap;gap:0;">
+          <label>전환율 검색 &nbsp;</label>
+          <div class="rate-slider-wrap">
+            <div class="rate-slider-track">
+              <div class="rate-slider-range" id="sliderRange"></div>
+            </div>
+            <input type="range" id="sliderMin" class="rate-range" min="0" max="100" value="0">
+            <input type="range" id="sliderMax" class="rate-range" min="0" max="100" value="100">
+          </div>
+          <span class="rate-label" id="rateLabel">0% ~ 100%</span>
+          <span style="font-size:11px;color:#aaa;margin-left:6px;">(무공해차 전환율)</span>
+        </div>
+        <div class="input-group">
+          <label>키워드 검색 &nbsp;</label>
+          <select class="form-control" style="width:100px;"><option value="entNm">기업명</option><option value="mberNm">담당자명</option><option value="mberId">아이디</option></select>
+          <input type="text" class="form-control" style="width:200px;" placeholder="검색어 입력">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+        </div>
+      </div>
+
+      <div class="stat-dashboard">
+        <div class="statbox"><span>전체 보유 대수</span><div class="value">28,432<small style="font-size:14px;font-weight:400;"> 대</small></div></div>
+        <div class="statbox"><span>무공해차 보유 대수</span><div class="value">8,127<small style="font-size:14px;font-weight:400;"> 대</small></div></div>
+        <div class="statbox"><span>전체 무공해차 전환율</span><div class="value">28.6<small style="font-size:14px;font-weight:400;"> %</small></div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:28.6%"></div></div></div>
+        <div class="statbox"><span>참여 기업 수</span><div class="value">1,247<small style="font-size:14px;font-weight:400;"> 개사</small></div></div>
+      </div>
+
+      <div class="table-info"><div class="total">총 <strong>1,247</strong>건</div></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>기업형태</th><th>기업명</th><th>대표자명</th><th>담당자</th><th>승인일시</th><th>총 차량 수</th><th>전환 달성 차량 수</th><th>무공해차 전환 달성률(%)</th><th>현황</th></tr></thead>
+          <tbody id="entListBody"></tbody>
+        </table>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-10 / 1,247건</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<!-- ── iframe 팝업 모달 ── -->
+<div class="modal fade" id="statModal" tabindex="-1" role="dialog" aria-labelledby="statModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="statModalLabel">현황 상세</h5>
+        <button type="button" class="close" onclick="closeStatModal()" aria-label="닫기">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe id="statIframe" src="" title="현황 상세"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+
+function openStatModal(url, title) {
+  document.getElementById('statModalLabel').textContent = title;
+  var sep = url.indexOf('?') === -1 ? '?' : '&';
+  document.getElementById('statIframe').src = url + sep + 'popup=1';
+  // 백드롭 생성
+  var bd = document.createElement('div');
+  bd.className = 'modal-backdrop-custom';
+  bd.id = 'statModalBackdrop';
+  document.body.appendChild(bd);
+  document.getElementById('statModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeStatModal() {
+  document.getElementById('statModal').classList.remove('show');
+  document.getElementById('statIframe').src = '';
+  var bd = document.getElementById('statModalBackdrop');
+  if (bd) bd.remove();
+  document.body.style.overflow = '';
+}
+// 닫기 버튼 / 백드롭 클릭
+document.addEventListener('click', function(e) {
+  if (e.target.closest('#statModal .close') ||
+      e.target.id === 'statModalBackdrop') {
+    closeStatModal();
+  }
+});
+
+// 듀얼 range 슬라이더
+(function() {
+  var minSlider = document.getElementById('sliderMin');
+  var maxSlider = document.getElementById('sliderMax');
+  var rangeBar  = document.getElementById('sliderRange');
+  var label     = document.getElementById('rateLabel');
+  if (!minSlider || !maxSlider) return;
+
+  function updateSlider() {
+    var min = parseInt(minSlider.value);
+    var max = parseInt(maxSlider.value);
+    if (min > max) {
+      // 교차 방지: 서로 값 교환
+      var tmp = min; min = max; max = tmp;
+      minSlider.value = min;
+      maxSlider.value = max;
+    }
+    rangeBar.style.left  = min + '%';
+    rangeBar.style.width = (max - min) + '%';
+    label.textContent = min + '% ~ ' + max + '%';
+  }
+
+  minSlider.addEventListener('input', updateSlider);
+  maxSlider.addEventListener('input', updateSlider);
+  updateSlider(); // 초기화
+})();
+const ents = [
+  {no:1247,typ:'중소기업',ent:'(주)한국전기차',ceo:'홍길동',mgr:'김민준(kev001)',apl:'2026-03-27 10:23',total:120,eco:34,rate:28.3},
+  {no:1246,typ:'중견기업',ent:'에코에너지(주)',ceo:'이대표',mgr:'이서연(eco002)',apl:'2026-03-26 14:10',total:350,eco:140,rate:40.0},
+  {no:1245,typ:'중소기업',ent:'그린모빌리티(주)',ceo:'박대표',mgr:'박지호(grn003)',apl:'2026-03-25 09:45',total:88,eco:20,rate:22.7},
+  {no:1244,typ:'대기업',ent:'미래자동차(주)',ceo:'최대표',mgr:'정다은(fut004)',apl:'2026-03-24 11:30',total:1200,eco:560,rate:46.7},
+  {no:1243,typ:'중소기업',ent:'클린에너지(주)',ceo:'강대표',mgr:'강민서(cln005)',apl:'2026-03-23 16:55',total:65,eco:18,rate:27.7},
+  {no:1242,typ:'중견기업',ent:'전기차솔루션(주)',ceo:'윤대표',mgr:'윤지성(ev006)',apl:'2026-03-22 08:20',total:220,eco:78,rate:35.5},
+  {no:1241,typ:'중소기업',ent:'한국그린카(주)',ceo:'임대표',mgr:'임수아(grk007)',apl:'2026-03-21 13:40',total:95,eco:25,rate:26.3},
+  {no:1240,typ:'중소기업',ent:'미래모빌리티(주)',ceo:'오대표',mgr:'오태양(mob008)',apl:'2026-03-20 10:15',total:73,eco:15,rate:20.5},
+  {no:1239,typ:'대기업',ent:'한국전력기술(주)',ceo:'한대표',mgr:'한소희(kep009)',apl:'2026-03-19 15:30',total:800,eco:320,rate:40.0},
+  {no:1238,typ:'중소기업',ent:'스마트드라이브(주)',ceo:'신대표',mgr:'신재원(smd010)',apl:'2026-03-18 09:00',total:50,eco:10,rate:20.0},
+];
+document.getElementById('entListBody').innerHTML = ents.map(d=>`
+  <tr>
+    <td>${d.no}</td><td>${d.typ}</td><td><a href="camp_read.html">${d.ent}</a></td><td>${d.ceo}</td><td>${d.mgr}</td><td>${d.apl}</td>
+    <td>${d.total}</td><td>${d.eco}</td>
+    <td>${d.rate}%<div style="background:#e0e8ec;border-radius:4px;height:5px;margin-top:3px;"><div style="background:#1f8dab;height:5px;border-radius:4px;width:${d.rate}%"></div></div></td>
+    <td style="text-align:left;">
+      <a href="#" onclick="openStatModal('campstat_enterprise_possession.html','보유 현황 — ${d.ent}');return false;" class="btn btn-secondary btn-sm" style="display:block;margin-bottom:2px;"><i class="fa fa-archive mr-1"></i>보유 현황</a>
+      <a href="#" onclick="openStatModal('campstat_enterprise_plan.html','중장기 계획 현황 — ${d.ent}');return false;" class="btn btn-secondary btn-sm" style="display:block;margin-bottom:2px;"><i class="fa fa-list-ul mr-1"></i>중장기 계획 현황</a>
+      <a href="#" onclick="openStatModal('campstat_enterprise_plandetail.html','세부 계획 현황 — ${d.ent}');return false;" class="btn btn-secondary btn-sm" style="display:block;margin-bottom:2px;"><i class="fa fa-list-ul mr-1"></i>세부 계획 현황</a>
+      <a href="#" onclick="openStatModal('campstat_enterprise_result.html','년도별 실적 현황 — ${d.ent}');return false;" class="btn btn-secondary btn-sm" style="display:block;"><i class="fa fa-area-chart mr-1"></i>년도별 실적 현황</a>
+    </td>
+  </tr>`).join('');
+</script>
+</body></html>

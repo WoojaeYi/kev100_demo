@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기업계정 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+.table-info .total strong { color:#0e424f; font-weight:700; }
+.table-info .btn-group-right { display:flex; gap:6px; }
+
+/* 반려 모달 */
+#rejectModal {
+  display:none; position:fixed; top:0; right:0; bottom:0; left:0;
+  z-index:999999; background:rgba(0,0,0,0.55);
+  align-items:center; justify-content:center;
+}
+.reject-modal-box {
+  background:#fff; border-radius:8px; width:680px; max-width:96vw;
+  box-shadow:0 8px 40px rgba(0,0,0,0.22); overflow:hidden;
+}
+.reject-modal-header {
+  background:#0e424f; color:#fff;
+  padding:14px 20px; display:flex; align-items:center; justify-content:space-between;
+}
+.reject-modal-header h5 { margin:0; font-size:15px; font-weight:700; }
+.reject-modal-header .close-btn { background:none; border:none; color:#fff; font-size:20px; cursor:pointer; line-height:1; }
+.reject-modal-body { padding:24px; }
+.r-item { display:flex; align-items:flex-start; margin-bottom:14px; }
+.r-label { width:140px; flex-shrink:0; font-size:13px; font-weight:600; color:#555; padding-top:6px; }
+.r-value { flex:1; }
+.notice-txt { color:#e63946; font-size:13px; font-weight:600; line-height:30px; }
+.required { color:#e63946; margin-left:2px; }
+.r-textarea {
+  width:100%; min-height:150px; resize:vertical; font-size:13px;
+  font-family:'Noto Sans KR',sans-serif; border:1px solid #ced4da; border-radius:4px;
+  padding:6px 10px; box-sizing:border-box;
+}
+.r-textarea:focus { outline:none; border-color:#1f8dab; box-shadow:0 0 0 2px rgba(31,141,171,0.15); }
+.char-count { font-size:11px; color:#aaa; text-align:right; margin-top:3px; }
+.reject-modal-footer { border-top:1px solid #e5ecf1; padding:14px 20px; display:flex; justify-content:center; gap:8px; background:#fafbfc; }
+
+/* 담당자 변경 이력 모달 */
+#replaceLogModal {
+  display:none; position:fixed; top:0; right:0; bottom:0; left:0;
+  z-index:999999; background:rgba(0,0,0,0.55);
+  align-items:center; justify-content:center;
+}
+
+/* disabled */
+.btn.disabled, .btn[disabled] { opacity:0.45; cursor:not-allowed; pointer-events:none; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <!-- SIDEBAR -->
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+
+  <!-- TOP NAV -->
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown open" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <!-- CONTENT -->
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-building mr-2" style="color:#1f8dab;font-size:17px;"></i>기업계정 목록</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>계정관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">기업계정 목록</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- 검색 -->
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>속성 검색 &nbsp;</label>
+          <select class="form-control" style="width:110px;"><option value="">∷ 기업분류 ∷</option><option value="SME">중소기업</option><option value="LRG">대기업</option><option value="MID">중견기업</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 캠페인 참여 ∷</option><option value="Y">참여</option><option value="N">미참여</option></select>
+          <select class="form-control" style="width:110px;"><option value="">∷ 회원 상태 ∷</option><option value="A">승인대기</option><option value="N">정상</option></select>
+          <select class="form-control" style="width:130px;"><option value="">∷ 담당자 변경 이력 ∷</option><option value="Y">있음</option><option value="N">없음</option></select>
+        </div>
+        <div class="input-group mb-2">
+          <label>날짜 검색 &nbsp;</label>
+          <select class="form-control" style="width:110px;"><option value="applyDtm">신청일시</option><option value="procDtm">처리일시</option></select>
+          <input type="date" class="form-control" style="width:140px;">
+          <span style="line-height:32px;padding:0 4px;">~</span>
+          <input type="date" class="form-control" style="width:140px;">
+        </div>
+        <div class="input-group">
+          <label>키워드 검색 &nbsp;</label>
+          <select class="form-control" style="width:120px;"><option value="entNm">기업명</option><option value="bizNo">사업자등록번호</option><option value="corpNo">법인번호</option><option value="mberNm">담당자명</option><option value="mberId">아이디</option></select>
+          <input type="text" class="form-control" style="width:200px;" placeholder="검색어 입력">
+          <button class="btn btn-dark" onclick="fnSearch()"><i class="fa fa-search mr-1"></i>검색</button>
+        </div>
+      </div>
+
+      <!-- 테이블 상단 정보 -->
+      <div class="table-info">
+        <div class="total">총 <strong id="totalCount">25</strong>건</div>
+        <div class="btn-group-right">
+          <button class="btn btn-secondary btn-sm" onclick="fnOpenReplaceManagerLog(null)"><i class="fa fa-search mr-1"></i>담당자 변경 이력 조회</button>
+          <button class="btn btn-secondary btn-sm" onclick="fnExcelDownload()"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
+        </div>
+      </div>
+
+      <!-- 목록 테이블 -->
+      <div class="list_wrapper">
+        <table class="listTable" id="accountTable" style="table-layout:fixed;">
+          <colgroup>
+            <col style="width:5%;">
+            <col>
+            <col style="width:8%;">
+            <col style="width:9%;">
+            <col style="width:7%;">
+            <col style="width:7%;">
+            <col style="width:13%;">
+            <col style="width:12%;">
+            <col style="width:7%;">
+            <col style="width:8%;">
+            <col style="width:17%;">
+          </colgroup>
+          <thead><tr>
+            <th>번호</th>
+            <th>기업명</th>
+            <th>대표자명</th>
+            <th>사업자등록번호</th>
+            <th>담당자 ID</th>
+            <th>담당자명</th>
+            <th>이메일</th>
+            <th>신청일시</th>
+            <th>회원 상태</th>
+            <th>캠페인 참여</th>
+            <th>관리</th>
+          </tr></thead>
+          <tbody id="accountTbody"></tbody>
+        </table>
+      </div>
+
+      <!-- 계정 신청 버튼 -->
+      <div style="text-align:right; margin-top:12px;">
+        <a href="account_form.html" class="btn btn-info btn-sm"><i class="fa fa-pencil mr-1"></i>계정 신청</a>
+      </div>
+
+      <!-- 페이징 -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px;">
+        <div class="dataTables_info" id="datatable_info"></div>
+        <ul class="pagination" id="pagerList"></ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<!-- 담당자 변경 이력 모달 -->
+<div id="replaceLogModal">
+  <div style="background:#fff;border-radius:8px;width:900px;max-width:96vw;box-shadow:0 8px 40px rgba(0,0,0,0.22);overflow:hidden;">
+    <div style="background:#0e424f;color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;">
+      <h5 style="margin:0;font-size:15px;font-weight:700;"><i class="fa fa-search mr-2"></i>담당자 변경 이력 조회</h5>
+      <button style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;line-height:1;" onclick="closeReplaceLogModal()">&times;</button>
+    </div>
+    <div style="padding:24px;">
+      <table class="listTable">
+        <thead><tr><th>번호</th><th>기업명</th><th>이전 담당자</th><th>변경 담당자</th><th>변경일시</th><th>처리자</th></tr></thead>
+        <tbody>
+          <tr><td>2</td><td class="left">(주)한국전기차</td><td>이수진</td><td>김민준</td><td>2026-02-10 14:23</td><td>admin</td></tr>
+          <tr><td>1</td><td class="left">(주)한국전기차</td><td>박성호</td><td>이수진</td><td>2025-11-05 09:40</td><td>admin</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="border-top:1px solid #e5ecf1;padding:14px 20px;display:flex;justify-content:center;background:#fafbfc;">
+      <button class="btn btn-secondary btn-sm" onclick="closeReplaceLogModal()"><i class="fa fa-close mr-1"></i>닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 반려 처리 모달 -->
+<div id="rejectModal">
+  <div class="reject-modal-box">
+    <div class="reject-modal-header">
+      <h5><i class="fa fa-ban mr-2"></i>계정신청 반려</h5>
+      <button class="close-btn" onclick="closeRejectModal()">&times;</button>
+    </div>
+    <div class="reject-modal-body">
+      <form id="rejectForm">
+        <input type="hidden" id="rejectMberId" value="">
+        <div class="r-item">
+          <span class="r-label">주의사항 <span class="required">*</span></span>
+          <div class="r-value">
+            <div class="notice-txt"><i class="fa fa-exclamation-triangle mr-1"></i>반려처리할 경우 신청내역이 삭제처리됩니다.</div>
+          </div>
+        </div>
+        <div class="r-item">
+          <span class="r-label">담당자 아이디 <span class="required">*</span></span>
+          <div class="r-value">
+            <span id="rejectDisplayId" class="form-control" style="display:inline-block;background:#f7f9fc;min-height:34px;line-height:22px;"></span>
+          </div>
+        </div>
+        <div class="r-item">
+          <span class="r-label">반려사유 <span class="required">*</span></span>
+          <div class="r-value">
+            <textarea id="rejectReason" class="r-textarea" maxlength="2000" placeholder="반려사유를 입력해주세요."
+              oninput="document.getElementById('rejectCharCount').textContent=this.value.length"></textarea>
+            <div class="char-count"><span id="rejectCharCount">0</span> / 2000</div>
+          </div>
+        </div>
+        <div class="r-item">
+          <span class="r-label">이메일 발송 여부 <span class="required">*</span></span>
+          <div class="r-value" style="line-height:30px;">
+            <input type="checkbox" id="sendMailYn" value="Y" style="margin-right:4px;" checked>
+            <label for="sendMailYn">발송</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="reject-modal-footer">
+      <button class="btn btn-danger btn-sm" onclick="submitReject()"><i class="fa fa-save mr-1"></i>반려처리</button>
+      <button class="btn btn-secondary btn-sm" onclick="closeRejectModal()"><i class="fa fa-close mr-1"></i>닫기</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script>
+<script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+
+/* ── 샘플 데이터 ── */
+const accountList = [
+  { no:25, entNm:'(주)한국전기차',    ceoNm:'홍길동', bizNo:'123-45-67890', mberId:'kev001',  mberNm:'김민준', email:'minjun@ev-korea.co.kr',       applyDtm:'2026-03-30 09:12', mberSttus:'A', mberSttusNm:'승인대기', campAprovYn:'Y', replaceLogCnt:0, partnerEntId:1 },
+  { no:24, entNm:'(주)그린모터스',    ceoNm:'김철수', bizNo:'234-56-78901', mberId:'green01', mberNm:'이수진', email:'soojin@greenmotors.co.kr',   applyDtm:'2026-03-28 14:05', mberSttus:'N', mberSttusNm:'정상',    campAprovYn:'Y', replaceLogCnt:2, partnerEntId:2 },
+  { no:23, entNm:'에코솔루션(주)',    ceoNm:'박영희', bizNo:'345-67-89012', mberId:'eco02',   mberNm:'박성호', email:'sungho@ecosolution.co.kr',   applyDtm:'2026-03-25 11:30', mberSttus:'N', mberSttusNm:'정상',    campAprovYn:'N', replaceLogCnt:0, partnerEntId:3 },
+  { no:22, entNm:'(주)퓨처모빌리티', ceoNm:'최동훈', bizNo:'456-78-90123', mberId:'future3', mberNm:'최동훈', email:'donghun@futuremob.co.kr',    applyDtm:'2026-03-22 16:44', mberSttus:'A', mberSttusNm:'승인대기', campAprovYn:'N', replaceLogCnt:0, partnerEntId:4 },
+  { no:21, entNm:'스마트EV(주)',      ceoNm:'정유석', bizNo:'567-89-01234', mberId:'sev004',  mberNm:'정유석', email:'yooseok@smartev.co.kr',      applyDtm:'2026-03-20 10:00', mberSttus:'N', mberSttusNm:'정상',    campAprovYn:'Y', replaceLogCnt:1, partnerEntId:5 },
+  { no:20, entNm:'(주)클린에너지',   ceoNm:'한지원', bizNo:'678-90-12345', mberId:'clean05', mberNm:'한지원', email:'jiwon@cleanenergy.co.kr',    applyDtm:'2026-03-15 09:20', mberSttus:'N', mberSttusNm:'정상',    campAprovYn:'Y', replaceLogCnt:0, partnerEntId:6 },
+  { no:19, entNm:'넥스트카(주)',      ceoNm:'오민석', bizNo:'789-01-23456', mberId:'next06',  mberNm:'오민석', email:'minseok@nextcar.co.kr',      applyDtm:'2026-03-10 13:55', mberSttus:'N', mberSttusNm:'정상',    campAprovYn:'N', replaceLogCnt:0, partnerEntId:7 },
+  { no:18, entNm:'(주)전기차연구소',  ceoNm:'임수현', bizNo:'890-12-34567', mberId:'evlab07', mberNm:'임수현', email:'soohyun@evlab.co.kr',        applyDtm:'2026-03-05 08:40', mberSttus:'A', mberSttusNm:'승인대기', campAprovYn:'Y', replaceLogCnt:0, partnerEntId:8 },
+  { no:17, entNm:'모빌리티원(주)',    ceoNm:'강태양', bizNo:'901-23-45678', mberId:'mob08',   mberNm:'강태양', email:'taeyang@mobilityone.co.kr',  applyDtm:'2026-02-28 17:15', mberSttus:'N', mberSttusNm:'정상',    campAprovYn:'Y', replaceLogCnt:3, partnerEntId:9 },
+  { no:16, entNm:'(주)이브이텍',     ceoNm:'신혜진', bizNo:'012-34-56789', mberId:'evt009',  mberNm:'신혜진', email:'hyejin@evtech.co.kr',        applyDtm:'2026-02-20 11:00', mberSttus:'N', mberSttusNm:'정상',    campAprovYn:'N', replaceLogCnt:1, partnerEntId:10 },
+];
+
+let currentPage = 1;
+const totalCount = 25;
+const maxPageItems = 10;
+const maxIndexPages = 5;
+
+function getStatusBadge(sttus, sttusNm) {
+  if (sttus === 'A') return '<span class="ing">'    + sttusNm + '</span>';
+  if (sttus === 'D') return '<span class="notUse">' + sttusNm + '</span>';
+  return '<span class="use">' + sttusNm + '</span>';
+}
+
+function getCampBadge(yn) {
+  return yn === 'Y' ? '<span class="use">참여</span>' : '<span class="notUse">미참여</span>';
+}
+
+function getManageBtns(item) {
+  var btns = '<a href="account_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-eye mr-1"></i>조회</a> ';
+  btns += '<a href="account_form.html" class="btn btn-secondary btn-sm"><i class="fa fa-gear mr-1"></i>수정</a>';
+
+  if (item.mberSttus === 'A') {
+    btns += '<br><div style="display:flex;gap:4px;justify-content:center;margin-top:4px;">';
+    btns += '<button class="btn btn-success btn-sm" onclick="fnApprove(\'' + item.mberId + '\')"><i class="fa fa-check mr-1"></i>승인</button>';
+    btns += '<button class="btn btn-danger btn-sm" onclick="fnOpenAccountRejectForm(\'' + item.mberId + '\')"><i class="fa fa-close mr-1"></i>반려</button>';
+    btns += '</div>';
+  } else {
+    var disabled = item.replaceLogCnt === 0 ? ' disabled' : '';
+    btns += ' <button class="btn btn-secondary btn-sm' + disabled + '" onclick="fnOpenReplaceManagerLog(' + item.partnerEntId + ')">'
+          + '<i class="fa fa-search"></i><span style="margin-left:3px;">담당자이력</span></button>';
+  }
+  return btns;
+}
+
+function render() {
+  var tb = document.getElementById('accountTbody');
+  var start = (currentPage - 1) * maxPageItems;
+  var end   = Math.min(start + maxPageItems, accountList.length);
+  var rows  = accountList.slice(start, end);
+
+  if (rows.length === 0) {
+    tb.innerHTML = '<tr><td colspan="11" class="empty">조회된 데이터가 없습니다.</td></tr>';
+    return;
+  }
+
+  tb.innerHTML = rows.map(function(item, idx) {
+    var rowNo = totalCount - start - idx;
+    return '<tr>'
+      + '<td>' + rowNo + '</td>'
+      + '<td class="left"><a href="account_read.html">' + item.entNm + '</a></td>'
+      + '<td>' + item.ceoNm + '</td>'
+      + '<td>' + item.bizNo + '</td>'
+      + '<td>' + item.mberId + '</td>'
+      + '<td>' + item.mberNm + '</td>'
+      + '<td class="left" style="font-size:12px;">' + item.email + '</td>'
+      + '<td style="font-size:12px;">' + item.applyDtm + '</td>'
+      + '<td>' + getStatusBadge(item.mberSttus, item.mberSttusNm) + '</td>'
+      + '<td>' + getCampBadge(item.campAprovYn) + '</td>'
+      + '<td>' + getManageBtns(item) + '</td>'
+      + '</tr>';
+  }).join('');
+
+  renderInfo(start + 1, end);
+  renderPager();
+}
+
+function renderInfo(first, last) {
+  document.getElementById('datatable_info').textContent = first + '-' + last + ' / ' + totalCount + '건';
+}
+
+function renderPager() {
+  var totalPages = Math.ceil(accountList.length / maxPageItems);
+  var groupStart = Math.floor((currentPage - 1) / maxIndexPages) * maxIndexPages + 1;
+  var groupEnd   = Math.min(groupStart + maxIndexPages - 1, totalPages);
+  var html = '';
+
+  html += '<li class="page-item' + (currentPage === 1 ? ' disabled' : '') + '"><a class="page-link" onclick="gotoPage(' + (currentPage - 1) + ')"><i class="fa fa-chevron-left"></i></a></li>';
+  for (var p = groupStart; p <= groupEnd; p++) {
+    html += '<li class="page-item' + (p === currentPage ? ' active' : '') + '"><a class="page-link" onclick="gotoPage(' + p + ')">' + p + '</a></li>';
+  }
+  html += '<li class="page-item' + (currentPage === totalPages ? ' disabled' : '') + '"><a class="page-link" onclick="gotoPage(' + (currentPage + 1) + ')"><i class="fa fa-chevron-right"></i></a></li>';
+
+  document.getElementById('pagerList').innerHTML = html;
+}
+
+function gotoPage(p) {
+  var totalPages = Math.ceil(accountList.length / maxPageItems);
+  if (p < 1 || p > totalPages) return;
+  currentPage = p;
+  render();
+}
+
+function fnSearch() { currentPage = 1; render(); }
+
+function fnExcelDownload() {
+  if (confirm('엑셀을 다운로드하시겠습니까?')) alert('엑셀 파일이 다운로드됩니다.');
+}
+
+function fnApprove(mberId) {
+  if (confirm('해당 계정신청을 승인처리하시겠습니까?')) alert('승인 처리되었습니다.');
+}
+
+function fnOpenAccountRejectForm(mberId) {
+  document.getElementById('rejectMberId').value = mberId || '';
+  document.getElementById('rejectDisplayId').textContent = mberId || '';
+  document.getElementById('rejectReason').value = '';
+  document.getElementById('rejectCharCount').textContent = '0';
+  document.getElementById('rejectModal').style.display = 'flex';
+}
+
+function closeRejectModal() {
+  document.getElementById('rejectModal').style.display = 'none';
+}
+
+function submitReject() {
+  var reason = document.getElementById('rejectReason').value.trim();
+  if (!reason) { alert('반려사유를 입력해주세요.'); document.getElementById('rejectReason').focus(); return; }
+  if (confirm('반려처리하시겠습니까?\n반려처리할 경우 신청내역이 삭제처리됩니다.')) {
+    closeRejectModal();
+    alert('정상적으로 반려처리되었습니다.');
+  }
+}
+
+document.getElementById('rejectModal').addEventListener('click', function(e) {
+  if (e.target === this) closeRejectModal();
+});
+
+function fnOpenReplaceManagerLog(partnerEntId) {
+  document.getElementById('replaceLogModal').style.display = 'flex';
+}
+
+function closeReplaceLogModal() {
+  document.getElementById('replaceLogModal').style.display = 'none';
+}
+
+document.getElementById('replaceLogModal').addEventListener('click', function(e) {
+  if (e.target === this) closeReplaceLogModal();
+});
+
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>

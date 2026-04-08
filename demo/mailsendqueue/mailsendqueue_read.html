@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메일 발송 대기 상세 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.mail-preview { border:1px solid #dde3e8; background:#f8fbfc; padding:20px 24px; border-radius:6px; min-height:180px; line-height:1.8; color:#333; font-size:14px; margin-top:20px; }
+.mail-preview h4 { font-size:14px; font-weight:700; color:#0e424f; margin-bottom:12px; border-bottom:1px solid #dde3e8; padding-bottom:8px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-clock-o mr-2" style="color:#1f8dab;font-size:17px;"></i>메일 발송 대기 상세</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>메일관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li><a href="mailsendqueue_list.html">메일 발송 대기열</a></li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">상세</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <table class="detail-table">
+        <tbody>
+          <tr>
+            <th style="width:160px;">수신자 이메일</th>
+            <td>kim@ev100.or.kr</td>
+            <th style="width:160px;">수신자명</th>
+            <td>김민준</td>
+          </tr>
+          <tr>
+            <th>제목</th>
+            <td colspan="3">[K-EV100] 회원가입 승인 안내</td>
+          </tr>
+          <tr>
+            <th>발송 방식</th>
+            <td>예약발송</td>
+            <th>예약 일시</th>
+            <td>2026-03-30 15:00:00</td>
+          </tr>
+          <tr>
+            <th>우선순위</th>
+            <td><span style="color:#1f8dab;font-weight:600;">높음</span></td>
+            <th>상태</th>
+            <td><span class="ing">대기</span></td>
+          </tr>
+          <tr>
+            <th>사용 템플릿</th>
+            <td colspan="3">TPL_JOIN_APPROVE - 가입승인 안내</td>
+          </tr>
+          <tr>
+            <th>등록일시</th>
+            <td colspan="3">2026-03-30 10:15:33</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="mail-preview">
+        <h4><i class="fa fa-eye mr-1"></i>메일 내용 미리보기</h4>
+        <p>안녕하세요, <strong>김민준</strong>님.</p>
+        <p>K-EV100 서비스 포털 회원가입 승인이 완료되었습니다.</p>
+        <p>아래 링크를 통해 서비스를 이용하실 수 있습니다.</p>
+        <p><a href="#" style="color:#1f8dab;">[K-EV100 서비스 포털 바로가기]</a></p>
+        <p style="color:#888;font-size:12px;">문의사항은 고객센터(1588-0000)로 연락 주시기 바랍니다.</p>
+        <br>
+        <p>감사합니다.<br>K-EV100 서비스 포털 운영팀</p>
+      </div>
+
+      <div style="margin-top:24px;display:flex;gap:8px;justify-content:center;">
+        <a href="mailsendqueue_list.html" class="btn btn-secondary"><i class="fa fa-list mr-1"></i>목록</a>
+        <button class="btn" style="background:#e53935;color:#fff;border:none;padding:6px 16px;border-radius:4px;cursor:pointer;">
+          <i class="fa fa-ban mr-1"></i>발송 취소
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 4;</script>
+</body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>분류코드 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}.table-info .total{font-size:13px;color:#666;}.table-info .total strong{color:#0e424f;font-weight:700;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-folder mr-2" style="color:#1f8dab;font-size:17px;"></i>분류코드 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">분류코드 목록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>키워드 검색 &nbsp;</label>
+          <select class="form-control" style="width:110px;"><option>분류코드</option><option>분류코드명</option><option>설명</option></select>
+          <input type="text" class="form-control" style="width:220px;" placeholder="검색어 입력">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+        </div>
+      </div>
+      <div class="table-info">
+        <div class="total">총 <strong>12</strong>건</div>
+        <div><a href="clcode_form.html" class="btn btn-dark btn-sm"><i class="fa fa-pencil mr-1"></i>등록</a></div>
+      </div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>분류코드</th><th>분류코드명</th><th>설명</th><th>사용여부</th><th>관리</th></tr></thead>
+          <tbody id="clcodeBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const data = [
+  {no:12,cd:'ENT_CLS',nm:'기업분류',dc:'기업 분류 코드 (중소/중견/대기업)',use:'Y'},
+  {no:11,cd:'ACCT_STATUS',nm:'계정상태',dc:'계정 상태 코드 (정상/승인대기/반려/탈퇴)',use:'Y'},
+  {no:10,cd:'CAMP_DIV',nm:'캠페인신청구분',dc:'캠페인 신청 구분 코드',use:'Y'},
+  {no:9,cd:'CAMP_STATUS',nm:'캠페인상태',dc:'캠페인 진행 상태 코드',use:'Y'},
+  {no:8,cd:'QA_STATUS',nm:'Q&A답변상태',dc:'Q&A 답변 처리 상태',use:'Y'},
+  {no:7,cd:'BBS_TYPE',nm:'게시판유형',dc:'게시판 유형 분류',use:'Y'},
+  {no:6,cd:'SITE_STATUS',nm:'사이트상태',dc:'사이트 운영 상태 코드',use:'Y'},
+  {no:5,cd:'FILE_TYPE',nm:'파일유형',dc:'업로드 파일 유형 분류',use:'Y'},
+  {no:4,cd:'ROLE_TYPE',nm:'권한유형',dc:'사용자 권한 유형 분류',use:'Y'},
+  {no:3,cd:'NOTICE_TYPE',nm:'공지유형',dc:'공지사항 유형 분류',use:'N'},
+];
+const USE={'Y':'<span class="use">사용</span>','N':'<span class="notUse">미사용</span>'};
+document.getElementById('clcodeBody').innerHTML = data.map(d=>`
+  <tr><td>${d.no}</td><td>${d.cd}</td><td>${d.nm}</td><td class="t-a-left">${d.dc}</td><td>${USE[d.use]}</td>
+  <td><a href="clcode_form.html" class="btn btn-secondary btn-sm"><i class="fa fa-pencil mr-1"></i>수정</a>
+  <button class="btn btn-danger btn-sm" onclick="if(confirm('삭제하시겠습니까?'))alert('삭제되었습니다.')"><i class="fa fa-trash mr-1"></i>삭제</button></td></tr>`).join('');
+</script>
+</body></html>

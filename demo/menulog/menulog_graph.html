@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메뉴별 접근 통계 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.chart-wrap{background:#fff;border:1px solid #e3eaf0;border-radius:8px;padding:24px;margin-bottom:24px;}.chart-title{font-size:15px;font-weight:700;color:#0e424f;margin-bottom:16px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-bar-chart mr-2" style="color:#1f8dab;font-size:17px;"></i>메뉴별 접근 통계</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>통계</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">메뉴별 접근 통계</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>조회 기간 &nbsp;</label>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-01">
+          <span style="line-height:36px;padding:0 6px;">~</span>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-31">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary ml-1"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title"><i class="fa fa-bar-chart mr-1"></i>메뉴별 접근 횟수 Top 10</div>
+        <canvas id="menuLogChart" height="80"></canvas>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>순위</th><th>메뉴명</th><th>URL</th><th>접근 횟수</th><th>비율</th></tr></thead>
+          <tbody id="menuLogBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const menuData = [
+  {nm:'캠페인 목록',url:'/admin/camp/campList.do',cnt:4521},
+  {nm:'기업 회원 목록',url:'/admin/account/accountList.do',cnt:3847},
+  {nm:'캠페인 상세',url:'/admin/camp/campRead.do',cnt:2934},
+  {nm:'기업 현황',url:'/admin/camp/campstatEnterpriseList.do',cnt:2156},
+  {nm:'대시보드',url:'/admin/main/dashboard.do',cnt:1987},
+  {nm:'공지사항',url:'/admin/bbs/bbsList.do',cnt:1432},
+  {nm:'사이트 방문 통계',url:'/admin/sitelog/sitelogDateGraph.do',cnt:1123},
+  {nm:'코드 관리',url:'/admin/code/codeList.do',cnt:876},
+  {nm:'메뉴 관리',url:'/admin/menucreate/menucreateManage.do',cnt:654},
+  {nm:'배치 이력',url:'/admin/expthread/expthreadList.do',cnt:432},
+];
+const total = menuData.reduce((s,d)=>s+d.cnt,0);
+new Chart(document.getElementById('menuLogChart').getContext('2d'),{
+  type:'horizontalBar',
+  data:{labels:menuData.map(d=>d.nm), datasets:[{data:menuData.map(d=>d.cnt),backgroundColor:'rgba(31,141,171,0.7)',borderColor:'#1f8dab',borderWidth:1}]},
+  options:{responsive:true,legend:{display:false},scales:{xAxes:[{ticks:{beginAtZero:true}}]}}
+});
+document.getElementById('menuLogBody').innerHTML = menuData.map((d,i)=>`
+  <tr><td><strong style="color:#0e424f;">${i+1}</strong></td><td class="t-a-left">${d.nm}</td><td class="t-a-left" style="font-size:12px;color:#888;">${d.url}</td>
+  <td>${d.cnt.toLocaleString()}</td><td>${(d.cnt/total*100).toFixed(1)}%</td></tr>`).join('');
+</script>
+</body></html>

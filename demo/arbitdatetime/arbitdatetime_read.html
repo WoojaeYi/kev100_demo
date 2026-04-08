@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>임의날짜 상세 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.section-header{font-size:14px;font-weight:700;color:#0e424f;border-left:3px solid #0e424f;padding-left:10px;margin:24px 0 12px;}.section-header:first-child{margin-top:0;}.btn-area{display:flex;justify-content:center;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid #e5ecf1;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-calendar-o mr-2" style="color:#1f8dab;font-size:17px;"></i>임의날짜 상세</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li><a href="arbitdatetime_list.html">임의날짜 관리</a></li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">상세</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="section-header">임의날짜 정보</div>
+      <table class="detail-table">
+        <tr><th style="width:160px;">설정명</th><td>캠페인 신청기간 테스트</td><th style="width:160px;">적용여부</th><td><span class="notUse">미적용</span></td></tr>
+        <tr><th>임의 날짜/시간</th><td>2026-04-01 00:00:00</td><th>등록일</th><td>2026-03-20</td></tr>
+        <tr><th>설명</th><td colspan="3">캠페인 신청 기간(2026-04-01 ~ 2026-04-30) 테스트를 위한 임의날짜 설정</td></tr>
+      </table>
+      <div class="btn-area">
+        <a href="arbitdatetime_list.html" class="btn btn-secondary"><i class="fa fa-list mr-1"></i>목록</a>
+        <a href="arbitdatetime_form.html" class="btn btn-dark"><i class="fa fa-pencil mr-1"></i>수정</a>
+        <button class="btn btn-danger" onclick="if(confirm('삭제하시겠습니까?'))alert('삭제되었습니다.');"><i class="fa fa-trash mr-1"></i>삭제</button>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 4;</script>
+</body></html>

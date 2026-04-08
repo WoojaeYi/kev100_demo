@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.btn-wrap-top { display:flex; justify-content:flex-end; margin-bottom:10px; gap:6px; }
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+.table-info .total strong { color:#0e424f; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <!-- SIDEBAR -->
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <!-- TOP NAV -->
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown open" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <!-- CONTENT -->
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-flag mr-2" style="color:#1f8dab;font-size:17px;"></i>캠페인 목록</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>캠페인관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">캠페인 목록</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- 검색 -->
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>속성 검색 &nbsp;</label>
+          <select class="form-control" style="width:120px;"><option value="">∷ 기업형태 ∷</option><option>대기업</option><option>중견기업</option><option>중소기업</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 기업분류 ∷</option><option>제조업</option><option>서비스업</option><option>건설업</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 사업분야 ∷</option><option>IT서비스</option><option>에너지</option><option>물류</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 종업원수 ∷</option><option>50인 미만</option><option>50~299인</option><option>300인 이상</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 가입기준년도 ∷</option><option>2026년</option><option>2025년</option><option>2024년</option></select>
+          <select class="form-control" style="width:110px;"><option value="">∷ 목표년도 ∷</option><option>2030년</option><option>2035년</option></select>
+          <select class="form-control" style="width:120px;"><option value="">∷ 처리상태 ∷</option><option>승인완료</option><option>검토중</option><option>승인대기</option><option>반려</option></select>
+          <select class="form-control" style="width:110px;"><option value="">∷ 신청구분 ∷</option><option>신규신청</option><option>연장신청</option></select>
+        </div>
+        <div class="input-group mb-2">
+          <label>날짜 검색 &nbsp;</label>
+          <select class="form-control" style="width:110px;"><option value="applyDtm">신청일시</option><option value="procDtm">처리일시</option></select>
+          <input type="date" class="form-control" style="width:140px;">
+          <span style="line-height:32px;padding:0 4px;">~</span>
+          <input type="date" class="form-control" style="width:140px;">
+        </div>
+        <div class="input-group">
+          <label>키워드 검색 &nbsp;</label>
+          <select class="form-control" style="width:100px;"><option value="entNm">기업명</option><option value="mberNm">담당자명</option><option value="mberId">아이디</option></select>
+          <input type="text" class="form-control" style="width:200px;" placeholder="검색어 입력">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <label style="margin-left:12px;line-height:32px;font-size:13px;"><input type="checkbox" style="margin-right:4px;">최종 승인 문서만 보기</label>
+        </div>
+      </div>
+
+      <!-- 테이블 상단 -->
+      <div class="table-info">
+        <div class="total">총 <strong>342</strong>건</div>
+        <div class="btn-wrap-top" style="margin-bottom:0;">
+          <button class="btn btn-secondary btn-sm"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
+        </div>
+      </div>
+
+      <!-- 목록 테이블 -->
+      <div class="list_wrapper">
+        <table class="listTable" id="campTable">
+          <thead><tr>
+            <th>번호</th><th>기업형태</th><th>가입기준년도</th><th>기업명</th><th>담당자</th>
+            <th>신청구분(최신)</th><th>처리상태(최신)</th><th>최종승인여부</th><th>이력조회</th><th>신청일시</th><th>관리</th>
+          </tr></thead>
+          <tbody id="campBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 캠페인 신청 -->
+      <div style="text-align:right;margin-top:12px;">
+        <a href="camp_form.html" class="btn btn-info btn-sm"><i class="fa fa-pencil mr-1"></i>캠페인 신청</a>
+      </div>
+
+      <!-- 페이징 -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-10 / 342건</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link">4</a></li>
+          <li class="page-item"><a class="page-link">5</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+
+const camps = [
+  {no:342, typ:'중소기업', joinYear:2026, ent:'(주)한국전기차', mgr:'김민준(kev001)', aplTyp:'신규신청', aplStat:'승인대기', aprov:'미승인', date:'2026-03-30 10:23'},
+  {no:341, typ:'중견기업', joinYear:2026, ent:'에코에너지(주)', mgr:'이서연(eco002)', aplTyp:'신규신청', aplStat:'승인대기', aprov:'미승인', date:'2026-03-29 14:10'},
+  {no:340, typ:'중소기업', joinYear:2026, ent:'그린모빌리티(주)', mgr:'박지호(grn003)', aplTyp:'신규신청', aplStat:'검토중', aprov:'미승인', date:'2026-03-29 09:45'},
+  {no:339, typ:'중소기업', joinYear:2025, ent:'스마트EV(주)', mgr:'정다은(sev004)', aplTyp:'연장신청', aplStat:'승인완료', aprov:'승인', date:'2026-03-28 11:30'},
+  {no:338, typ:'대기업', joinYear:2026, ent:'미래자동차(주)', mgr:'최민서(fut005)', aplTyp:'신규신청', aplStat:'승인완료', aprov:'승인', date:'2026-03-27 09:00'},
+  {no:337, typ:'중견기업', joinYear:2026, ent:'클린에너지(주)', mgr:'강지성(cln006)', aplTyp:'신규신청', aplStat:'승인완료', aprov:'승인', date:'2026-03-26 13:20'},
+  {no:336, typ:'중소기업', joinYear:2026, ent:'전기충전솔루션(주)', mgr:'윤수아(evs007)', aplTyp:'신규신청', aplStat:'반려', aprov:'미승인', date:'2026-03-25 15:50'},
+  {no:335, typ:'중소기업', joinYear:2025, ent:'한국그린카(주)', mgr:'임태양(grk008)', aplTyp:'연장신청', aplStat:'승인완료', aprov:'승인', date:'2026-03-24 10:15'},
+  {no:334, typ:'중견기업', joinYear:2026, ent:'미래모빌리티(주)', mgr:'오재원(mob009)', aplTyp:'신규신청', aplStat:'검토중', aprov:'미승인', date:'2026-03-23 16:40'},
+  {no:333, typ:'대기업', joinYear:2026, ent:'한국전력기술(주)', mgr:'신소희(kep010)', aplTyp:'신규신청', aplStat:'승인완료', aprov:'승인', date:'2026-03-22 09:30'},
+];
+
+const STAT = {
+  '승인완료': '<span class="use">승인완료</span>',
+  '검토중':   '<span class="ing" style="background:#e3f2fd;color:#1975d2;">검토중</span>',
+  '승인대기': '<span class="ing">승인대기</span>',
+  '반려':     '<span class="reject">반려</span>',
+};
+
+function render() {
+  const tbody = document.getElementById('campBody');
+  tbody.innerHTML = camps.map(c => `
+    <tr>
+      <td>${c.no}</td>
+      <td>${c.typ}</td>
+      <td>${c.joinYear}</td>
+      <td><a href="camp_read.html">${c.ent}</a></td>
+      <td>${c.mgr}</td>
+      <td>${c.aplTyp}</td>
+      <td>${STAT[c.aplStat]||c.aplStat}</td>
+      <td>${c.aprov==='승인'?'<span class="use">승인</span>':'<span class="notUse">미승인</span>'}</td>
+      <td><button class="btn btn-secondary btn-sm" onclick="alert('이력조회')"><i class="fa fa-eye mr-1"></i>이력조회</button></td>
+      <td>${c.date}</td>
+      <td><a href="camp_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-eye mr-1"></i>조회</a></td>
+    </tr>`).join('');
+}
+
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body></html>

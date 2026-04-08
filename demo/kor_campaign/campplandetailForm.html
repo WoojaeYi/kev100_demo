@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.plan-table { width: 100%; border-collapse: collapse; font-size: 13px; border-top: 1px solid #000; }
+.plan-table thead th { background: #f8fbfc; font-weight: 500; padding: 10px 8px; text-align: center; border-bottom: 1px solid #e0e8ec; border-right: 1px solid #ecf3f5; white-space: nowrap; }
+.plan-table thead th:last-child { border-right: 0; }
+.plan-table tbody tr { border-bottom: 1px solid #ecf3f5; }
+.plan-table tbody th { background: #f8fbfc; font-weight: 500; padding: 8px 12px; text-align: left; border-right: 1px solid #ecf3f5; font-size: 13px; white-space: nowrap; }
+.plan-table tbody td { padding: 5px 5px; text-align: center; border-right: 1px solid #ecf3f5; }
+.plan-table tbody td:last-child { border-right: 0; background: #edf4f6; font-weight: 600; color: #0e424f; }
+.plan-table tbody tr:last-child td { background: #e5eff2; font-weight: 700; color: #0e424f; }
+.plan-table .form-control {
+    height: 30px;
+    text-align: center;
+    padding: 0 6px;
+    font-size: 12px;
+    border: 1px solid #ccdde2;
+    border-radius: 4px;
+    background: #f5fbfc;
+    color: #1a3f4a;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    -moz-appearance: textfield;
+}
+.plan-table .form-control::-webkit-outer-spin-button,
+.plan-table .form-control::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.plan-table .form-control:hover { border-color: #9ec7d3; background: #eef8fb; }
+.plan-table .form-control:focus {
+    border-color: #1f8dab;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(31,141,171,0.12);
+    outline: none;
+}
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title">
+      <span>전환 계획 상세 등록</span>
+      <small style="color:#888;font-size:13px;font-weight:400;">기업의 연도별 무공해차 전환 목표를 등록합니다.</small>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>연도별 차종별 전환계획 작성</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="list_wrapper">
+              <table class="plan-table">
+                <thead>
+                  <tr>
+                    <th>구분</th>
+                    <th>2022년 이전</th>
+                    <th>2023년</th>
+                    <th>2024년</th>
+                    <th>2025년</th>
+                    <th>2026년</th>
+                    <th>2027년</th>
+                    <th>2028년</th>
+                    <th>2029년</th>
+                    <th>2030년</th>
+                    <th>합계</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>승용차 (전기)</th>
+                    <td><input type="number" class="form-control" value="0"></td>
+                    <td><input type="number" class="form-control" value="5"></td>
+                    <td><input type="number" class="form-control" value="10"></td>
+                    <td><input type="number" class="form-control" value="20"></td>
+                    <td><input type="number" class="form-control" value="30"></td>
+                    <td><input type="number" class="form-control" value="50"></td>
+                    <td><input type="number" class="form-control" value="50"></td>
+                    <td><input type="number" class="form-control" value="50"></td>
+                    <td><input type="number" class="form-control" value="35"></td>
+                    <td>250</td>
+                  </tr>
+                  <tr>
+                    <th>승합차 (수소)</th>
+                    <td><input type="number" class="form-control" value="0"></td>
+                    <td><input type="number" class="form-control" value="0"></td>
+                    <td><input type="number" class="form-control" value="0"></td>
+                    <td><input type="number" class="form-control" value="2"></td>
+                    <td><input type="number" class="form-control" value="5"></td>
+                    <td><input type="number" class="form-control" value="5"></td>
+                    <td><input type="number" class="form-control" value="5"></td>
+                    <td><input type="number" class="form-control" value="10"></td>
+                    <td><input type="number" class="form-control" value="10"></td>
+                    <td>37</td>
+                  </tr>
+                  <tr>
+                    <th>합계</th>
+                    <td>0</td>
+                    <td>5</td>
+                    <td>10</td>
+                    <td>22</td>
+                    <td>35</td>
+                    <td>55</td>
+                    <td>55</td>
+                    <td>60</td>
+                    <td>45</td>
+                    <td style="color:#0e424f;font-weight:700;">287</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="display:flex;justify-content:center;gap:8px;padding-top:16px;border-top:1px solid #e5ecf1;margin-top:16px;">
+              <button class="btn btn-default" onclick="location.href='campplandetailRead.html'">취소</button>
+              <button class="btn btn-primary" onclick="alert('계획이 저장되었습니다.'); location.href='campplandetailRead.html'">저장</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 6;</script>
+</body></html>

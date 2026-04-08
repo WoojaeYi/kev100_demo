@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 신청 이력 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}.table-info .total{font-size:13px;color:#666;}.table-info .total strong{color:#0e424f;font-weight:700;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-file-text-o mr-2" style="color:#1f8dab;font-size:17px;"></i>캠페인 신청 이력</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페인관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">신청 이력</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <select class="form-control" style="width:160px;"><option value="aplStatCd">신청상태코드</option><option value="frstRegistPnttm">최초등록일시</option><option value="frstRegisterId">최초등록자ID</option></select>
+          <input type="text" class="form-control" style="width:220px;" placeholder="검색어를 입력하세요">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>초기화</button>
+        </div>
+      </div>
+      <div class="table-info">
+        <div class="total">총 <strong>5</strong>건</div>
+        <button class="btn btn-primary btn-sm" onclick="location.href='campaplhist_form.html'"><i class="fa fa-plus mr-1"></i>등록</button>
+      </div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>캠페인신청ID</th><th>캠페인신청순번</th><th>캠페인신청이력순번</th><th>신청상태코드</th><th>최초등록일시</th><th>최초등록자ID</th><th>관리</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-5 / 5건</div>
+        <ul class="pagination"><li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li><li class="page-item active"><a class="page-link">1</a></li><li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li></ul>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+const data = [
+  {no:5,aplId:'APL001',aplSeq:3,histSeq:5,statCd:'10',regDtm:'2026-03-15 10:22:00',regId:'admin'},
+  {no:4,aplId:'APL001',aplSeq:2,histSeq:4,statCd:'20',regDtm:'2026-02-20 09:10:00',regId:'admin'},
+  {no:3,aplId:'APL002',aplSeq:1,histSeq:3,statCd:'30',regDtm:'2026-01-18 14:05:00',regId:'admin'},
+  {no:2,aplId:'APL003',aplSeq:2,histSeq:2,statCd:'10',regDtm:'2025-12-25 11:30:00',regId:'admin'},
+  {no:1,aplId:'APL003',aplSeq:1,histSeq:1,statCd:'20',regDtm:'2025-11-10 08:45:00',regId:'admin'},
+];
+document.getElementById('tbody').innerHTML = data.map(d=>`
+  <tr>
+    <td>${d.no}</td><td>${d.aplId}</td><td>${d.aplSeq}</td><td>${d.histSeq}</td><td>${d.statCd}</td><td>${d.regDtm}</td><td>${d.regId}</td>
+    <td>
+      <a href="campaplhist_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-gear mr-1"></i>수정</a>
+      <button class="btn btn-danger btn-sm" onclick="if(confirm('삭제하시겠습니까?'))alert('삭제되었습니다.');"><i class="fa fa-trash mr-1"></i>삭제</button>
+    </td>
+  </tr>`).join('');
+</script>
+</body></html>

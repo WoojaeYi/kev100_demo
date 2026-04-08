@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사이트 접속 통계 - 브라우저별 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.chart-wrap { background:#fff; border:1px solid #e3eaf0; border-radius:8px; padding:24px; margin-bottom:24px; display:flex; align-items:center; gap:40px; }
+.chart-title { font-size:15px; font-weight:700; color:#0e424f; margin-bottom:16px; }
+.chart-canvas-wrap { flex:0 0 320px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-pie-chart mr-2" style="color:#1f8dab;font-size:17px;"></i>사이트 접속 통계 - 브라우저별</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>통계</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">브라우저별 통계</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>기간 &nbsp;</label>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-01">
+          <span style="line-height:32px;padding:0 6px;color:#888;">~</span>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-30">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>조회</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div style="flex:1;">
+          <div class="chart-title"><i class="fa fa-pie-chart mr-1"></i>브라우저별 접속 비율</div>
+          <div class="chart-canvas-wrap"><canvas id="browserChart" width="300" height="300"></canvas></div>
+        </div>
+        <div style="flex:1;">
+          <div class="chart-title">브라우저 현황</div>
+          <div id="legendArea"></div>
+        </div>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead>
+            <tr><th>순위</th><th>브라우저</th><th>접속 수</th><th>비율</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><i class="fa fa-chrome mr-1" style="color:#4285f4;"></i>Chrome</td><td>5,823</td><td>69.8%</td></tr>
+            <tr><td>2</td><td><i class="fa fa-edge mr-1" style="color:#0078d4;"></i>Edge</td><td>1,254</td><td>15.0%</td></tr>
+            <tr><td>3</td><td><i class="fa fa-safari mr-1" style="color:#1da1f2;"></i>Safari</td><td>752</td><td>9.0%</td></tr>
+            <tr><td>4</td><td><i class="fa fa-firefox mr-1" style="color:#e66000;"></i>Firefox</td><td>334</td><td>4.0%</td></tr>
+            <tr><td>5</td><td>기타</td><td>179</td><td>2.2%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const labels = ['Chrome','Edge','Safari','Firefox','기타'];
+const data = [69.8, 15.0, 9.0, 4.0, 2.2];
+const colors = ['#4285f4','#0078d4','#1da1f2','#e66000','#aaa'];
+
+const ctx = document.getElementById('browserChart').getContext('2d');
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: labels,
+    datasets: [{ data: data, backgroundColor: colors, borderWidth: 2 }]
+  },
+  options: {
+    responsive: false,
+    legend: { display: false }
+  }
+});
+
+document.getElementById('legendArea').innerHTML = labels.map((l,i) =>
+  `<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+    <div style="width:14px;height:14px;background:${colors[i]};border-radius:3px;"></div>
+    <span style="font-size:14px;">${l}</span>
+    <span style="margin-left:auto;font-weight:700;color:#0e424f;">${data[i]}%</span>
+  </div>`
+).join('');
+</script>
+</body></html>

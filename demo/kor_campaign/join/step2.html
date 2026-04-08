@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../../assets/style.css" rel="stylesheet">
+<link href="../../assets/kor-campaign.css" rel="stylesheet">
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="row"><div class="col-md-12">
+        <div class="page-title"><span>캠페인 참여 신청 - Step 2. 정보 입력</span></div>
+        <div class="x_panel">
+            <div class="x_content" style="padding: 10px 40px;">
+                    <form class="campaign iner">
+                        <div class="step">
+            <ul class="progressbar clearfix">
+                <li class="done"><a href="javascript:void(0);"><span>캠페인 참가 동의</span></a></li>
+                <li class="active"><a href="javascript:void(0);"><span>정보 입력</span></a></li>
+                <li><a href="javascript:void(0);"><span>중장기 계획</span></a></li>
+                <li><a href="javascript:void(0);"><span>년 증감 계획</span></a></li>
+                <li><a href="javascript:void(0);"><span>가입신청서 제출 및 신청</span></a></li>
+                <li>신청 완료</li>
+            </ul>
+        </div>
+
+        <fieldset>
+            <legend>참여기업 정보 입력</legend>
+
+            <div class="board_write bd_none">
+
+                <div class="board_top">
+                    <p class="cmt01">표시항목은 필수입력항목입니다.</p>
+                </div>
+
+                <div class="campaign_title mt10">기업 기본정보</div>
+                <div class="form_box bd_none">
+                    <table>
+                        <colgroup>
+                            <col style="width: 20%;"/>
+                            <col style="width: 30%;"/>
+                            <col style="width: 20%;"/>
+                            <col style="width: 30%;"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td class="lb">
+                                기업명
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td class="lb">
+                                대표자
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lb">
+                                사업자등록번호
+                            </td>
+                            <td>
+                                123-45-67890
+                            </td>
+                            <td class="lb">
+                                업종
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lb">
+                                담당자
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td class="lb">
+                                이메일
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lb">
+                                연락처 / 사무실
+                            </td>
+                            <td>
+                                010-0000-0000
+                            </td>
+                            <td class="lb">
+                                연락처 / 휴대전화
+                            </td>
+                            <td>
+                                010-0000-0000
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lb">
+                                신청일시
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td class="lb">
+                                승인일시
+                            </td>
+                            <td>
+                                
+                                
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="campaign_title">
+                    기업 상세 정보
+                </div>
+                <div class="form_box">
+                    <table>
+                        <colgroup>
+                            <col style="width: 20%;"/>
+                            <col style="width: 30%;"/>
+                            <col style="width: 20%;"/>
+                            <col style="width: 30%;"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th class="lb req">
+                                <label for="entTypCd">기업형태</label>
+                            </th>
+                            <td>
+								<span class="f_ipt wp_30">
+									<label style="margin-right:15px"><input type="radio" name="entTypCd" value="1" onchange="toggleCorpNo(this)"> 개인</label>
+									<label><input type="radio" name="entTypCd" value="2" checked onchange="toggleCorpNo(this)"> 법인</label>
+								</span>
+                                <span id="wrapCorpNo" class="f_ipt wp_60" style="display: inline-block">
+                                     <input type="text" name="corpNo" class="form-control" maxlength="13" title="법인등록번호" placeholder="법인등록번호 13자리"/>
+                                </span>
+                            </td>
+                            <th class="lb req">
+                                <label for="bizClsCd">분류</label>
+                            </th>
+                            <td>
+                                    <span class="f-select wp_100">
+                                        <select name="bizClsCd" class="form-control" title="분류">
+                                            <option value="">:: 선택 ::</option>
+                                            <option value="01">제조업</option>
+                                            <option value="02">건설업</option>
+                                            <option value="03">도·소매업</option>
+                                            <option value="04">운수·창고업</option>
+                                            <option value="05">정보통신업</option>
+                                            <option value="06">금융·보험업</option>
+                                            <option value="07">서비스업</option>
+                                            <option value="08">기타</option>
+                                        </select>
+                                    </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="lb req">
+                                <label for="foundingYear">설립연도</label>
+                            </th>
+                            <td colspan="3">
+                                <span class="f_ipt wp_10">
+                                    <input type="text" name="foundingYear" class="form-control"  maxlength="4" title="설립연도" placeholder="설립연도" />
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="lb req">
+                                <label for="zipNo">주소</label>
+                            </th>
+                            <td colspan="3">
+                                <ul>
+                                    <li style="display:flex; align-items:center; gap:6px;">
+                                        <span class="f_ipt" style="width:180px; flex-shrink:0;"><input type="text" name="zipNo" class="form-control" maxlength="5" title="우편번호" placeholder="우편번호" readonly="true" onclick="fnOpenSearchAddress()" style="cursor:pointer"/></span>
+                                        <button type="button" class="btn_type02 blue_ms" onclick="fnOpenSearchAddress()">우편번호 검색</button>
+                                    </li>
+                                    <li class="mt5"><span class="f_ipt wp_70"><input type="text" name="address1" class="form-control"  title="주소" placeholder="주소" readonly="true" onclick="fnOpenSearchAddress()"
+                                                                                          cssStyle="cursor: pointer"/></span></li>
+                                    <li class="mt5"><span class="f_ipt wp_70"><input type="text" name="address2" class="form-control"  title="상세주소" placeholder="상세주소"/></span></li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="lb req">
+                                <label for="totSales">매출액(억원)</label>
+                            </th>
+                            <td>
+                                    <span class="f_ipt wp_100">
+                                        <input type="text" name="totSales" class="form-control"  maxlength="13" title="매출액(억원)" placeholder="매출액(억원)" cssClass="maskNumeric"/>
+                                    </span>
+                            </td>
+                            <th class="lb req">
+                                <label for="empCntCd">종업원 수</label>
+                            </th>
+                            <td>
+                                    <span class="f-select wp_100">
+                                        <select name="empCntCd" class="form-control" title="종업원 수">
+                                            <option value="">:: 선택 ::</option>
+                                            <option value="01">1~9명</option>
+                                            <option value="02">10~49명</option>
+                                            <option value="03">50~99명</option>
+                                            <option value="04">100~299명</option>
+                                            <option value="05">300~499명</option>
+                                            <option value="06">500명 이상</option>
+                                        </select>
+                                    </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="campaign_title">
+                    보유·임차 차량 정보 (캠페인 가입연도 : 년)
+                </div>
+                <div class="form_box">
+                    <!-- 감차 계획 -->
+                    <input type="hidden" name="campplandetailList[0].deInterSedanSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deInterSedanScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deInterSedanUnregCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deInterVanSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deInterVanScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deInterVanUnregCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deInterTruckSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deInterTruckScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deInterTruckUnregCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectSedanSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectSedanScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectSedanUnregCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectVanSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectVanScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectVanUnregCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectTruckSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectTruckScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectTruckUnregCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgSedanSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgSedanScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgSedanUnregCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgVanSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgVanScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgVanUnregCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgTruckSellCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgTruckScrapCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgTruckUnregCnt" value=""/>
+                    <!-- 충전기 증감 계획 -->
+                    <input type="hidden" name="campplandetailList[0].deElectSlowChrgrCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deElectFastChrgrCnt" value=""/>
+                    <input type="hidden" name="campplandetailList[0].deHydrgChrgrCnt" value=""/>
+
+                    <table class="center">
+                        <colgroup>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                            <col style="width: 10%;"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th rowspan="2">구분</th>
+                            <th colspan="3">보유 <span class="unit">(대)</span></th>
+                            <th rowspan="2">계 <span class="unit">(대)</span></th>
+                            <th colspan="3">임차 <span class="unit">(대)</span></th>
+                            <th rowspan="2">계 <span class="unit">(대)</span></th>
+                            <th rowspan="2">총계 <span class="unit">(대)</span></th>
+                        </tr>
+                        <tr>
+                            <th>승용</th>
+                            <th>승합</th>
+                            <th>화물</th>
+                            <th>승용</th>
+                            <th>승합</th>
+                            <th class="rbd">화물</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>내연기관차</th>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="hidden" id="campplandetailYear" name="campplandetailList[0].year" value="0"/>
+                                        <input type="text" id="inInterSedanBuyCnt" name="campplandetailList[0].inInterSedanBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="내연기관차 승용 보유 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inInterVanBuyCnt" name="campplandetailList[0].inInterVanBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="내연기관차 승합 보유 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inInterTruckBuyCnt" name="campplandetailList[0].inInterTruckBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="내연기관차 화물 보유 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtInInterBuyCnt" class="f_ipt formatNumber">0</span></td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inInterSedanRentCnt" name="campplandetailList[0].inInterSedanRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="내연기관차 승용 임차 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inInterVanRentCnt" name="campplandetailList[0].inInterVanRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="내연기관차 승합 임차 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inInterTruckRentCnt" name="campplandetailList[0].inInterTruckRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="내연기관차 화물 임차 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtInInterRentCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtInInterCarCnt" class="f_ipt formatNumber">0</span></td>
+                        </tr>
+                        <tr>
+                            <th>전기자동차</th>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inElectSedanBuyCnt" name="campplandetailList[0].inElectSedanBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="전기자동차 승용 보유 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inElectVanBuyCnt" name="campplandetailList[0].inElectVanBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="전기자동차 승합 보유 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inElectTruckBuyCnt" name="campplandetailList[0].inElectTruckBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="전기자동차 화물 보유 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtInElectBuyCnt" class="f_ipt formatNumber">0</span></td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inElectSedanRentCnt" name="campplandetailList[0].inElectSedanRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="전기자동차 승용 임차 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inElectVanRentCnt" name="campplandetailList[0].inElectVanRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="전기자동차 승합 임차 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inElectTruckRentCnt" name="campplandetailList[0].inElectTruckRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="전기자동차 화물 임차 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtInElectRentCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtInElectCarCnt" class="f_ipt formatNumber">0</span></td>
+                        </tr>
+                        <tr>
+                            <th>수소전기차</th>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inHydrgSedanBuyCnt" name="campplandetailList[0].inHydrgSedanBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="수소전기차 승용 보유 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inHydrgVanBuyCnt" name="campplandetailList[0].inHydrgVanBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="수소전기차 승합 보유 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inHydrgTruckBuyCnt" name="campplandetailList[0].inHydrgTruckBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="수소전기차 화물 보유 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtInHydrgBuyCnt" class="f_ipt formatNumber">0</span></td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inHydrgSedanRentCnt" name="campplandetailList[0].inHydrgSedanRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="수소전기차 승용 임차 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inHydrgVanRentCnt" name="campplandetailList[0].inHydrgVanRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="수소전기차 승합 임차 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inHydrgTruckRentCnt" name="campplandetailList[0].inHydrgTruckRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="수소전기차 화물 임차 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtInHydrgRentCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtInHydrgCarCnt" class="f_ipt formatNumber">0</span></td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div id="txtGuideExceptCar">
+                                    제외차종 <i class="fa fa-question-circle" style="color: orange"></i>
+                                </div>
+                            </th>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inExceptSedanBuyCnt" name="campplandetailList[0].inExceptSedanBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="제외차종 승용 보유 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inExceptVanBuyCnt" name="campplandetailList[0].inExceptVanBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="제외차종 승합 보유 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inExceptTruckBuyCnt" name="campplandetailList[0].inExceptTruckBuyCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="제외차종 화물 보유 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtInExceptBuyCnt" class="f_ipt formatNumber">0</span></td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inExceptSedanRentCnt" name="campplandetailList[0].inExceptSedanRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="제외차종 승용 임차 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inExceptVanRentCnt" name="campplandetailList[0].inExceptVanRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="제외차종 승합 임차 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt">
+                                        <input type="text" id="inExceptTruckRentCnt" name="campplandetailList[0].inExceptTruckRentCnt" value=""
+                                               class="maskNumeric ownCarCnt" maxlength="13" title="제외차종 화물 임차 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtInExceptRentCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtInExceptCarCnt" class="f_ipt formatNumber">0</span></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>총계</th>
+                            <td><span id="txtSedanBuyCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtVanBuyCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtTruckBuyCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtTotalBuyCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtSedanRentCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtVanRentCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtTruckRentCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtTotalRentCnt" class="f_ipt formatNumber">0</span></td>
+                            <td><span id="txtTotalCarCnt" class="f_ipt formatNumber" style="font-weight: bold">0</span></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="campaign_title">
+                    보유 충전기 정보 (캠페인 가입연도 : 년)
+                </div>
+                <div class="form_box">
+                    <table class="center">
+                        <colgroup>
+                            <col style="width: 25%;"/>
+                            <col style="width: 25%;"/>
+                            <col style="width: 25%;"/>
+                            <col style="width: 25%;"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>완속 <span class="unit">(기)</span></th>
+                            <th>급속 <span class="unit">(기)</span></th>
+                            <th>수소 <span class="unit">(기)</span></th>
+                            <th>총계 <span class="unit">(기)</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                    <span class="f_ipt wp_90">
+                                        <input type="text" id="inElectSlowChrgrCnt" name="campplandetailList[0].inElectSlowChrgrCnt" value=""
+                                               class="maskNumeric ownChargerCnt" maxlength="13" title="보유 완속 충전기 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt wp_90">
+                                        <input type="text" id="inElectFastChrgrCnt" name="campplandetailList[0].inElectFastChrgrCnt" value=""
+                                               class="maskNumeric ownChargerCnt" maxlength="13" title="보유 급속 충전기 수"/>
+                                    </span>
+                            </td>
+                            <td>
+                                    <span class="f_ipt wp_90">
+                                        <input type="text" id="inHydrgChrgrCnt" name="campplandetailList[0].inHydrgChrgrCnt" value=""
+                                               class="maskNumeric ownChargerCnt" maxlength="13" title="보유 수소 충전기 수"/>
+                                    </span>
+                            </td>
+                            <td><span id="txtTotalChagerCnt" class="f_ipt formatNumber center">0</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            
+        </fieldset>
+    
+                    </form>
+                </div>
+                <div class="text-center" style="border-top:1px solid #eee; background:#f5f5f5; padding: 20px; margin: 10px -40px -10px;">
+                    <button type="button" class="btn btn-default" onclick="history.back()"><i class="fa fa-angle-left"></i> 이전</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='step3.html'">다음 <i class="fa fa-angle-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div></div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../assets/menu.js"></script><script src="../../assets/main.js"></script>
+<script>
+window.currentGnb = 6;
+
+function toggleCorpNo(radio) {
+    document.getElementById('wrapCorpNo').style.display = radio.value === '2' ? 'inline-block' : 'none';
+}
+</script>
+</body></html>

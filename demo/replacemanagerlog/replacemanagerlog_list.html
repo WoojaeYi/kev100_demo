@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>담당자 변경 이력 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area{padding:24px 28px;}
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+.table-info .total strong { color:#0e424f; font-weight:700; }
+/* JSP .oldManager / .newManager 스타일 동일 적용 */
+.oldManager { color: #9a9a9a; }
+.newManager { font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown open" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <!-- 메인 콘텐츠 -->
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-exchange mr-2" style="color:#1f8dab;font-size:17px;"></i>담당자 변경 이력</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>계정관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">담당자 변경 이력</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <!-- 키워드 검색 (JSP searchKey: entNm / oldMberId / oldMberNm / newMberId / newMberNm) -->
+        <div class="input-group">
+          <label>키워드 검색 &nbsp;</label>
+          <select id="searchKey" class="form-control" style="width:155px;">
+            <option value="entNm">참여기업명</option>
+            <option value="oldMberId">이전 담당자 ID</option>
+            <option value="oldMberNm">이전 담당자 이름</option>
+            <option value="newMberId">신규 담당자 ID</option>
+            <option value="newMberNm">신규 담당자 이름</option>
+          </select>
+          <input type="text" id="searchValue" class="form-control" style="width:220px;" placeholder="검색어 입력">
+          <button class="btn btn-dark ml-1"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary ml-1"><i class="fa fa-refresh mr-1"></i>초기화</button>
+          <!-- 페이지당 건수 (JSP: maxPageItems 10/20/30/40/50) -->
+          <div style="margin-left:auto;">
+            <select id="maxPageItems" class="form-control" style="width:90px;">
+              <option value="10">10건씩</option>
+              <option value="20">20건씩</option>
+              <option value="30">30건씩</option>
+              <option value="40">40건씩</option>
+              <option value="50">50건씩</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-info">
+        <div class="total">총 <strong>38</strong>건</div>
+        <button class="btn btn-secondary btn-sm"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <colgroup>
+            <col style="width: 5%;">
+            <col style="width: 17%;">
+            <col style="width: 15%;">
+            <col style="width: 13%;">
+            <col style="width: 15%;">
+            <col style="width: 13%;">
+            <col style="width: auto;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>참여기업명</th>
+              <th>이전 담당자 ID</th>
+              <th>이전 담당자 이름</th>
+              <th>신규 담당자 ID</th>
+              <th>신규 담당자 이름</th>
+              <th>변경 신청 일시</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- 페이지네이션 -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">Showing <strong>1</strong> to <strong>10</strong> of <strong>38</strong> entries</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link">4</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script>
+<script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2; // 메뉴문제 해결 반영
+
+// JSP 컬럼: 번호, entNm(참여기업명), oldMberId(이전담당자ID), oldMberNm(이전담당자이름),
+//           newMberId(신규담당자ID), newMberNm(신규담당자이름), regDtm(변경신청일시)
+// JSP CSS:  .oldManager { color:#9a9a9a; }  /  .newManager { font-weight:bold; }
+const data = [
+  {no:38, entNm:'(주)한국전기차',    oldMberId:'kim_mj',   oldMberNm:'김민준', newMberId:'lee_sy',   newMberNm:'이서연', regDtm:'2026-03-28 11:00'},
+  {no:37, entNm:'에코에너지(주)',     oldMberId:'park_jh',  oldMberNm:'박지호', newMberId:'choi_jw',  newMberNm:'최지우', regDtm:'2026-03-25 14:30'},
+  {no:36, entNm:'그린모빌리티(주)',   oldMberId:'jung_de',  oldMberNm:'정다은', newMberId:'kang_ms',  newMberNm:'강민서', regDtm:'2026-03-22 09:45'},
+  {no:35, entNm:'스마트EV(주)',       oldMberId:'yun_js',   oldMberNm:'윤지성', newMberId:'lim_sa',   newMberNm:'임수아', regDtm:'2026-03-20 16:00'},
+  {no:34, entNm:'미래자동차(주)',     oldMberId:'oh_ty',    oldMberNm:'오태양', newMberId:'han_sh',   newMberNm:'한소희', regDtm:'2026-03-18 10:20'},
+  {no:33, entNm:'클린에너지(주)',     oldMberId:'lee_jh',   oldMberNm:'이준호', newMberId:'park_mj',  newMberNm:'박민지', regDtm:'2026-03-15 13:45'},
+  {no:32, entNm:'전기충전솔루션(주)', oldMberId:'kim_sj',   oldMberNm:'김수진', newMberId:'lee_dh',   newMberNm:'이동현', regDtm:'2026-03-12 11:30'},
+  {no:31, entNm:'한국그린카(주)',     oldMberId:'choi_hw',  oldMberNm:'최현우', newMberId:'jang_mr',  newMberNm:'장미라', regDtm:'2026-03-10 15:00'},
+  {no:30, entNm:'미래모빌리티(주)',   oldMberId:'yun_sj',   oldMberNm:'윤서준', newMberId:'oh_mj',    newMberNm:'오민준', regDtm:'2026-03-08 09:00'},
+  {no:29, entNm:'한국전력기술(주)',   oldMberId:'kang_jh',  oldMberNm:'강지현', newMberId:'park_sy',  newMberNm:'박소연', regDtm:'2026-03-05 14:15'},
+];
+
+document.getElementById('tbody').innerHTML = data.map(d => `
+  <tr>
+    <td>${d.no}</td>
+    <td class="left">${d.entNm}</td>
+    <td class="oldManager">${d.oldMberId}</td>
+    <td class="oldManager">${d.oldMberNm}</td>
+    <td class="newManager" style="color:#0e424f">${d.newMberId}</td>
+    <td class="newManager" style="color:#0e424f">${d.newMberNm}</td>
+    <td>${d.regDtm}</td>
+  </tr>
+`).join('');
+</script>
+</body>
+</html>

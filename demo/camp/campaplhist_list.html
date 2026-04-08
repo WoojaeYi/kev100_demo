@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페???�청?�력 목록 (캠프?? | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}.table-info .total{font-size:13px;color:#666;}.table-info .total strong{color:#0e424f;font-weight:700;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-list mr-2" style="color:#1f8dab;font-size:17px;"></i>캠페???�청?�력 (캠프??</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페?��?�?/li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">캠페???�청?�력</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="table-info"><div class="total">�?<strong>5</strong>건의 ?�력??조회?�었?�니??</div></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>처리?�태</th><th>?�력 ?�시</th><th>?�청 / 처리??/th></tr></thead>
+          <tbody id="aplHistBody"></tbody>
+        </table>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-5 / 5�?/div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+      <div style="text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid #e5ecf1;">
+        <button class="btn btn-secondary btn-sm" onclick="history.back();"><i class="fa fa-close mr-1"></i>?�기</button>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 ?�비???�털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+const data = [
+  {no:5,stat:'APPROVE',statNm:'?�인',dtm:'2026-03-15 10:22',regNm:'admin'},
+  {no:4,stat:'REJECT',statNm:'반려',dtm:'2026-02-20 09:10',regNm:'admin'},
+  {no:3,stat:'REVIEW',statNm:'검?�중',dtm:'2026-01-18 14:05',regNm:'admin'},
+  {no:2,stat:'APPROVE',statNm:'?�인 (최종)',dtm:'2025-12-25 11:30',regNm:'admin'},
+  {no:1,stat:'SUBMIT',statNm:'?�청',dtm:'2025-11-10 08:45',regNm:'admin'},
+];
+document.getElementById('aplHistBody').innerHTML = data.map(d=>`
+  <tr>
+    <td>${d.no}</td>
+    <td><span class="aplStatCd_${d.stat}">${d.statNm}</span></td>
+    <td>${d.dtm}</td>
+    <td>${d.regNm}</td>
+  </tr>`).join('');
+</script>
+</body></html>

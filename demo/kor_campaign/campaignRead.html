@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title">
+      <span>캠페인 신청 상세</span>
+      <small style="color:#888;font-size:13px;font-weight:400;">제출된 캠페인 신청 정보를 확인합니다.</small>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>기본 정보 확인</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table class="detail-table">
+              <colgroup>
+                <col style="width:15%">
+                <col style="width:35%">
+                <col style="width:15%">
+                <col style="width:35%">
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th>기업명</th>
+                  <td>K-EV100 렌터카 주식회사</td>
+                  <th>사업자등록번호</th>
+                  <td>123-45-67890</td>
+                </tr>
+                <tr>
+                  <th>담당자명</th>
+                  <td>홍길동</td>
+                  <th>신청일시</th>
+                  <td>2026-03-31 10:20</td>
+                </tr>
+                <tr>
+                  <th>주소</th>
+                  <td colspan="3">서울시 종로구 세종대로 123 (본사)</td>
+                </tr>
+                <tr>
+                  <th>캠페인 유형</th>
+                  <td colspan="3"><span class="ing">렌터카 기반 차량 전환</span></td>
+                </tr>
+                <tr>
+                  <th>첨부 증빙자료</th>
+                  <td colspan="3">
+                    <div><a href="#"><i class="fa fa-download"></i> 사업자등록증.pdf</a> (245 KB)</div>
+                    <div><a href="#"><i class="fa fa-download"></i> 대표자직인.png</a> (112 KB)</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="display:flex;justify-content:center;gap:8px;padding-top:16px;border-top:1px solid #e5ecf1;margin-top:4px;">
+              <button type="button" class="btn btn-default" onclick="location.href='campaignList.html'">목록으로</button>
+              <button type="button" class="btn btn-navy" onclick="location.href='campaignForm.html'">수정하기</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 6;</script>
+</body></html>

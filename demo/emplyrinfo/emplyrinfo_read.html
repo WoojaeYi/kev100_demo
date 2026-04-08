@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원정보(공무원) 상세 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.section-header{font-size:14px;font-weight:700;color:#0e424f;border-left:3px solid #0e424f;padding-left:10px;margin:20px 0 12px;}.btn-area{display:flex;justify-content:center;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid #e5ecf1;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-id-badge mr-2" style="color:#1f8dab;font-size:17px;"></i>회원정보(공무원) 상세</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>회원관리</li><li><i class="fa fa-angle-right"></i></li><li><a href="emplyrinfo_list.html">공무원 목록</a></li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">상세</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="section-header">기본 정보</div>
+      <table class="detail-table">
+        <tr><th style="width:160px;">아이디</th><td>park.jh</td><th style="width:160px;">이름</th><td>박지호</td></tr>
+        <tr><th>소속기관</th><td>환경부</td><th>직급</th><td>사무관</td></tr>
+        <tr><th>이메일</th><td>park.jh@korea.kr</td><th>연락처</th><td>02-1234-5678</td></tr>
+        <tr><th>휴대전화</th><td>010-1234-5678</td><th>계정상태</th><td><span class="use">정상</span></td></tr>
+        <tr><th>가입일</th><td>2024-01-15</td><th>최종로그인</th><td>2026-03-28 14:22:10</td></tr>
+      </table>
+
+      <div class="section-header">본인인증 정보</div>
+      <table class="detail-table">
+        <tr><th style="width:160px;">인증방법</th><td>공무원증 인증</td><th style="width:160px;">인증일</th><td>2024-01-15</td></tr>
+        <tr><th>인증ID</th><td colspan="3">GOV202401150001</td></tr>
+      </table>
+
+      <div class="btn-area">
+        <a href="emplyrinfo_list.html" class="btn btn-secondary"><i class="fa fa-list mr-1"></i>목록</a>
+        <a href="emplyrinfo_form.html" class="btn btn-primary"><i class="fa fa-pencil mr-1"></i>수정</a>
+        <button class="btn btn-warning" onclick="alert('비밀번호 초기화 메일을 발송했습니다.')"><i class="fa fa-key mr-1"></i>비밀번호 초기화</button>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 3;</script>
+</body></html>

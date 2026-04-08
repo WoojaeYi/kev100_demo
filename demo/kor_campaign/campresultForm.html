@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.section-heading { font-size: 13px; font-weight: 700; color: #0e424f; padding: 10px 0 8px; margin: 20px 0 10px; border-bottom: 2px solid #e5ecf1; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; border-top: 1px solid #000; margin-bottom: 12px; }
+.data-table thead th { background: #f8fbfc; font-weight: 500; padding: 10px 8px; text-align: center; border-bottom: 1px solid #e0e8ec; border-right: 1px solid #ecf3f5; white-space: nowrap; }
+.data-table thead th:last-child { border-right: 0; }
+.data-table tbody tr { border-bottom: 1px solid #ecf3f5; }
+.data-table tbody th { background: #f8fbfc; font-weight: 500; padding: 8px 12px; text-align: left; border-right: 1px solid #ecf3f5; white-space: nowrap; }
+.data-table tbody td { padding: 5px 5px; text-align: center; border-right: 1px solid #ecf3f5; vertical-align: middle; }
+.data-table tbody td:last-child { border-right: 0; }
+.data-table .bg-gray { background: #edf4f6; font-weight: 600; color: #0e424f; }
+
+/* 공통 테이블 인풋 */
+.data-table .form-control {
+    height: 30px;
+    text-align: center;
+    padding: 0 6px;
+    font-size: 12px;
+    border: 1px solid #ccdde2;
+    border-radius: 4px;
+    background: #f5fbfc;
+    color: #1a3f4a;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    -moz-appearance: textfield;
+}
+.data-table .form-control::-webkit-outer-spin-button,
+.data-table .form-control::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.data-table .form-control:hover { border-color: #9ec7d3; background: #eef8fb; }
+.data-table .form-control:focus {
+    border-color: #1f8dab;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(31,141,171,0.12);
+    outline: none;
+}
+
+/* 텍스트 인풋(충전소명, 주소)은 좌측 정렬 */
+.data-table input[type="text"].form-control { text-align: left; padding: 0 8px; }
+
+/* select */
+.data-table select.form-control {
+    text-align: left;
+    padding: 0 28px 0 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%231f8dab' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 9px center;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+/* readonly 인풋 (detail-table 상단) */
+.detail-table .form-control[readonly] {
+    background: #f0f5f7;
+    border-color: #dde8ec;
+    color: #5a7a84;
+    cursor: default;
+    border-radius: 4px;
+}
+
+/* 파일 인풋 래퍼 */
+.file-input-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.file-input-wrap input[type="file"] {
+    font-size: 12px;
+    border: 1px dashed #a8c8d2;
+    border-radius: 4px;
+    padding: 5px 10px;
+    background: #f5fbfc;
+    color: #4a7a88;
+    cursor: pointer;
+    transition: border-color 0.18s, background 0.18s;
+    flex: 1;
+    min-width: 0;
+}
+.file-input-wrap input[type="file"]:hover { border-color: #1f8dab; background: #eef8fb; }
+.file-input-wrap .file-hint { font-size: 12px; color: #9ab0b7; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title">
+      <span>실적 제출 등록</span>
+      <small style="color:#888;font-size:13px;font-weight:400;">해당 연도의 무공해차 전환 및 인프라 구축 실적을 등록합니다.</small>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>2026년도 추진 실적 등록</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <table class="detail-table" style="margin-bottom:20px;">
+              <tbody>
+                <tr>
+                  <th style="width:15%">대상 연도</th>
+                  <td style="width:35%"><input type="text" class="form-control" value="2026" readonly></td>
+                  <th style="width:15%">기업명</th>
+                  <td style="width:35%"><input type="text" class="form-control" value="K-EV100 렌터카 주식회사" readonly></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="section-heading">자동차 보유 현황 (누적 기준)</div>
+            <div class="list_wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="vertical-align:middle;">구분</th>
+                    <th rowspan="2" style="vertical-align:middle;">내연기관차</th>
+                    <th colspan="2">무공해차 전환실적</th>
+                    <th rowspan="2" style="vertical-align:middle;">합계</th>
+                  </tr>
+                  <tr><th>전기자동차</th><th>수소자동차</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>승용차</th>
+                    <td><input type="number" class="form-control" value="500"></td>
+                    <td><input type="number" class="form-control" value="120"></td>
+                    <td><input type="number" class="form-control" value="5"></td>
+                    <td class="bg-gray">625</td>
+                  </tr>
+                  <tr>
+                    <th>승합차</th>
+                    <td><input type="number" class="form-control" value="50"></td>
+                    <td><input type="number" class="form-control" value="10"></td>
+                    <td><input type="number" class="form-control" value="2"></td>
+                    <td class="bg-gray">62</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="section-heading">충전 인프라 구축 현황</div>
+            <div class="list_wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>설치장소명</th>
+                    <th>설치주소</th>
+                    <th>충전기 타입(급속/완속)</th>
+                    <th>수량</th>
+                    <th style="width:60px;">관리</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" class="form-control" value="본사 사옥 주차장"></td>
+                    <td><input type="text" class="form-control" value="서울시 종로구 세종대로 123"></td>
+                    <td>
+                      <select class="form-control"><option selected>급속(50kW 이상)</option><option>완속</option></select>
+                    </td>
+                    <td><input type="number" class="form-control" value="4"></td>
+                    <td><button type="button" class="btn btn-sm btn-danger"><i class="fa fa-minus"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="text-align:right;margin-bottom:20px;">
+              <button type="button" class="btn btn-sm btn-default"><i class="fa fa-plus"></i> 충전소 추가</button>
+            </div>
+
+            <table class="detail-table">
+              <tbody>
+                <tr>
+                  <th style="width:15%">추가 증빙 서류</th>
+                  <td>
+                    <div class="file-input-wrap">
+                      <input type="file">
+                      <span class="file-hint">PDF, ZIP 허용</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="display:flex;justify-content:center;gap:8px;padding-top:16px;border-top:1px solid #e5ecf1;margin-top:16px;">
+              <button class="btn btn-default" onclick="location.href='campresultRead.html'">취소</button>
+              <button class="btn btn-success" onclick="alert('제출되었습니다.'); location.href='campresultRead.html'">제출완료</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 6;</script>
+</body></html>

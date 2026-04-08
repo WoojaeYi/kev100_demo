@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>첨부파일 다운로드 통계 (월별) | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.chart-wrap { background:#fff; border:1px solid #e3eaf0; border-radius:8px; padding:24px; margin-bottom:24px; }
+.chart-title { font-size:15px; font-weight:700; color:#0e424f; margin-bottom:16px; }
+.stat-card { background:#fff; border:1px solid #e3eaf0; border-radius:8px; padding:20px 24px; display:flex; flex-direction:column; gap:4px; }
+.stat-card .label { font-size:12px; color:#888; font-weight:500; }
+.stat-card .value { font-size:26px; font-weight:700; color:#0e424f; }
+.stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+.bbs-check-list { display:flex; gap:12px; flex-wrap:wrap; }
+.bbs-check-list label { font-size:13px; display:flex; align-items:center; gap:4px; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-bar-chart mr-2" style="color:#1f8dab;font-size:17px;"></i>첨부파일 다운로드 통계 (월별)</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>통계</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">첨부파일 다운로드 월별 통계</li>
+        </ul>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>사이트 &nbsp;</label>
+          <select class="form-control" style="width:200px;"><option>K-EV100 서비스 포털</option><option>K-EV100 관리자 포털</option></select>
+        </div>
+        <div class="input-group mb-2">
+          <label>조회 기간 &nbsp;</label>
+          <input type="text" class="form-control" style="width:100px;" value="2025-04">
+          <span style="line-height:36px;padding:0 6px;">~</span>
+          <input type="text" class="form-control" style="width:100px;" value="2026-03">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary ml-1"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
+        </div>
+        <div class="input-group">
+          <label>게시판 &nbsp;</label>
+          <div class="bbs-check-list">
+            <label><input type="checkbox" checked> 전체선택</label>
+            <label><input type="checkbox" checked> 공지사항</label>
+            <label><input type="checkbox" checked> FAQ</label>
+            <label><input type="checkbox" checked> Q&A</label>
+            <label><input type="checkbox" checked> 캠페인 서류</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><span class="label"><i class="fa fa-download"></i> 전체 다운로드 건수</span><span class="value">12,847</span></div>
+        <div class="stat-card"><span class="label"><i class="fa fa-calendar"></i> 월 평균 다운로드</span><span class="value">1,071</span></div>
+        <div class="stat-card"><span class="label"><i class="fa fa-arrow-up" style="color:#388e3c;"></i> 최다 다운로드 월</span><span class="value">2026-01</span></div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title"><i class="fa fa-bar-chart mr-1"></i>월별 다운로드 수 (최근 12개월)</div>
+        <canvas id="monthlyChart" height="80"></canvas>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>년월</th><th>공지사항</th><th>FAQ</th><th>Q&A</th><th>캠페인 서류</th><th>합계</th><th>전월 대비</th></tr></thead>
+          <tbody id="monthlyBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const months = ['2025-04','2025-05','2025-06','2025-07','2025-08','2025-09','2025-10','2025-11','2025-12','2026-01','2026-02','2026-03'];
+const totals = [845,912,1023,987,876,1102,1245,1089,1356,1478,1023,911];
+const ctx = document.getElementById('monthlyChart').getContext('2d');
+new Chart(ctx, {
+  type:'bar', data:{ labels:months, datasets:[{ label:'다운로드 수', data:totals, backgroundColor:'rgba(31,141,171,0.7)', borderColor:'#1f8dab', borderWidth:1 }] },
+  options:{ responsive:true, scales:{ yAxes:[{ticks:{beginAtZero:true}}] }, legend:{display:false} }
+});
+const tbody = document.getElementById('monthlyBody');
+tbody.innerHTML = months.map((m,i)=>{
+  const diff = i===0 ? '-' : (totals[i]-totals[i-1]>=0 ? `<span style="color:#388e3c;">▲ ${totals[i]-totals[i-1]}</span>` : `<span style="color:#e53935;">▼ ${Math.abs(totals[i]-totals[i-1])}</span>`);
+  const a=Math.round(totals[i]*0.3), b=Math.round(totals[i]*0.15), c=Math.round(totals[i]*0.2), d=totals[i]-a-b-c;
+  return `<tr><td>${m}</td><td>${a}</td><td>${b}</td><td>${c}</td><td>${d}</td><td><strong>${totals[i].toLocaleString()}</strong></td><td>${diff}</td></tr>`;
+}).reverse().join('');
+</script>
+</body></html>

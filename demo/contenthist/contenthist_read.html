@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>콘텐츠변경이력 상세 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.section-header{font-size:14px;font-weight:700;color:#0e424f;border-left:3px solid #0e424f;padding-left:10px;margin:24px 0 12px;}.section-header:first-child{margin-top:0;}.btn-area{display:flex;justify-content:center;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid #e5ecf1;}.content-box{background:#f8fbfc;border:1px solid #e0ecf2;border-radius:4px;padding:16px;min-height:120px;line-height:1.8;font-size:13.5px;}.diff-box{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.diff-label{font-size:12px;font-weight:600;color:#666;margin-bottom:6px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-history mr-2" style="color:#1f8dab;font-size:17px;"></i>콘텐츠변경이력 상세</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li><a href="contenthist_list.html">콘텐츠변경이력</a></li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">상세</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="section-header">변경 정보</div>
+      <table class="detail-table">
+        <tr><th style="width:160px;">콘텐츠명</th><td>EV100 메인 소개 페이지</td><th style="width:160px;">콘텐츠 ID</th><td>CNT_20260101_001</td></tr>
+        <tr><th>변경일시</th><td>2026-03-20 14:30:00</td><th>변경자</th><td>관리자 (admin)</td></tr>
+        <tr><th>변경사유</th><td colspan="3">내용 업데이트 - 2026년 캠페인 일정 반영</td></tr>
+      </table>
+      <div class="section-header">변경 내용 비교</div>
+      <div class="diff-box">
+        <div>
+          <div class="diff-label"><i class="fa fa-arrow-left"></i> 변경 전</div>
+          <div class="content-box" style="border-color:#ffcdd2;">
+            <h3 style="color:#0e424f;">K-EV100 캠페인 소개</h3>
+            <p>K-EV100은 대한민국 전기차 100% 전환을 목표로 하는 기업 참여 캠페인입니다.</p>
+            <p><strong>신청기간:</strong> 2026년 3월 1일 ~ 2026년 3월 31일</p>
+          </div>
+        </div>
+        <div>
+          <div class="diff-label"><i class="fa fa-arrow-right"></i> 변경 후</div>
+          <div class="content-box" style="border-color:#c8e6c9;">
+            <h3 style="color:#0e424f;">K-EV100 캠페인 소개</h3>
+            <p>K-EV100은 대한민국 전기차 100% 전환을 목표로 하는 기업 참여 캠페인입니다.</p>
+            <p><strong>신청기간:</strong> 2026년 4월 1일 ~ 2026년 4월 30일</p>
+          </div>
+        </div>
+      </div>
+      <div class="btn-area">
+        <a href="contenthist_list.html" class="btn btn-secondary"><i class="fa fa-list mr-1"></i>목록</a>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 4;</script>
+</body></html>

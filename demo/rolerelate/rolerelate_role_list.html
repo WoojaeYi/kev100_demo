@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>계정별 역할 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-users mr-2" style="color:#1f8dab;font-size:17px;"></i>계정별 역할 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">계정별 역할</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>키워드 &nbsp;</label>
+          <select class="form-control" style="width:100px;"><option>아이디</option><option>이름</option></select>
+          <input type="text" class="form-control" style="width:200px;" placeholder="검색어 입력">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+        </div>
+      </div>
+      <div class="table-info"><div style="font-size:13px;color:#666;">총 <strong>6</strong>건</div></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>아이디</th><th>이름</th><th>현재 역할</th><th>관리</th></tr></thead>
+          <tbody id="roleRelBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const data = [
+  {no:6,id:'admin',nm:'시스템관리자',role:'ROLE_ADMIN - 시스템관리자'},
+  {no:5,id:'oper01',nm:'홍길동',role:'ROLE_OPER - 운영자'},
+  {no:4,id:'oper02',nm:'김민준',role:'ROLE_OPER - 운영자'},
+  {no:3,id:'view01',nm:'이서연',role:'ROLE_VIEW - 조회자'},
+  {no:2,id:'view02',nm:'박지호',role:'ROLE_VIEW - 조회자'},
+  {no:1,id:'stats01',nm:'최지우',role:'ROLE_OPER - 운영자'},
+];
+document.getElementById('roleRelBody').innerHTML = data.map(d=>`
+  <tr><td>${d.no}</td><td>${d.id}</td><td>${d.nm}</td><td>${d.role}</td>
+  <td>
+    <select class="form-control" style="width:200px;display:inline-block;">
+      <option ${d.role.includes('ADMIN')?'selected':''}>ROLE_ADMIN - 시스템관리자</option>
+      <option ${d.role.includes('OPER')?'selected':''}>ROLE_OPER - 운영자</option>
+      <option ${d.role.includes('VIEW')?'selected':''}>ROLE_VIEW - 조회자</option>
+    </select>
+    <button class="btn btn-primary btn-sm ml-1" onclick="alert('역할이 변경되었습니다.')"><i class="fa fa-save mr-1"></i>저장</button>
+  </td></tr>`).join('');
+</script>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.section-heading { font-size: 13px; font-weight: 700; color: #0e424f; padding: 10px 0 8px; margin: 20px 0 10px; border-bottom: 2px solid #e5ecf1; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; border-top: 1px solid #000; margin-bottom: 4px; }
+.data-table thead th { background: #f8fbfc; font-weight: 500; padding: 10px 8px; text-align: center; border-bottom: 1px solid #e0e8ec; border-right: 1px solid #ecf3f5; white-space: nowrap; }
+.data-table thead th:last-child { border-right: 0; }
+.data-table tbody tr { border-bottom: 1px solid #ecf3f5; }
+.data-table tbody th { background: #f8fbfc; font-weight: 500; padding: 10px 12px; text-align: left; border-right: 1px solid #ecf3f5; white-space: nowrap; }
+.data-table tbody td { padding: 10px 8px; text-align: center; border-right: 1px solid #ecf3f5; }
+.data-table tbody td:last-child { border-right: 0; }
+.info-note { background: #f0f6f8; border-left: 4px solid #1f8dab; border-radius: 0 4px 4px 0; padding: 14px 18px; margin-top: 20px; }
+.info-note .note-title { font-size: 13px; font-weight: 700; color: #0e424f; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.info-note p { font-size: 13px; color: #555; line-height: 1.6; margin: 0; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title">
+      <span>실적 제출 완료 조회</span>
+      <small style="color:#888;font-size:13px;font-weight:400;">제출하신 실적의 주요 내용을 조회합니다.</small>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>2026년도 제출 실적 상세</h2>
+            <span class="use" style="margin-left:auto;">검토완료 (승인)</span>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <table class="detail-table" style="margin-bottom:20px;">
+              <colgroup>
+                <col style="width:15%"><col style="width:35%"><col style="width:15%"><col style="width:35%">
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th>기업명</th><td>K-EV100 렌터카 주식회사</td>
+                  <th>제출연도</th><td>2026년</td>
+                </tr>
+                <tr>
+                  <th>제출자</th><td>홍길동</td>
+                  <th>제출일시</th><td>2026-03-31 16:30:00</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="section-heading">1. 무공해차 보유 대수</div>
+            <div class="list_wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="vertical-align:middle;">차종</th>
+                    <th rowspan="2" style="vertical-align:middle;">내연기관</th>
+                    <th colspan="2">무공해차(EV/FCEV)</th>
+                    <th rowspan="2" style="vertical-align:middle;">무공해차 비중(%)</th>
+                  </tr>
+                  <tr><th>전기차</th><th>수소차</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>승용차</th><td>500</td><td>120</td><td>5</td>
+                    <td style="color:#1f8dab;font-weight:700;">20.0%</td>
+                  </tr>
+                  <tr>
+                    <th>승합차</th><td>50</td><td>10</td><td>2</td>
+                    <td style="color:#1f8dab;font-weight:700;">19.3%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="section-heading">2. 충전인프라 구축 현황</div>
+            <div class="list_wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr><th>구분</th><th>설치장소</th><th>주소</th><th>유형</th><th>대수</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td><td>본사 사옥 주차장</td><td>서울시 종로구 세종대로 123</td><td>급속(50kW)</td><td>4대</td>
+                  </tr>
+                  <tr>
+                    <td>2</td><td>강남영업소</td><td>서울시 강남구 테헤란로 456</td><td>완속(7kW)</td><td>2대</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="info-note">
+              <div class="note-title"><i class="fa fa-info-circle"></i> 심사 의견</div>
+              <p>2026년도 무공해차 전환 목표(120대) 대비 달성률 100% 이상 초과 달성을 확인하였습니다. 충전 인프라 부문 또한 모범사례로 적격 승인되었습니다.</p>
+            </div>
+
+            <div style="display:flex;justify-content:center;gap:8px;padding-top:16px;border-top:1px solid #e5ecf1;margin-top:20px;">
+              <button class="btn btn-default" onclick="location.href='campaignList.html'"><i class="fa fa-list"></i> 목록으로</button>
+              <button class="btn btn-navy" onclick="location.href='campresultForm.html'"><i class="fa fa-edit"></i> 수정 / 보완</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 6;</script>
+</body></html>

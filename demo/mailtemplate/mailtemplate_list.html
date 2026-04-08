@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메일 템플릿 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+.table-info .total strong { color:#0e424f; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-file-text-o mr-2" style="color:#1f8dab;font-size:17px;"></i>메일 템플릿 목록</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>메일관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">메일 템플릿</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>키워드 &nbsp;</label>
+          <input type="text" class="form-control" style="width:260px;" placeholder="템플릿코드 또는 템플릿명 검색">
+          <select class="form-control" style="width:120px;">
+            <option value="">∷ 사용여부 ∷</option>
+            <option>사용</option><option>미사용</option>
+          </select>
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>초기화</button>
+        </div>
+      </div>
+
+      <div class="table-info">
+        <div class="total">총 <strong>10</strong>건</div>
+        <a href="mailtemplate_form.html" class="btn btn-primary btn-sm"><i class="fa fa-plus mr-1"></i>템플릿 등록</a>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead>
+            <tr>
+              <th>번호</th><th>템플릿코드</th><th>템플릿명</th><th>제목</th>
+              <th>등록일</th><th>사용여부</th><th>상세</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>10</td><td>TPL_JOIN_APPROVE</td><td>가입승인 안내</td><td>[K-EV100] 회원가입 승인 안내</td><td>2026-01-05</td><td><span class="use">사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>9</td><td>TPL_JOIN_REJECT</td><td>가입반려 안내</td><td>[K-EV100] 회원가입 반려 안내</td><td>2026-01-05</td><td><span class="use">사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>8</td><td>TPL_CAMP_APPROVE</td><td>캠페인승인 안내</td><td>[K-EV100] 캠페인 참여 승인 안내</td><td>2026-01-10</td><td><span class="use">사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>7</td><td>TPL_CAMP_REJECT</td><td>캠페인반려 안내</td><td>[K-EV100] 캠페인 참여 반려 안내</td><td>2026-01-10</td><td><span class="use">사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>6</td><td>TPL_PWD_RESET</td><td>비밀번호 초기화</td><td>[K-EV100] 비밀번호 초기화 안내</td><td>2026-01-15</td><td><span class="use">사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>5</td><td>TPL_NOTICE</td><td>공지사항 안내</td><td>[K-EV100] 공지사항 안내</td><td>2026-01-20</td><td><span class="use">사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>4</td><td>TPL_SYSTEM_MAINT</td><td>시스템 점검 안내</td><td>[K-EV100] 시스템 점검 안내</td><td>2026-02-01</td><td><span class="use">사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>3</td><td>TPL_ID_FIND</td><td>아이디 찾기</td><td>[K-EV100] 아이디 찾기 안내</td><td>2026-02-10</td><td><span class="use">사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>2</td><td>TPL_CERT_EMAIL</td><td>이메일 인증</td><td>[K-EV100] 이메일 주소 인증</td><td>2026-02-15</td><td><span class="notUse">미사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1</td><td>TPL_WITHDRAW</td><td>회원탈퇴 안내</td><td>[K-EV100] 회원탈퇴 처리 안내</td><td>2026-03-01</td><td><span class="notUse">미사용</span></td><td><a href="mailtemplate_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-10 / 10건</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 4;</script>
+</body></html>

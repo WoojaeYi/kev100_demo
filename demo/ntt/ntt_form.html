@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>게시판 등록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.section-header{font-size:14px;font-weight:700;color:#0e424f;border-left:3px solid #0e424f;padding-left:10px;margin:24px 0 12px;}.section-header:first-child{margin-top:0;}.btn-area{display:flex;justify-content:center;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid #e5ecf1;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-list-alt mr-2" style="color:#1f8dab;font-size:17px;"></i>게시판 등록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li><a href="ntt_list.html">게시판관리</a></li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">등록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="section-header">기본 정보</div>
+      <table class="detail-table">
+        <tr>
+          <th style="width:160px;">게시판ID <span style="color:#c62828;">*</span></th>
+          <td><input type="text" class="form-control" style="width:200px;font-family:monospace;" placeholder="NTT_XXXXX"></td>
+          <th style="width:160px;">게시판명 <span style="color:#c62828;">*</span></th>
+          <td><input type="text" class="form-control" style="width:200px;" placeholder="게시판 이름"></td>
+        </tr>
+        <tr>
+          <th>게시판유형 <span style="color:#c62828;">*</span></th>
+          <td>
+            <select class="form-control" style="width:150px;">
+              <option>일반형</option><option>공지형</option><option>자료형</option><option>FAQ형</option><option>문의형</option>
+            </select>
+          </td>
+          <th>사용여부</th>
+          <td>
+            <label style="margin-right:12px;cursor:pointer;"><input type="radio" name="useAt" value="Y" checked> 사용</label>
+            <label style="cursor:pointer;"><input type="radio" name="useAt" value="N"> 미사용</label>
+          </td>
+        </tr>
+      </table>
+      <div class="section-header">기능 설정</div>
+      <table class="detail-table">
+        <tr>
+          <th style="width:160px;">댓글 허용</th>
+          <td>
+            <label style="margin-right:12px;cursor:pointer;"><input type="radio" name="replyAt" value="Y"> 허용</label>
+            <label style="cursor:pointer;"><input type="radio" name="replyAt" value="N" checked> 미허용</label>
+          </td>
+          <th style="width:160px;">파일 허용</th>
+          <td>
+            <label style="margin-right:12px;cursor:pointer;"><input type="radio" name="fileAt" value="Y" checked> 허용</label>
+            <label style="cursor:pointer;"><input type="radio" name="fileAt" value="N"> 미허용</label>
+          </td>
+        </tr>
+        <tr>
+          <th>카테고리 사용</th>
+          <td>
+            <label style="margin-right:12px;cursor:pointer;"><input type="radio" name="ctgrAt" value="Y"> 사용</label>
+            <label style="cursor:pointer;"><input type="radio" name="ctgrAt" value="N" checked> 미사용</label>
+          </td>
+          <th>상단고정 허용</th>
+          <td>
+            <label style="margin-right:12px;cursor:pointer;"><input type="radio" name="topAt" value="Y"> 허용</label>
+            <label style="cursor:pointer;"><input type="radio" name="topAt" value="N" checked> 미허용</label>
+          </td>
+        </tr>
+        <tr>
+          <th>페이지당 건수</th>
+          <td>
+            <select class="form-control" style="width:100px;">
+              <option>10</option><option>20</option><option>30</option><option>50</option>
+            </select>
+          </td>
+          <th>최대 첨부파일</th>
+          <td>
+            <select class="form-control" style="width:80px;">
+              <option>1</option><option>3</option><option selected>5</option><option>10</option>
+            </select>
+            <span style="margin-left:6px;color:#666;font-size:13px;">개</span>
+          </td>
+        </tr>
+        <tr>
+          <th>설명</th>
+          <td colspan="3"><textarea class="form-control" rows="3" style="width:100%;" placeholder="게시판에 대한 설명을 입력하세요"></textarea></td>
+        </tr>
+      </table>
+      <div class="btn-area">
+        <a href="ntt_list.html" class="btn btn-secondary"><i class="fa fa-list mr-1"></i>취소</a>
+        <button class="btn btn-primary" onclick="alert('등록되었습니다.');"><i class="fa fa-save mr-1"></i>저장</button>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 3;</script>
+</body></html>

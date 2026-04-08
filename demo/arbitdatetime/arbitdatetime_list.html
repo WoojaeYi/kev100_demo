@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>임의날짜 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}.table-info .total{font-size:13px;color:#666;}.table-info .total strong{color:#0e424f;font-weight:700;}.sys-time-box{background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#856404;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-calendar-o mr-2" style="color:#1f8dab;font-size:17px;"></i>임의날짜 관리</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">임의날짜 관리</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="sys-time-box"><i class="fa fa-info-circle mr-1"></i><strong>현재 시스템 시간:</strong> 2026-03-30 14:30:00 &nbsp;|&nbsp; 임의날짜 적용 중: <strong>없음</strong></div>
+      <div class="table-info"><div class="total">총 <strong>5</strong>건</div><button class="btn btn-primary btn-sm" onclick="location.href='arbitdatetime_form.html'"><i class="fa fa-plus mr-1"></i>등록</button></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>설정명</th><th>임의 날짜/시간</th><th>적용여부</th><th>등록일</th><th>상세</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const data=[
+  {no:5,nm:'캠페인 신청기간 테스트',dt:'2026-04-01 00:00:00',use:'미적용',sc:'notUse',reg:'2026-03-20'},
+  {no:4,nm:'결과보고서 제출기한 테스트',dt:'2026-07-15 23:59:59',use:'미적용',sc:'notUse',reg:'2026-03-15'},
+  {no:3,nm:'심사기간 테스트',dt:'2026-03-31 12:00:00',use:'미적용',sc:'notUse',reg:'2026-03-10'},
+  {no:2,nm:'연말 통계 테스트',dt:'2026-12-31 23:59:59',use:'미적용',sc:'notUse',reg:'2026-02-28'},
+  {no:1,nm:'기본 테스트',dt:'2026-01-01 00:00:00',use:'미적용',sc:'notUse',reg:'2026-01-05'},
+];
+document.getElementById('tbody').innerHTML=data.map(d=>`
+  <tr><td>${d.no}</td><td><a href="arbitdatetime_read.html">${d.nm}</a></td><td>${d.dt}</td><td><span class="${d.sc}">${d.use}</span></td><td>${d.reg}</td><td><a href="arbitdatetime_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-eye mr-1"></i>조회</a></td></tr>`).join('');
+</script>
+</body></html>

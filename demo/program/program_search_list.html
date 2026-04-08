@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>프로그램 검색 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}.keyword-highlight{background:#fff3cd;border-radius:2px;padding:0 2px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-search mr-2" style="color:#1f8dab;font-size:17px;"></i>프로그램 검색</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">프로그램 검색</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>키워드 &nbsp;</label>
+          <select class="form-control" style="width:120px;"><option>프로그램명</option><option>URL</option></select>
+          <input type="text" class="form-control" style="width:220px;" value="배치" placeholder="검색어 입력">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>초기화</button>
+        </div>
+      </div>
+      <div class="table-info"><div style="font-size:13px;color:#666;">"<strong>배치</strong>" 검색결과 총 <strong>5</strong>건</div></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>프로그램ID</th><th>프로그램명</th><th>URL</th><th>방식</th><th>사용</th></tr></thead>
+          <tbody id="pgmSearchBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const data = [
+  {no:5,id:'PGM0124',nm:'배치 이력 목록',url:'/admin/expthread/expthreadList.do',method:'GET',use:'Y'},
+  {no:4,id:'PGM0125',nm:'배치 파일 목록',url:'/admin/expthread/expthreadFileList.do',method:'GET',use:'Y'},
+  {no:3,id:'PGM0126',nm:'배치 상세',url:'/admin/expthread/expthreadRead.do',method:'GET',use:'Y'},
+  {no:2,id:'PGM0127',nm:'배치 등록',url:'/admin/expthread/expthreadInsert.do',method:'POST',use:'Y'},
+  {no:1,id:'PGM0128',nm:'배치 수정',url:'/admin/expthread/expthreadUpdate.do',method:'POST',use:'Y'},
+];
+const METHOD_COLOR={'GET':'#1f8dab','POST':'#388e3c','DELETE':'#e53935','PUT':'#ff8f00'};
+const USE={'Y':'<span class="use">사용</span>','N':'<span class="notUse">미사용</span>'};
+document.getElementById('pgmSearchBody').innerHTML = data.map(d=>`
+  <tr><td>${d.no}</td><td style="font-size:12px;color:#888;">${d.id}</td>
+  <td class="t-a-left"><a href="program_read.html">${d.nm.replace('배치','<span class="keyword-highlight">배치</span>')}</a></td>
+  <td class="t-a-left" style="font-size:12px;color:#888;">${d.url}</td>
+  <td><span style="background:${METHOD_COLOR[d.method]};color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;">${d.method}</span></td>
+  <td>${USE[d.use]}</td></tr>`).join('');
+</script>
+</body></html>

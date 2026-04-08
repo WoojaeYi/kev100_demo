@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+/* ── 검색 박스 컨테이너 ── */
+.searchBox {
+  background: linear-gradient(135deg, #f5fbfc 0%, #edf4f6 100%);
+  border: 1px solid #ccdde2;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 4px rgba(14,66,79,0.06);
+}
+
+.searchBox .input-group {
+  gap: 10px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* ── 라벨 ── */
+.searchBox label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0e424f;
+  background: #ddedf1;
+  border-radius: 4px;
+  padding: 0 9px;
+  height: 30px;
+  line-height: 30px;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+
+/* ── select / input 공통 ── */
+.searchBox .form-control,
+.searchBox select,
+.searchBox input[type="text"],
+.searchBox input[type="date"] {
+  height: 30px;
+  border: 1px solid #b8d4db;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 0 10px;
+  color: #1a3f4a;
+  background: #fff;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.searchBox select {
+  min-width: 90px;
+  width: 90px;
+  padding-right: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%231f8dab' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+}
+
+.searchBox .form-control:hover,
+.searchBox select:hover,
+.searchBox input:hover {
+  border-color: #7dbfcd;
+}
+
+.searchBox .form-control:focus,
+.searchBox select:focus,
+.searchBox input:focus {
+  border-color: #1f8dab;
+  box-shadow: 0 0 0 3px rgba(31,141,171,0.13);
+  outline: none;
+}
+
+/* ── 검색 버튼 ── */
+.searchBox .btn-search {
+  height: 30px;
+  padding: 0 18px;
+  background: #0e424f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s;
+  letter-spacing: 0.2px;
+}
+.searchBox .btn-search:hover {
+  background: #1f8dab;
+  box-shadow: 0 2px 8px rgba(31,141,171,0.25);
+}
+.searchBox .btn-search i { font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title">
+      <span>캠페인 신청 내역</span>
+      <small style="color:#888;font-size:13px;font-weight:400;">참가 신청한 캠페인 목록 및 상태를 확인합니다.</small>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="searchBox">
+          <div class="input-group">
+            <label>상태</label>
+            <select class="form-control">
+              <option>전체</option>
+              <option>신청/접수중</option>
+              <option>승인완료</option>
+              <option>서류보완요청</option>
+            </select>
+            <label>년도</label>
+            <select class="form-control">
+              <option>2026</option>
+              <option>2025</option>
+              <option>2024</option>
+            </select>
+            <button type="button" class="btn-search"><i class="fa fa-search"></i> 검색</button>
+          </div>
+        </div>
+
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>목록 <span style="font-size:13px;font-weight:400;color:#888;">(총 3건)</span></h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="list_wrapper">
+              <table class="listTable">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>기업명</th>
+                    <th>담당자명</th>
+                    <th>처리상태</th>
+                    <th>최종승인여부</th>
+                    <th>신청일시</th>
+                    <th>관리</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td class="left">K-EV100 렌터카 주식회사</td>
+                    <td>홍길동</td>
+                    <td><span class="use">승인완료</span></td>
+                    <td>승인</td>
+                    <td>2026-03-31 10:20</td>
+                    <td>
+                      <a href="campaignRead.html" class="btn btn-sm btn-primary">조회</a>
+                      <a href="campresultForm.html" class="btn btn-sm btn-navy">실적 제출</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td class="left">서울시 친환경 운수</td>
+                    <td>이순신</td>
+                    <td><span class="reject">서류 보완요청</span></td>
+                    <td>미승인</td>
+                    <td>2026-03-25 15:00</td>
+                    <td>
+                      <button class="btn btn-sm btn-default" onclick="alert('서류 보완 페이지로 이동')">문서 보완</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td class="left">전국 물류 콜드체인</td>
+                    <td>강감찬</td>
+                    <td><span class="ing">신청/접수중</span></td>
+                    <td>미승인</td>
+                    <td>2026-03-20 09:30</td>
+                    <td>
+                      <a href="campaignRead.html" class="btn btn-sm btn-primary">조회</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="display:flex;justify-content:center;padding-top:14px;">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">»</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 6;</script>
+</body></html>

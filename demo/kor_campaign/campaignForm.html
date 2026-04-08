@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title">
+      <span>캠페인 신청/수정</span>
+      <small style="color:#888;font-size:13px;font-weight:400;">캠페인 신청 내용을 입력합니다.</small>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>기본 정보 입력</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table class="detail-table">
+              <tbody>
+                <tr>
+                  <th style="width:15%">기업명 <span class="text-danger">*</span></th>
+                  <td style="width:35%"><input type="text" class="form-control" value="K-EV100 렌터카 주식회사" readonly></td>
+                  <th style="width:15%">사업자번호 <span class="text-danger">*</span></th>
+                  <td style="width:35%"><input type="text" class="form-control" value="123-45-67890" readonly></td>
+                </tr>
+                <tr>
+                  <th>캠페인 유형 <span class="text-danger">*</span></th>
+                  <td colspan="3">
+                    <label style="margin-right:16px;cursor:pointer;"><input type="radio" name="campType" checked style="margin-right:4px;"> 렌터카</label>
+                    <label style="margin-right:16px;cursor:pointer;"><input type="radio" name="campType" style="margin-right:4px;"> 일반</label>
+                    <label style="cursor:pointer;"><input type="radio" name="campType" style="margin-right:4px;"> 공공기관</label>
+                  </td>
+                </tr>
+                <tr>
+                  <th>증빙자료 첨부</th>
+                  <td colspan="3">
+                    <input type="file" style="font-size:13px;">
+                    <p style="font-size:12px;color:#888;margin-top:4px;">사업자등록증, 직인 파일 등을 압축하여 업로드 (최대 10MB)</p>
+                  </td>
+                </tr>
+                <tr>
+                  <th>메모/요청사항</th>
+                  <td colspan="3">
+                    <textarea class="form-control" rows="4" style="height:auto;padding:8px 10px;">서류 보완 제출합니다.</textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="display:flex;justify-content:center;gap:8px;padding-top:16px;border-top:1px solid #e5ecf1;margin-top:4px;">
+              <button type="button" class="btn btn-default" onclick="location.href='campaignList.html'">취소</button>
+              <button type="button" class="btn btn-primary" onclick="alert('저장되었습니다.'); location.href='campaignList.html'">저장</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 6;</script>
+</body></html>

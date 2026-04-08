@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ë¡œê·¸??ë¡œê·¸ | K-EV100 ê´€ë¦¬ì</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+.table-info .total strong { color:#0e424f; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 ê´€ë¦¬ì</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">ê´€</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>ê´€ë¦¬ì</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">ê´€</div>ê´€ë¦¬ì</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-sign-in mr-2" style="color:#1f8dab;font-size:17px;"></i>ë¡œê·¸??ë¡œê·¸</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>ê³„ì •ê´€ë¦?/li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">ë¡œê·¸??ë¡œê·¸</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>ê¸°ê°„ &nbsp;</label>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-01">
+          <span style="line-height:32px;padding:0 6px;color:#888;">~</span>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-30">
+          <select class="form-control" style="width:140px;"><option value="">??ë¡œê·¸?¸ê²°ê³???/option><option>?±ê³µ</option><option>?¤íŒ¨</option></select>
+        </div>
+        <div class="input-group">
+          <label>?¤ì›Œ??ê²€??&nbsp;</label>
+          <select class="form-control" style="width:110px;"><option>ê¸°ì—…ëª?/option><option>?´ë‹¹?ëª…</option><option>IPì£¼ì†Œ</option></select>
+          <input type="text" class="form-control" style="width:240px;" placeholder="ê²€?‰ì–´ ?…ë ¥">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>ê²€??/button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>ì´ˆê¸°??/button>
+        </div>
+      </div>
+
+      <div class="table-info">
+        <div class="total">ì´?<strong>3,842</strong>ê±?/div>
+        <button class="btn btn-secondary btn-sm"><i class="fa fa-download mr-1"></i>?‘ì??¤ìš´ë¡œë“œ</button>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>ë²ˆí˜¸</th><th>ê¸°ì—…ëª?/th><th>?´ë‹¹?ëª…</th><th>ë¡œê·¸???¼ì‹œ</th><th>IP ì£¼ì†Œ</th><th>ë¡œê·¸??ê²°ê³¼</th><th>?¤íŒ¨?¬ìœ </th></tr></thead>
+          <tbody id="logBody"></tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-10 / 3,842ê±?/div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 ?œë¹„???¬í„¸ &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+const logs = [
+  {no:3842,ent:'(ì£??œêµ­?„ê¸°ì°?,mgr:'ê¹€ë¯¼ì?',dt:'2026-03-30 14:23:11',ip:'192.168.1.101',result:'?±ê³µ',reason:'-'},
+  {no:3841,ent:'?ì½”?ë„ˆì§€(ì£?',mgr:'?´ì„œ??,dt:'2026-03-30 14:18:05',ip:'192.168.1.102',result:'?±ê³µ',reason:'-'},
+  {no:3840,ent:'ê·¸ë¦°ëª¨ë¹Œë¦¬í‹°(ì£?',mgr:'ë°•ì???,dt:'2026-03-30 14:05:32',ip:'192.168.1.103',result:'?¤íŒ¨',reason:'ë¹„ë?ë²ˆí˜¸ ë¶ˆì¼ì¹?},
+  {no:3839,ent:'ê·¸ë¦°ëª¨ë¹Œë¦¬í‹°(ì£?',mgr:'ë°•ì???,dt:'2026-03-30 14:04:45',ip:'192.168.1.103',result:'?¤íŒ¨',reason:'ë¹„ë?ë²ˆí˜¸ ë¶ˆì¼ì¹?},
+  {no:3838,ent:'?¤ë§ˆ?¸EV(ì£?',mgr:'ìµœì???,dt:'2026-03-30 13:55:20',ip:'10.0.0.15',result:'?±ê³µ',reason:'-'},
+  {no:3837,ent:'ë¯¸ë˜?ë™ì°?ì£?',mgr:'?•ë‹¤?€',dt:'2026-03-30 13:42:08',ip:'10.0.0.20',result:'?±ê³µ',reason:'-'},
+  {no:3836,ent:'?´ë¦°?ë„ˆì§€(ì£?',mgr:'ê°•ë???,dt:'2026-03-30 13:30:55',ip:'172.16.0.5',result:'?±ê³µ',reason:'-'},
+  {no:3835,ent:'?„ê¸°ì¶©ì „?”ë£¨??ì£?',mgr:'?¤ì???,dt:'2026-03-30 13:15:40',ip:'10.0.0.30',result:'?±ê³µ',reason:'-'},
+  {no:3834,ent:'?œêµ­ê·¸ë¦°ì¹?ì£?',mgr:'?„ìˆ˜??,dt:'2026-03-30 12:58:22',ip:'192.168.2.11',result:'?¤íŒ¨',reason:'ê³„ì • ? ê¸ˆ'},
+  {no:3833,ent:'ë¯¸ë˜ëª¨ë¹Œë¦¬í‹°(ì£?',mgr:'?¤íƒœ??,dt:'2026-03-30 12:45:10',ip:'192.168.2.12',result:'?±ê³µ',reason:'-'},
+];
+const LR = {'?±ê³µ':'<span class="use">?±ê³µ</span>','?¤íŒ¨':'<span class="reject">?¤íŒ¨</span>'};
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('logBody').innerHTML = logs.map(l=>`
+    <tr>
+      <td>${l.no}</td><td>${l.ent}</td><td>${l.mgr}</td>
+      <td>${l.dt}</td><td>${l.ip}</td>
+      <td>${LR[l.result]||l.result}</td>
+      <td style="color:${l.reason!=='-'?'#c62828':'#aaa'};">${l.reason}</td>
+    </tr>`).join('');
+});
+</script>
+</body></html>

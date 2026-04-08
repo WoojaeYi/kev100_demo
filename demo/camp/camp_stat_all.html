@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 전체 통계 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 24px; }
+.stat-box { background:#fff; border:1px solid #e5ecf1; border-radius:4px; padding:18px 20px; text-align:center; border-top:3px solid #0e424f; }
+.stat-box.blue { border-top-color:#1975d2; }
+.stat-box.green { border-top-color:#388e3c; }
+.stat-box.orange { border-top-color:#f57c00; }
+.stat-box.red { border-top-color:#c62828; }
+.stat-box .num { font-size:28px; font-weight:700; color:#0e424f; }
+.stat-box.blue .num { color:#1975d2; }
+.stat-box.green .num { color:#388e3c; }
+.stat-box.orange .num { color:#f57c00; }
+.stat-box.red .num { color:#c62828; }
+.stat-box .lbl { font-size:12.5px; color:#888; margin-top:4px; }
+.chart-row { display:grid; grid-template-columns:3fr 2fr; gap:16px; margin-bottom:20px; }
+.panel { background:#fff; border:1px solid #e5ecf1; border-radius:4px; }
+.panel-head { display:flex; align-items:center; justify-content:space-between; padding:12px 18px; border-bottom:1px solid #e5ecf1; }
+.panel-head h3 { font-size:13.5px; font-weight:700; color:#0e424f; display:flex; align-items:center; gap:6px; }
+.panel-head h3 i { color:#1f8dab; }
+.panel-body { padding:16px 18px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <!-- SIDEBAR -->
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <!-- TOP NAV -->
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <!-- CONTENT -->
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-bar-chart mr-2" style="color:#1f8dab;font-size:17px;"></i>전체 통계</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>캠페인관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li>캠페인 통계</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">전체 통계</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- 차트 Row 1 -->
+      <div class="chart-row">
+        <div class="panel">
+          <div class="panel-head"><h3><i class="fa fa-pie-chart"></i>전체 보유 현황<span style="font-size:11px;font-weight:400;color:#888;margin-left:6px;">(승인 계정 기준)</span></h3></div>
+          <div class="panel-body"><div id="canvas_statAll" style="height:280px;"></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3><i class="fa fa-pie-chart"></i>전체 무공해차 현황<span style="font-size:11px;font-weight:400;color:#888;margin-left:6px;">(승인 계정 기준)</span></h3></div>
+          <div class="panel-body"><div id="canvas_statByEcoCar" style="height:280px;"></div></div>
+        </div>
+      </div>
+
+      <!-- 차트 Row 2 -->
+      <div class="chart-row">
+        <div class="panel">
+          <div class="panel-head"><h3><i class="fa fa-pie-chart"></i>전체 내연기관 차종별 현황<span style="font-size:11px;font-weight:400;color:#888;margin-left:6px;">(승인 계정 기준)</span></h3></div>
+          <div class="panel-body"><div id="canvas_statByInterCarType" style="height:280px;"></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3><i class="fa fa-pie-chart"></i>전체 전기차 차종별 현황<span style="font-size:11px;font-weight:400;color:#888;margin-left:6px;">(승인 계정 기준)</span></h3></div>
+          <div class="panel-body"><div id="canvas_statByElectCarType" style="height:280px;"></div></div>
+        </div>
+      </div>
+
+      <!-- 차트 Row 3 -->
+      <div class="chart-row">
+        <div class="panel">
+          <div class="panel-head"><h3><i class="fa fa-pie-chart"></i>전체 수소차 차종별 현황<span style="font-size:11px;font-weight:400;color:#888;margin-left:6px;">(캠페인 참여 승인 기업 기준)</span></h3></div>
+          <div class="panel-body"><div id="canvas_statByHydrgCarType" style="height:280px;"></div></div>
+        </div>
+        <div class="panel" style="background:transparent;border:none;box-shadow:none;"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+
+// 기존 색상 세트 유지
+var colors1 = ['#FFA128','#8abb6f'];
+var colors2 = ['#71B7E6','#67CEB8'];
+var colors3 = ['#788A9C','#B98ACC','#9EBA96'];
+
+function drawPieChart(canvasId, dataset, colorSet) {
+  var el = document.getElementById(canvasId);
+  if (!el) return;
+  var chart = echarts.init(el);
+  var isEmpty = !dataset.sumValue || dataset.sumValue === 0;
+  var unit = dataset.unit || '대';
+
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      formatter: function(p) {
+        if (p.name === '데이터 없음') return '데이터 없음';
+        return p.name + ' : ' + p.value + ' ' + unit + ' (' + p.percent.toFixed(1) + '%)';
+      }
+    },
+    legend: {
+      orient: 'horizontal',
+      bottom: 0,
+      left: 'center',
+      textStyle: { fontSize: 11 },
+      data: dataset.datas.map(function(d){ return d.name; })
+    },
+    color: colorSet,
+    series: [
+      {
+        type: 'pie',
+        radius: ['38%', '62%'],
+        center: ['50%', '44%'],
+        avoidLabelOverlap: true,
+        label: {
+          show: !isEmpty,
+          fontSize: 11,
+          formatter: function(p){ return p.value + unit + '\n(' + p.percent.toFixed(0) + '%)'; }
+        },
+        labelLine: { show: !isEmpty, length: 8, length2: 6 },
+        itemStyle: { borderRadius: 4, borderColor: '#fff', borderWidth: 1 },
+        data: isEmpty
+          ? [{ value:1, name:'데이터 없음', itemStyle:{color:'#eeeeee'}, label:{show:false}, labelLine:{show:false}, tooltip:{show:false} }]
+          : dataset.datas,
+        emphasis: { label: { show: true, fontSize: 12, fontWeight: 'bold' } }
+      },
+      {
+        name: '전체', type: 'pie',
+        radius: ['0', '28%'], center: ['50%', '44%'],
+        silent: true,
+        label: {
+          show: true, position: 'center',
+          formatter: function(){ return '총\n' + dataset.sumValue + ' ' + unit; },
+          fontSize: 12, fontWeight: 'bold', color: '#333', lineHeight: 18
+        },
+        labelLine: { show: false },
+        data: [{ value: isEmpty ? 1 : dataset.sumValue, name: '전체' }],
+        itemStyle: { color: 'none', borderWidth: 0 },
+        tooltip: { show: false }
+      }
+    ]
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  drawPieChart('canvas_statAll',
+    { datas:[{name:'내연기관차',value:8420},{name:'무공해차',value:2180}], sumValue:10600 },
+    colors1
+  );
+  drawPieChart('canvas_statByEcoCar',
+    { datas:[{name:'전기자동차',value:1842},{name:'수소전기차',value:338}], sumValue:2180 },
+    colors2
+  );
+  drawPieChart('canvas_statByInterCarType',
+    { datas:[{name:'승용',value:5230},{name:'승합',value:1640},{name:'화물',value:1550}], sumValue:8420 },
+    colors3
+  );
+  drawPieChart('canvas_statByElectCarType',
+    { datas:[{name:'승용',value:1240},{name:'승합',value:382},{name:'화물',value:220}], sumValue:1842 },
+    colors3
+  );
+  drawPieChart('canvas_statByHydrgCarType',
+    { datas:[{name:'승용',value:198},{name:'승합',value:92},{name:'화물',value:48}], sumValue:338 },
+    colors3
+  );
+});
+</script>
+</body></html>

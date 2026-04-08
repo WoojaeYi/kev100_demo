@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>탈퇴 이력 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area{padding:24px 28px;}
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+.table-info .total strong { color:#0e424f; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+    <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown open" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-user-times mr-2" style="color:#1f8dab;font-size:17px;"></i>탈퇴 이력</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>계정관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">탈퇴 이력</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <!-- JSP: param.expireYears (보관만료 기간) -->
+          <select id="searchExpireYears" class="form-control" style="width:150px;">
+            <option value="">:: 보관만료 기간 ::</option>
+            <option value="1">1년 초과</option>
+            <option value="2">2년 초과</option>
+            <option value="3">3년 초과</option>
+          </select>
+          <!-- JSP searchKey: mberId / mberNm / emailAdres / telNo / phoneNo / bizNo / entNm / ceoNm -->
+          <select id="searchKey" class="form-control" style="width:140px;">
+            <option value="mberId">아이디</option>
+            <option value="mberNm">담당자명</option>
+            <option value="emailAdres">이메일</option>
+            <option value="telNo">전화번호</option>
+            <option value="phoneNo">휴대폰번호</option>
+            <option value="bizNo">사업자번호</option>
+            <option value="entNm">기업명</option>
+            <option value="ceoNm">대표자명</option>
+          </select>
+          <input type="text" id="searchValue" class="form-control" style="width:220px;" placeholder="검색어 입력">
+          <button class="btn btn-dark ml-1"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary ml-1"><i class="fa fa-refresh mr-1"></i>초기화</button>
+          <div style="margin-left:auto;">
+            <select id="maxPageItems" class="form-control" style="width:90px;">
+              <option value="10">10건씩</option>
+              <option value="20">20건씩</option>
+              <option value="30">30건씩</option>
+              <option value="40">40건씩</option>
+              <option value="50">50건씩</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-info">
+        <div class="total">총 <strong>12</strong>건</div>
+        <button class="btn btn-secondary btn-sm"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <colgroup>
+            <col style="width: 4%;">
+            <col style="width: 10%;"><!-- mberId -->
+            <col style="width: 9%;"><!-- mberNm -->
+            <col style="width: 14%;"><!-- emailAdres -->
+            <col style="width: 12%;"><!-- bizNo -->
+            <col style="width: 13%;"><!-- entNm -->
+            <col style="width: 10%;"><!-- entClsCd -->
+            <col style="width: 13%;"><!-- acctRegDtm -->
+            <col style="width: 13%;"><!-- withdrwlRegDtm -->
+            <col style="width: auto;"><!-- 관리 -->
+          </colgroup>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>아이디</th>
+              <th>담당자명</th>
+              <th>이메일</th>
+              <th>사업자번호</th>
+              <th>기업명</th>
+              <th>기업구분</th>
+              <th>가입 일시</th>
+              <th>탈퇴 신청 일시</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- 페이지네이션 -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">Showing <strong>1</strong> to <strong>10</strong> of <strong>12</strong> entries</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script>
+<script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2; // 메뉴 유지
+
+// JSP 컬럼: 번호, mberId, mberNm, emailAdres, bizNo, entNm, entClsNm, acctRegDtm, withdrwlRegDtm, 관리
+const data = [
+  { no:12, mberId:'kim_mj',   mberNm:'김민준', emailAdres:'kim_mj@kev100.com',    bizNo:'123-45-67890', entNm:'(주)한국전기차',   entClsNm:'참여기업',   acctRegDtm:'2025-01-15 09:00', withdrwlRegDtm:'2026-03-29 10:00' },
+  { no:11, mberId:'park_jh',  mberNm:'박지호', emailAdres:'park_jh@eco.com',       bizNo:'234-56-78901', entNm:'에코에너지(주)',   entClsNm:'참여기업',   acctRegDtm:'2025-02-10 11:30', withdrwlRegDtm:'2026-03-28 14:30' },
+  { no:10, mberId:'jung_de',  mberNm:'정다은', emailAdres:'jung_de@green.com',     bizNo:'345-67-89012', entNm:'그린모빌리티',     entClsNm:'참여기업',   acctRegDtm:'2025-03-05 10:00', withdrwlRegDtm:'2026-03-25 09:15' },
+  { no:9,  mberId:'yun_js',   mberNm:'윤지성', emailAdres:'yun_js@smartev.com',    bizNo:'456-78-90123', entNm:'스마트EV',         entClsNm:'위탁수행기관', acctRegDtm:'2025-04-20 13:00', withdrwlRegDtm:'2026-03-20 16:45' },
+  { no:8,  mberId:'kang_mj',  mberNm:'강민지', emailAdres:'kang_mj@cleanmot.com',  bizNo:'567-89-01234', entNm:'클린모터스',       entClsNm:'참여기업',   acctRegDtm:'2025-05-18 09:30', withdrwlRegDtm:'2026-03-15 11:30' },
+];
+
+document.getElementById('tbody').innerHTML = data.map(d => `
+  <tr>
+    <td>${d.no}</td>
+    <td>${d.mberId}</td>
+    <td>${d.mberNm}</td>
+    <td style="font-size:12px;">${d.emailAdres}</td>
+    <td>${d.bizNo}</td>
+    <td class="left">${d.entNm}</td>
+    <td>${d.entClsNm}</td>
+    <td>${d.acctRegDtm}</td>
+    <td>${d.withdrwlRegDtm}</td>
+    <td><a href="withdrwllog_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-search mr-1"></i>조회</a></td>
+  </tr>
+`).join('');
+</script>
+</body>
+</html>

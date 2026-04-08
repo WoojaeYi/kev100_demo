@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>콘텐츠CSS | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}.table-info .total{font-size:13px;color:#666;}.table-info .total strong{color:#0e424f;font-weight:700;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-css3 mr-2" style="color:#1f8dab;font-size:17px;"></i>콘텐츠CSS</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">콘텐츠CSS</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>사용여부 &nbsp;</label><select class="form-control" style="width:100px;"><option>전체</option><option>사용</option><option>미사용</option></select>
+          <label style="margin-left:12px;">키워드 &nbsp;</label>
+          <input type="text" class="form-control" style="width:200px;" placeholder="CSS명 검색">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>초기화</button>
+        </div>
+      </div>
+      <div class="table-info"><div class="total">총 <strong>5</strong>건</div><button class="btn btn-primary btn-sm" onclick="location.href='contentcss_form.html'"><i class="fa fa-plus mr-1"></i>등록</button></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>CSS명</th><th>파일경로</th><th>사용여부</th><th>등록일</th><th>상세</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const data=[
+  {no:5,nm:'EV스타일',path:'/statics/css/ev-style.css',use:'use',status:'사용',reg:'2026-03-01'},
+  {no:4,nm:'기업포털 기본',path:'/statics/css/portal-base.css',use:'use',status:'사용',reg:'2026-02-15'},
+  {no:3,nm:'모바일 최적화',path:'/statics/css/mobile.css',use:'use',status:'사용',reg:'2026-02-01'},
+  {no:2,nm:'다크테마',path:'/statics/css/dark-theme.css',use:'notUse',status:'미사용',reg:'2026-01-20'},
+  {no:1,nm:'기본 콘텐츠',path:'/statics/ckeditor/contents.css',use:'use',status:'사용',reg:'2026-01-01'},
+];
+document.getElementById('tbody').innerHTML=data.map(d=>`
+  <tr><td>${d.no}</td><td>${d.nm}</td><td style="font-family:monospace;font-size:12px;">${d.path}</td><td><span class="${d.use}">${d.status}</span></td><td>${d.reg}</td><td><a href="contentcss_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-eye mr-1"></i>조회</a></td></tr>`).join('');
+</script>
+</body></html>

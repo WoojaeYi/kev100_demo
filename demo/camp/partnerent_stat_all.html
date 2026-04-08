@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전체 파트너 현황 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.stat-card{background:#fff;border:1px solid #e3eaf0;border-radius:8px;padding:20px;text-align:center;}.stat-num{font-size:32px;font-weight:700;color:#0e424f;}.stat-label{font-size:12px;color:#888;margin-top:4px;}.chart-panel{background:#fff;border:1px solid #e3eaf0;border-radius:8px;padding:20px;margin-bottom:16px;}.chart-title{font-size:14px;font-weight:700;color:#0e424f;margin-bottom:12px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-handshake-o mr-2" style="color:#1f8dab;font-size:17px;"></i>전체 파트너 현황</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페인 관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">전체 파트너 현황</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="chart-panel mb-3"><div class="chart-title">년도별 무공해차 전환 계획 및 실적 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준 / 내연기관차제외 / 전기+수소차 기준)</span></div><canvas id="canvas_campplanResultYearlyStatList" height="80"></canvas></div>
+      <div class="row">
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">가입경로별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (승인 계정 기준)</span></div><canvas id="canvas_acccountStatByJoinPathCd" height="160"></canvas></div></div>
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">기업분류별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (승인 계정 기준)</span></div><canvas id="canvas_enterpiseStatByEntClsCd" height="160"></canvas></div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">기업형태별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByEntTypCd" height="160"></canvas></div></div>
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">사업분야별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByBizClsCd" height="160"></canvas></div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">종업원수별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByEmpCntCd" height="160"></canvas></div></div>
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">가입년도별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByJoinYear" height="160"></canvas></div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">목표년도별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByGoalYear" height="160"></canvas></div></div>
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">보유차량 - 유종별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByEnergy" height="160"></canvas></div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">보유차량 - 차종별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByCarType" height="160"></canvas></div></div>
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">보유차량 - 구매/임차별 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByInType" height="160"></canvas></div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">보유차량 - 50대 이상/미만 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByFiftyGreaterAndLess" height="160"></canvas></div></div>
+        <div class="col-md-6"><div class="chart-panel"><div class="chart-title">보유 충전기 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByCharger" height="160"></canvas></div></div>
+      </div>
+      <div class="chart-panel"><div class="chart-title">사업분야 및 유종별 보유 현황<span style="font-size:11px;color:#888;font-weight:400;"> (캠페인 참여 승인 기업 기준)</span></div><canvas id="canvas_enterpiseStatByBizClsCdAndEnergy" height="80"></canvas></div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+const C=['#26B99A','#3f5872','#BDC3C7','#3498DB','#9B59B6','#8abb6f','#759c6a','#bfd3b7'];
+function pie(id,labels,data){var el=document.getElementById(id);if(!el)return;new Chart(el.getContext('2d'),{type:'pie',data:{labels,datasets:[{data,backgroundColor:C.slice(0,data.length)}]},options:{responsive:true,legend:{position:'right'}}});}
+function bar(id,labels,datasets){var el=document.getElementById(id);if(!el)return;new Chart(el.getContext('2d'),{type:'bar',data:{labels,datasets},options:{responsive:true,scales:{yAxes:[{ticks:{beginAtZero:true}}]}}});}
+// 년도별 계획/실적 (bar)
+bar('canvas_campplanResultYearlyStatList',['2023','2024','2025','2026'],[{label:'전기차 계획',data:[320,580,920,1240],backgroundColor:'rgba(31,141,171,0.5)',borderColor:'#1f8dab',borderWidth:1},{label:'전기차 실적',data:[280,510,840,986],backgroundColor:'rgba(39,199,165,0.5)',borderColor:'#27c7a5',borderWidth:1}]);
+pie('canvas_acccountStatByJoinPathCd',['직접가입','추천가입','캠페인가입'],[124,87,36]);
+pie('canvas_enterpiseStatByEntClsCd',['대기업','중견기업','중소기업'],[42,78,127]);
+pie('canvas_enterpiseStatByEntTypCd',['일반법인','공공기관','협동조합'],[168,52,27]);
+pie('canvas_enterpiseStatByBizClsCd',['제조업','서비스업','건설업','운수업','기타'],[98,87,34,18,10]);
+pie('canvas_enterpiseStatByEmpCntCd',['50인미만','50~299인','300인이상'],[89,112,46]);
+pie('canvas_enterpiseStatByJoinYear',['2023','2024','2025','2026'],[45,112,198,247]);
+pie('canvas_enterpiseStatByGoalYear',['2028','2029','2030','2031'],[38,72,124,13]);
+pie('canvas_enterpiseStatByEnergy',['내연기관','전기차','수소차'],[8420,1842,338]);
+pie('canvas_enterpiseStatByCarType',['승용','승합','화물'],[6120,2180,2300]);
+pie('canvas_enterpiseStatByInType',['매입','임차'],[7240,3360]);
+pie('canvas_enterpiseStatByFiftyGreaterAndLess',['50대 이상','50대 미만'],[112,135]);
+pie('canvas_enterpiseStatByCharger',['완속충전기','급속충전기','수소충전소'],[847,312,48]);
+// 사업분야 및 유종별 (grouped bar)
+bar('canvas_enterpiseStatByBizClsCdAndEnergy',['제조업','서비스업','건설업','운수업'],[{label:'내연기관',data:[3420,2150,1780,1070],backgroundColor:'rgba(255,161,40,0.7)'},{label:'전기차',data:[580,320,240,180],backgroundColor:'rgba(31,141,171,0.7)'},{label:'수소차',data:[98,52,34,22],backgroundColor:'rgba(39,199,165,0.7)'}]);
+</script>
+</body></html>

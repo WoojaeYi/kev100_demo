@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q&A 기간통계 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.section-header{font-size:14px;font-weight:700;color:#0e424f;border-left:3px solid #0e424f;padding-left:10px;margin:24px 0 12px;}.section-header:first-child{margin-top:0;}.stat-card{background:#fff;border:1px solid #e0ecf2;border-radius:6px;padding:20px 24px;text-align:center;}.stat-card .num{font-size:32px;font-weight:700;color:#0e424f;}.stat-card .label{font-size:13px;color:#666;margin-top:4px;}.stat-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-bar-chart mr-2" style="color:#1f8dab;font-size:17px;"></i>Q&A 기간통계</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>게시판관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">Q&A 기간통계</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>기간 &nbsp;</label>
+          <input type="date" class="form-control" style="width:150px;" value="2026-01-01">
+          <span style="padding:0 8px;line-height:34px;">~</span>
+          <input type="date" class="form-control" style="width:150px;" value="2026-03-31">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>조회</button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>초기화</button>
+        </div>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card"><div class="num">148</div><div class="label">전체 질문</div></div>
+        <div class="stat-card"><div class="num" style="color:#2196F3;">12</div><div class="label">접수중</div></div>
+        <div class="stat-card"><div class="num" style="color:#FF9800;">23</div><div class="label">처리중</div></div>
+        <div class="stat-card"><div class="num" style="color:#4CAF50;">113</div><div class="label">완료</div></div>
+      </div>
+      <div class="section-header">기간별 Q&A 현황</div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>기간</th><th>전체</th><th>접수</th><th>처리중</th><th>완료</th><th>완료율</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 3;
+const data=[
+  {period:'2026-03',total:58,rcpt:5,proc:10,done:43,rate:'74.1%'},
+  {period:'2026-02',total:49,rcpt:4,proc:8,done:37,rate:'75.5%'},
+  {period:'2026-01',total:41,rcpt:3,proc:5,done:33,rate:'80.5%'},
+];
+document.getElementById('tbody').innerHTML=data.map(d=>`
+  <tr><td>${d.period}</td><td><strong>${d.total}</strong></td><td>${d.rcpt}</td><td>${d.proc}</td><td>${d.done}</td><td><span style="color:#4CAF50;font-weight:600;">${d.rate}</span></td></tr>`).join('');
+</script>
+</body></html>

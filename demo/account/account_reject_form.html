@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>계정신청 반려 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+body { background:#fff; font-family:'Noto Sans KR',sans-serif; }
+.x_panel { background:#fff; border:none; box-shadow:none; padding:0; }
+.x_title { border-bottom:1px solid #e5ecf1; padding-bottom:12px; margin-bottom:20px; }
+.x_title h2 { font-size:15px; font-weight:700; color:#0e424f; margin:0; }
+.txtRequire { font-size:12px; color:#999; }
+.item.form-group { display:flex; flex-wrap:wrap; align-items:flex-start; margin-bottom:14px; }
+.label-align { width:140px; flex-shrink:0; font-size:13px; font-weight:600; color:#555; padding-top:6px; }
+.col-md-9 { flex:1; }
+.notice-text { line-height:30px; color:#e63946; font-size:13px; font-weight:600; }
+.required { color:#e63946; margin-left:2px; }
+.resizable_textarea { width:100%; min-height:160px; resize:vertical; font-family:'Noto Sans KR',sans-serif; font-size:13px; }
+.char-counter { font-size:11px; color:#aaa; text-align:right; margin-top:3px; }
+.ln_solid { border-top:1px solid #e5ecf1; margin:20px 0; }
+.btn-row { display:flex; justify-content:center; gap:8px; }
+</style>
+</head>
+<body>
+<div class="col-md-12 col-sm-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>반려 사유 입력</h2>
+      <div class="txtRequire text-right"><em>*</em> 표시는 필수 입력 항목입니다.</div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <form id="rejectForm" name="rejectForm" method="post">
+        <input type="hidden" id="mberId" name="mberId" value="">
+
+        <fieldset style="border:none;padding:0;">
+          <legend style="display:none;">계정신청 반려</legend>
+
+          <!-- 주의사항 -->
+          <div class="item form-group">
+            <label class="label-align" style="padding-top:4px;">
+              주의사항 <span class="required">*</span>
+            </label>
+            <div class="col-md-9">
+              <div class="notice-text"><i class="fa fa-exclamation-triangle mr-1"></i>반려처리할 경우 신청내역이 삭제처리됩니다.</div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <!-- 담당자 아이디 -->
+          <div class="item form-group">
+            <label class="label-align" for="displayMberId">
+              담당자 아이디 <span class="required">*</span>
+            </label>
+            <div class="col-md-9">
+              <span id="displayMberId" class="form-control" style="display:inline-block;background:#f7f9fc;min-height:34px;line-height:22px;">ev_korea</span>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <!-- 반려사유 -->
+          <div class="item form-group">
+            <label class="label-align" for="rejectReason">
+              반려사유 <span class="required">*</span>
+            </label>
+            <div class="col-md-9">
+              <textarea id="rejectReason" name="rejectReason"
+                class="form-control resizable_textarea"
+                maxlength="2000"
+                placeholder="반려사유를 입력해주세요."
+                oninput="updateCounter(this)"></textarea>
+              <div class="char-counter"><span id="charCount">0</span> / 2000</div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <!-- 이메일 발송 여부 -->
+          <div class="item form-group">
+            <label class="label-align" for="sendMailYn">
+              이메일 발송 여부 <span class="required">*</span>
+            </label>
+            <div class="col-md-9">
+              <div style="line-height:30px;">
+                <input type="checkbox" id="sendMailYn" name="sendMailYn" value="Y" class="mr-1" checked>
+                <label for="sendMailYn">발송</label>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="ln_solid"></div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-danger btn-sm">
+              <i class="fa fa-save mr-1"></i>반려처리
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="closePopup()">
+              <i class="fa fa-close mr-1"></i>닫기
+            </button>
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateCounter(el) {
+  document.getElementById('charCount').textContent = el.value.length;
+}
+function closePopup() {
+  // 부모 창에서 모달로 열었을 때
+  if (window.parent && window.parent.closeRejectModal) {
+    window.parent.closeRejectModal();
+  } else {
+    window.close();
+  }
+}
+document.getElementById('rejectForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var reason = document.getElementById('rejectReason').value.trim();
+  if (!reason) {
+    alert('반려사유를 입력해주세요.');
+    document.getElementById('rejectReason').focus();
+    return;
+  }
+  if (confirm('반려처리하시겠습니까? 반려처리할 경우 신청내역이 삭제처리됩니다.')) {
+    alert('정상적으로 반려처리되었습니다.');
+    closePopup();
+  }
+});
+</script>
+</body>
+</html>

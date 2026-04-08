@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>날짜별 계정 신청 현황 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.chart-panel { background:#fff; border:1px solid #e3eaf0; border-radius:8px; padding:20px 24px 16px; margin-bottom:20px; }
+.panel-title { font-size:14px; font-weight:700; color:#0e424f; border-left:3px solid #1f8dab; padding-left:10px; margin-bottom:16px; }
+.note { font-size:12px; color:#999; margin-bottom:14px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-user-plus mr-2" style="color:#1f8dab;font-size:17px;"></i>날짜별 계정 신청 현황</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페인 관리</li><li><i class="fa fa-angle-right"></i></li><li>캠페인 통계</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">날짜별 계정 신청 현황</li></ul>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="note">※ 승인 무관 기준 &nbsp;|&nbsp; 2019 ~ 2022년 집계 전</div>
+      <div class="chart-panel">
+        <div class="panel-title"><i class="fa fa-user-plus mr-2" style="color:#1f8dab;"></i>연도별 계정 신청 현황 (2019 ~ 2026)</div>
+        <div id="chartAccount" style="height:320px;"></div>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+
+var YEARS = ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'];
+var accountData = [null, null, null, null, 207, 75, 38, 11];
+
+$(function() {
+  var el = document.getElementById('chartAccount');
+  if (!el) return;
+  var chart = echarts.init(el);
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      formatter: function(params) {
+        var p = params[0];
+        return (p.value === null || p.value === undefined)
+          ? p.axisValue + '년 : 집계 전'
+          : p.axisValue + '년 : ' + p.value.toLocaleString() + ' 건';
+      },
+      textStyle: { fontFamily: "'Noto Sans KR', sans-serif" }
+    },
+    grid: { left:'3%', right:'5%', bottom:'8%', top:'14%', containLabel:true },
+    xAxis: {
+      type: 'category', data: YEARS,
+      axisLabel: { formatter: function(v){ return v+'년'; }, fontFamily:"'Noto Sans KR',sans-serif", fontSize:12 },
+      axisTick: { alignWithLabel: true }
+    },
+    yAxis: {
+      type: 'value', name: '건',
+      nameTextStyle: { fontFamily:"'Noto Sans KR',sans-serif" },
+      axisLabel: { fontFamily:"'Noto Sans KR',sans-serif" },
+      splitLine: { lineStyle: { color:'#f0f0f0' } }
+    },
+    series: [{
+      name: '계정 신청',
+      type: 'bar',
+      barMaxWidth: 60,
+      data: accountData.map(function(v) {
+        return { value: v, itemStyle: { color: v === null ? '#e8e8e8' : '#1f8dab', borderRadius:[4,4,0,0] } };
+      }),
+      label: {
+        show: true, position: 'top',
+        formatter: function(p){ return (p.value===null||p.value===undefined)?'':p.value.toLocaleString(); },
+        fontFamily:"'Noto Sans KR',sans-serif", fontSize:12, fontWeight:700, color:'#333'
+      },
+      emphasis: { itemStyle: { opacity:0.85 } }
+    }]
+  });
+  window.addEventListener('resize', function(){ chart.resize(); });
+});
+</script>
+</body></html>

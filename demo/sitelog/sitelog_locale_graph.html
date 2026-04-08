@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사이트 접속 통계 - 지역별 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.chart-wrap { background:#fff; border:1px solid #e3eaf0; border-radius:8px; padding:24px; margin-bottom:24px; }
+.chart-title { font-size:15px; font-weight:700; color:#0e424f; margin-bottom:16px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-map-marker mr-2" style="color:#1f8dab;font-size:17px;"></i>사이트 접속 통계 - 지역별</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>통계</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">지역별 통계</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>기간 &nbsp;</label>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-01">
+          <span style="line-height:32px;padding:0 6px;color:#888;">~</span>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-30">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>조회</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title"><i class="fa fa-bar-chart mr-1"></i>시도별 접속수 상위 10개</div>
+        <canvas id="localeChart" height="120"></canvas>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead>
+            <tr><th>순위</th><th>지역</th><th>접속 수</th><th>비율</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>서울특별시</td><td>3,241</td><td>38.9%</td></tr>
+            <tr><td>2</td><td>경기도</td><td>1,823</td><td>21.9%</td></tr>
+            <tr><td>3</td><td>부산광역시</td><td>612</td><td>7.3%</td></tr>
+            <tr><td>4</td><td>인천광역시</td><td>487</td><td>5.8%</td></tr>
+            <tr><td>5</td><td>대구광역시</td><td>412</td><td>4.9%</td></tr>
+            <tr><td>6</td><td>광주광역시</td><td>368</td><td>4.4%</td></tr>
+            <tr><td>7</td><td>대전광역시</td><td>341</td><td>4.1%</td></tr>
+            <tr><td>8</td><td>경상남도</td><td>298</td><td>3.6%</td></tr>
+            <tr><td>9</td><td>경상북도</td><td>245</td><td>2.9%</td></tr>
+            <tr><td>10</td><td>충청남도</td><td>213</td><td>2.6%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const ctx = document.getElementById('localeChart').getContext('2d');
+new Chart(ctx, {
+  type: 'horizontalBar',
+  data: {
+    labels: ['충청남도','경상북도','경상남도','대전광역시','광주광역시','대구광역시','인천광역시','부산광역시','경기도','서울특별시'],
+    datasets: [{
+      label: '접속 수',
+      data: [213,245,298,341,368,412,487,612,1823,3241],
+      backgroundColor: 'rgba(31,141,171,0.7)',
+      borderColor: '#1f8dab',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: { xAxes: [{ ticks: { beginAtZero: true } }] },
+    legend: { display: false }
+  }
+});
+</script>
+</body></html>

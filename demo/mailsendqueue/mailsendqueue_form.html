@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메일 발송 등록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.form-section { margin-bottom: 28px; }
+.schedule-area { display:none; margin-top:8px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-paper-plane mr-2" style="color:#1f8dab;font-size:17px;"></i>메일 발송 등록</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>메일관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li><a href="mailsendqueue_list.html">메일 발송 대기열</a></li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">메일 발송 등록</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <table class="detail-table">
+        <tbody>
+          <tr>
+            <th style="width:160px;">메일 템플릿</th>
+            <td colspan="3">
+              <select class="form-control" style="width:300px;">
+                <option value="">∷ 템플릿 선택 (선택 시 내용 자동 입력) ∷</option>
+                <option value="TPL_JOIN_APPROVE">TPL_JOIN_APPROVE - 가입승인 안내</option>
+                <option value="TPL_JOIN_REJECT">TPL_JOIN_REJECT - 가입반려 안내</option>
+                <option value="TPL_CAMP_APPROVE">TPL_CAMP_APPROVE - 캠페인승인 안내</option>
+                <option value="TPL_PWD_RESET">TPL_PWD_RESET - 비밀번호 초기화</option>
+                <option value="TPL_NOTICE">TPL_NOTICE - 공지사항 안내</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>수신자 이메일 <span style="color:#e53935;">*</span></th>
+            <td><input type="email" class="form-control" style="width:300px;" placeholder="example@email.com"></td>
+            <th style="width:160px;">수신자명 <span style="color:#e53935;">*</span></th>
+            <td><input type="text" class="form-control" style="width:200px;" placeholder="수신자 이름"></td>
+          </tr>
+          <tr>
+            <th>제목 <span style="color:#e53935;">*</span></th>
+            <td colspan="3"><input type="text" class="form-control" placeholder="메일 제목을 입력하세요."></td>
+          </tr>
+          <tr>
+            <th>내용 <span style="color:#e53935;">*</span></th>
+            <td colspan="3">
+              <textarea class="form-control" rows="8" placeholder="메일 내용을 입력하세요.&#10;&#10;변수 예시: ${userName}, ${campName}, ${resetLink}"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <th>발송 방식 <span style="color:#e53935;">*</span></th>
+            <td colspan="3">
+              <label style="margin-right:20px;cursor:pointer;">
+                <input type="radio" name="sendType" value="immediate" checked onchange="toggleSchedule(this)"> 즉시발송
+              </label>
+              <label style="cursor:pointer;">
+                <input type="radio" name="sendType" value="schedule" onchange="toggleSchedule(this)"> 예약발송
+              </label>
+              <div class="schedule-area" id="scheduleArea">
+                <label style="font-size:13px;color:#555;margin-top:8px;display:block;">예약 일시</label>
+                <input type="datetime-local" class="form-control" style="width:240px;" value="2026-03-31T09:00">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>우선순위</th>
+            <td colspan="3">
+              <select class="form-control" style="width:160px;">
+                <option value="high">높음</option>
+                <option value="normal" selected>보통</option>
+                <option value="low">낮음</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:24px;display:flex;gap:8px;justify-content:center;">
+        <a href="mailsendqueue_list.html" class="btn btn-secondary"><i class="fa fa-times mr-1"></i>취소</a>
+        <button class="btn btn-primary"><i class="fa fa-paper-plane mr-1"></i>발송</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+function toggleSchedule(el) {
+  document.getElementById('scheduleArea').style.display = el.value === 'schedule' ? 'block' : 'none';
+}
+</script>
+</body></html>

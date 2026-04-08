@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기업계정 상세 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.section-header {
+  font-size: 14px; font-weight: 700; color: #0e424f;
+  border-left: 3px solid #0e424f; padding-left: 10px;
+  margin: 24px 0 12px;
+}
+.section-header:first-child { margin-top: 0; }
+.btn-area { display:flex; justify-content:center; gap:8px; margin-top:24px; padding-top:20px; border-top:1px solid #e5ecf1; }
+/* 파일박스 */
+.fileBox ul { list-style:none; padding:0; margin:0; }
+.fileBox li a { color:#1f8dab; font-size:13px; text-decoration:none; }
+.fileBox li a:hover { text-decoration:underline; }
+.required { color:#e63946; margin-left:2px; }
+/* ── 반려 팝업 모달 ── */
+#rejectModal {
+  display: none;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 999999;
+  background: rgba(0,0,0,0.55);
+  align-items: center;
+  justify-content: center;
+}
+.reject-modal-box {
+  background:#fff; border-radius:8px; width:680px; max-width:96vw;
+  box-shadow:0 8px 40px rgba(0,0,0,0.22); overflow:hidden;
+}
+.reject-modal-header {
+  background:#0e424f; color:#fff;
+  padding:14px 20px; display:flex; align-items:center; justify-content:space-between;
+}
+.reject-modal-header h5 { margin:0; font-size:15px; font-weight:700; }
+.reject-modal-header .close-btn {
+  background:none; border:none; color:#fff; font-size:20px; cursor:pointer; line-height:1;
+}
+.reject-modal-body { padding:24px; }
+.r-item { display:flex; align-items:flex-start; margin-bottom:14px; }
+.r-label { width:140px; flex-shrink:0; font-size:13px; font-weight:600; color:#555; padding-top:6px; }
+.r-value { flex:1; }
+.notice-txt { color:#e63946; font-size:13px; font-weight:600; line-height:30px; }
+.r-textarea { width:100%; min-height:150px; resize:vertical; font-size:13px;
+  font-family:'Noto Sans KR',sans-serif; border:1px solid #ced4da; border-radius:4px;
+  padding:6px 10px; box-sizing:border-box; }
+.r-textarea:focus { outline:none; border-color:#1f8dab; box-shadow:0 0 0 2px rgba(31,141,171,0.15); }
+.char-count { font-size:11px; color:#aaa; text-align:right; margin-top:3px; }
+.reject-modal-footer { border-top:1px solid #e5ecf1; padding:14px 20px; display:flex; justify-content:center; gap:8px; background:#fafbfc; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-building mr-2" style="color:#1f8dab;font-size:17px;"></i>기업계정 상세</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>계정관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li><a href="account_list.html">기업계정 목록</a></li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">상세보기</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- ══ 1. 참여기업 기본정보 ══ -->
+      <div class="section-header">참여기업 기본정보</div>
+      <table class="detail-table">
+        <tr>
+          <th style="width:200px;">기업명 <span class="required">*</span></th>
+          <td colspan="3">(주)한국전기차</td>
+        </tr>
+        <tr>
+          <th>사업자등록번호 <span class="required">*</span></th>
+          <td>123-45-67890</td>
+          <th style="width:200px;">기업분류 <span class="required">*</span></th>
+          <td>중소기업</td>
+        </tr>
+        <tr>
+          <th>사업자등록증 <span class="required">*</span></th>
+          <td colspan="3">
+            <div class="fileBox">
+              <ul>
+                <li><a href="#"><i class="fa fa-file-pdf-o mr-1"></i>사업자등록증_한국전기차.pdf (245,120 Byte)</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>기업형태 <span class="required">*</span></th>
+          <td>자동차 부품 제조</td>
+          <th>대표자명 <span class="required">*</span></th>
+          <td>홍길동</td>
+        </tr>
+        <tr>
+          <th>대표이사 이메일</th>
+          <td>ceo@ev-korea.co.kr</td>
+          <th>대표이사 연락처</th>
+          <td>02-1234-5678</td>
+        </tr>
+      </table>
+
+      <!-- ══ 2. 참여기업 상세정보 ══ -->
+      <div class="section-header">참여기업 상세정보</div>
+      <table class="detail-table">
+        <tr>
+          <th style="width:200px;">기업형태 <span class="required">*</span></th>
+          <td>법인 (110-12-3456789)</td>
+          <th style="width:200px;">분류 <span class="required">*</span></th>
+          <td>운수업</td>
+        </tr>
+        <tr>
+          <th>우편번호 <span class="required">*</span></th>
+          <td>06234</td>
+          <th>주소 <span class="required">*</span></th>
+          <td>서울특별시 강남구 테헤란로 123</td>
+        </tr>
+        <tr>
+          <th>상세주소 <span class="required">*</span></th>
+          <td colspan="3">456동 789호</td>
+        </tr>
+        <tr>
+          <th>매출액(억원) <span class="required">*</span></th>
+          <td>1,250 억원</td>
+          <th>종업원 수 <span class="required">*</span></th>
+          <td>300인 이상 ~ 500인 미만</td>
+        </tr>
+      </table>
+
+      <!-- ══ 3. 담당자 정보 ══ -->
+      <div class="section-header">담당자 정보</div>
+      <table class="detail-table">
+        <tr>
+          <th style="width:200px;">아이디 <span class="required">*</span></th>
+          <td colspan="3">ev_korea</td>
+        </tr>
+        <tr>
+          <th>비밀번호 <span class="required">*</span></th>
+          <td colspan="3">
+            <button class="btn btn-secondary btn-sm"><i class="fa fa-key mr-1"></i>비밀번호 변경</button>
+            <span style="font-size:12px;color:#888;margin-left:8px;">(최근 변경일: 2026-01-15 09:32:10)</span>
+          </td>
+        </tr>
+        <tr>
+          <th>담당자명 <span class="required">*</span></th>
+          <td>김민준</td>
+          <th style="width:200px;">직위 <span class="required">*</span></th>
+          <td>팀장</td>
+        </tr>
+        <tr>
+          <th>이메일 <span class="required">*</span></th>
+          <td>minjun@ev-korea.co.kr</td>
+          <th>이메일 인증 <span class="required">*</span></th>
+          <td><span class="use">인증완료</span></td>
+        </tr>
+        <tr>
+          <th>연락처(일반) <span class="required">*</span></th>
+          <td>02-1234-5678</td>
+          <th>연락처(휴대전화) <span class="required">*</span></th>
+          <td>010-1234-5678</td>
+        </tr>
+        <tr>
+          <th>가입경로 <span class="required">*</span></th>
+          <td colspan="3">이메일</td>
+        </tr>
+        <tr>
+          <th>담당자 변경 이력 (2건)</th>
+          <td colspan="3">
+            <button class="btn btn-secondary btn-sm"><i class="fa fa-search mr-1"></i>담당자 변경 이력 조회</button>
+          </td>
+        </tr>
+      </table>
+
+      <!-- ══ 4. 추가 담당자 정보 ══ -->
+      <div class="section-header">추가 담당자 정보</div>
+      <table class="detail-table">
+        <tr>
+          <th style="width:200px;">이름 <span class="required">*</span></th>
+          <td>이서연</td>
+          <th style="width:200px;">직위 <span class="required">*</span></th>
+          <td>과장</td>
+        </tr>
+        <tr>
+          <th>이메일 <span class="required">*</span></th>
+          <td>seoyeon@ev-korea.co.kr</td>
+          <th>연락처(사무실) <span class="required">*</span></th>
+          <td>02-1234-5679</td>
+        </tr>
+        <tr>
+          <th>연락처(휴대전화) <span class="required">*</span></th>
+          <td colspan="3">010-9876-5432</td>
+        </tr>
+      </table>
+
+      <!-- ══ 5. 계정 상태 정보 ══ -->
+      <div class="section-header">계정 상태 정보</div>
+      <table class="detail-table">
+        <tr>
+          <th style="width:200px;">계정 상태</th>
+          <td><span class="ing">승인대기</span></td>
+          <th style="width:200px;">신청일시</th>
+          <td>2026-03-30 09:12:35</td>
+        </tr>
+        <tr>
+          <th>승인일시</th>
+          <td>-</td>
+          <th>로그인 잠금 여부</th>
+          <td>-</td>
+        </tr>
+      </table>
+
+      <!-- ══ 버튼 ══ -->
+      <div class="btn-area">
+        <!-- 승인대기 상태: 승인, 반려 -->
+        <button class="btn btn-success btn-sm btnApprove">
+          <i class="fa fa-check mr-1"></i>승인
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="fnOpenAccountRejectForm('ev_korea')">
+          <i class="fa fa-close mr-1"></i>반려
+        </button>
+        <a href="account_update.html" class="btn btn-info btn-sm">
+          <i class="fa fa-gear mr-1"></i>수정
+        </a>
+        <a href="account_list.html" class="btn btn-secondary btn-sm">
+          <i class="fa fa-list mr-1"></i>목록
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<!-- ── 반려 처리 모달 ── -->
+<div id="rejectModal">
+  <div class="reject-modal-box">
+    <div class="reject-modal-header">
+      <h5><i class="fa fa-ban mr-2"></i>반려 사유 입력</h5>
+      <button class="close-btn" onclick="closeRejectModal()">&times;</button>
+    </div>
+    <div class="reject-modal-body">
+      <form id="rejectForm" onsubmit="submitReject(event)">
+        <input type="hidden" id="rejectMberId" name="mberId" value="">
+
+        <!-- 주의사항 -->
+        <div class="r-item">
+          <span class="r-label">주의사항 <span class="required">*</span></span>
+          <div class="r-value">
+            <div class="notice-txt"><i class="fa fa-exclamation-triangle mr-1"></i>반려처리할 경우 신청내역이 삭제처리됩니다.</div>
+          </div>
+        </div>
+
+        <!-- 담당자 아이디 -->
+        <div class="r-item">
+          <span class="r-label">담당자 아이디 <span class="required">*</span></span>
+          <div class="r-value">
+            <span id="rejectDisplayId" class="form-control" style="display:inline-block;background:#f7f9fc;min-height:34px;line-height:22px;"></span>
+          </div>
+        </div>
+
+        <!-- 반려사유 -->
+        <div class="r-item">
+          <span class="r-label">반려사유 <span class="required">*</span></span>
+          <div class="r-value">
+            <textarea id="rejectReason" name="rejectReason" class="r-textarea" maxlength="2000"
+              placeholder="반려사유를 입력해주세요."
+              oninput="document.getElementById('rejectCharCount').textContent=this.value.length"></textarea>
+            <div class="char-count"><span id="rejectCharCount">0</span> / 2000</div>
+          </div>
+        </div>
+
+        <!-- 이메일 발송 여부 -->
+        <div class="r-item">
+          <span class="r-label">이메일 발송 여부 <span class="required">*</span></span>
+          <div class="r-value" style="line-height:30px;">
+            <input type="checkbox" id="sendMailYn" name="sendMailYn" value="Y" class="mr-1" checked>
+            <label for="sendMailYn">발송</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="reject-modal-footer">
+      <button type="button" class="btn btn-danger btn-sm" onclick="submitReject(event)">
+        <i class="fa fa-save mr-1"></i>반려처리
+      </button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="closeRejectModal()">
+        <i class="fa fa-close mr-1"></i>닫기
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+
+// 승인 버튼
+document.querySelector('.btnApprove').addEventListener('click', function() {
+  if (confirm('해당 계정신청을 승인처리하시겠습니까?')) {
+    alert('승인 처리되었습니다.');
+  }
+});
+
+// 반려 모달 열기
+function fnOpenAccountRejectForm(mberId) {
+  var modal = document.getElementById('rejectModal');
+  document.getElementById('rejectMberId').value = mberId || '';
+  document.getElementById('rejectDisplayId').textContent = mberId || '';
+  document.getElementById('rejectReason').value = '';
+  document.getElementById('rejectCharCount').textContent = '0';
+  modal.style.display = 'flex';
+}
+
+// 반려 모달 닫기
+function closeRejectModal() {
+  document.getElementById('rejectModal').style.display = 'none';
+}
+
+// 반려처리 제울
+function submitReject(e) {
+  if (e) e.preventDefault();
+  var reason = document.getElementById('rejectReason').value.trim();
+  if (!reason) {
+    alert('반려사유를 입력해주세요.');
+    document.getElementById('rejectReason').focus();
+    return;
+  }
+  if (confirm('반려처리하시겠습니까?\n반려처리할 경우 신청내역이 삭제처리됩니다.')) {
+    closeRejectModal();
+    alert('정상적으로 반려처리되었습니다.');
+  }
+}
+
+// 모달 배경 클릭 시 닫기
+document.getElementById('rejectModal').addEventListener('click', function(e) {
+  if (e.target === this) closeRejectModal();
+});
+</script>
+</body></html>

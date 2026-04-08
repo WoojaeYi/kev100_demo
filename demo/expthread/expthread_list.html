@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>배치이력 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}.table-info .total{font-size:13px;color:#666;}.table-info .total strong{color:#0e424f;font-weight:700;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-clock-o mr-2" style="color:#1f8dab;font-size:17px;"></i>배치이력 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>배치관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">배치이력 목록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>배치상태 &nbsp;</label>
+          <select class="form-control" style="width:130px;"><option value="">∷ 전체 ∷</option><option>성공</option><option>실패</option><option>실행중</option></select>
+          <select class="form-control" style="width:180px;"><option value="">∷ 배치작업 선택 ∷</option><option>파일정리 배치</option><option>통계 집계 배치</option><option>알림 발송 배치</option></select>
+        </div>
+        <div class="input-group">
+          <label>실행일 &nbsp;</label>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-01">
+          <span style="line-height:36px;padding:0 6px;">~</span>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-31">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+        </div>
+      </div>
+      <div class="table-info"><div class="total">총 <strong>247</strong>건</div></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>배치작업명</th><th>시작시각</th><th>종료시각</th><th>소요시간</th><th>처리건수</th><th>상태</th><th>오류메시지</th><th>관리</th></tr></thead>
+          <tbody id="expBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const data = [
+  {no:247,nm:'파일정리 배치',start:'2026-03-31 02:00:00',end:'2026-03-31 02:03:24',dur:'3분 24초',cnt:1247,st:'성공',err:'-'},
+  {no:246,nm:'통계 집계 배치',start:'2026-03-31 01:00:00',end:'2026-03-31 01:05:11',dur:'5분 11초',cnt:892,st:'성공',err:'-'},
+  {no:245,nm:'알림 발송 배치',start:'2026-03-30 23:00:00',end:'2026-03-30 23:00:47',dur:'47초',cnt:234,st:'성공',err:'-'},
+  {no:244,nm:'파일정리 배치',start:'2026-03-30 02:00:00',end:'2026-03-30 02:08:55',dur:'8분 55초',cnt:1123,st:'실패',err:'DB연결 오류: Connection timeout'},
+  {no:243,nm:'통계 집계 배치',start:'2026-03-30 01:00:00',end:'2026-03-30 01:04:32',dur:'4분 32초',cnt:876,st:'성공',err:'-'},
+  {no:242,nm:'알림 발송 배치',start:'2026-03-29 23:00:00',end:'2026-03-29 23:01:03',dur:'1분 3초',cnt:189,st:'성공',err:'-'},
+];
+const ST={'성공':'<span class="use">성공</span>','실패':'<span class="reject">실패</span>','실행중':'<span class="ing">실행중</span>'};
+document.getElementById('expBody').innerHTML = data.map(d=>`
+  <tr><td>${d.no}</td><td>${d.nm}</td><td>${d.start}</td><td>${d.end}</td><td>${d.dur}</td><td>${d.cnt.toLocaleString()}</td><td>${ST[d.st]}</td>
+  <td class="t-a-left" style="font-size:12px;color:${d.err!=='-'?'#e53935':'#999'};">${d.err}</td>
+  <td><a href="expthread_file_list.html" class="btn btn-secondary btn-sm"><i class="fa fa-folder-open mr-1"></i>파일목록</a></td></tr>`).join('');
+</script>
+</body></html>

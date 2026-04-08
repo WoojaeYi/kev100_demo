@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 신청 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area{padding:24px 28px;}
+.section-header{font-size:14px;font-weight:700;color:#0e424f;border-left:3px solid #0e424f;padding-left:10px;margin:24px 0 12px;}
+.section-header:first-child{margin-top:0;}
+.sub-header{font-size:13px;font-weight:600;color:#444;margin:16px 0 8px;padding-left:4px;}
+.btn-area{display:flex;justify-content:center;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid #e5ecf1;}
+.agreement-list{list-style:none;padding:0;margin:0;}
+.agreement-list li{padding:5px 0;font-size:13px;line-height:1.8;}
+.agreement-list li label{cursor:pointer;}
+.required{color:#c62828;}
+/* td 안의 input/select는 기본적으로 셀 너비에 맞게 */
+.detail-table td .form-control{width:100%;}
+/* 예외: 인라인 입력창, 우편번호, 설립연도, select 일부 */
+.detail-table td .form-control.inline{width:120px;display:inline-block;}
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-flag mr-2" style="color:#1f8dab;font-size:17px;"></i>캠페인 신청</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페인관리</li><li><i class="fa fa-angle-right"></i></li><li><a href="camp_list.html">캠페인 목록</a></li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">캠페인 등록</li></ul></div>
+    </div>
+    <div class="content-area">
+
+      <!-- 신청 정보 -->
+      <div class="section-header">신청 정보</div>
+      <table class="detail-table" style="margin-bottom:16px;">
+        <colgroup>
+          <col style="width:160px;">
+          <col>
+          <col style="width:160px;">
+          <col>
+        </colgroup>
+        <tr>
+          <th>가입 기준 년도 <span class="required">*</span></th>
+          <td colspan="3">
+            <select class="form-control" style="width:120px;" id="joinYear">
+              <option>2022년</option>
+              <option>2023년</option>
+              <option>2024년</option>
+              <option>2025년</option>
+              <option selected>2026년</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 1. 캠페인 참가 동의 -->
+      <div class="section-header">1. 캠페인 참가 동의</div>
+      <table class="detail-table" style="margin-bottom:16px;">
+        <colgroup>
+          <col style="width:160px;">
+          <col>
+        </colgroup>
+        <tr>
+          <th>캠페인 참가 동의</th>
+          <td>
+            <ul class="agreement-list">
+              <li>
+                <label>
+                  <input type="checkbox" id="agreeTransferYn" disabled>
+                  <input type="text" class="form-control inline" placeholder="기업명" readonly/>
+                  기업의 내연기관 차량을 목표 년도까지 무공해 자동차로 100% 전환합니다.<span class="required">(필수)</span>
+                </label>
+              </li>
+              <li><label><input type="checkbox" id="agreeCeoYn"> CEO의 업무 차량부터 무공해 자동차로 우선 전환합니다. <span style="color:#1565c0;">(선택)</span></label></li>
+              <li><label><input type="checkbox" id="agreeEmplYn"> 전 사업장에 무공해 자동차를 위한 충전 인프라를 설치하여 직원들의 무공해 자동차 이용에 편의를 제공합니다. <span style="color:#1565c0;">(선택)</span></label></li>
+              <li><label><input type="checkbox" id="agreeCustYn"> 전 사업장에 무공해 자동차를 위한 충전 인프라를 설치하여 고객들의 무공해 자동차 이용에 편의를 제공합니다. <span style="color:#1565c0;">(선택)</span></label></li>
+              <li><label><input type="checkbox" id="agreeDmndYn"> 고객과 서비스 계약 시에 「한국형 무공해차 전환100 캠페인」취지를 설명하고 무공해 자동차를 이용할 것을 권유합니다. <span style="color:#1565c0;">(선택)</span></label></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>기업/회사 로고의 사용</th>
+          <td>
+            <ul class="agreement-list">
+              <li>
+                <label>
+                  <input type="checkbox" id="agreeLogoYn" disabled>
+                  "환경부"와 "한국자동차환경협회"가 「한국형 무공해차 전환100」에 관한 홍보를 위해 웹사이트, 앱 그리고 소셜 네트워크 서비스 등에
+                  <input type="text" class="form-control inline" style="margin:0 5px;" readonly placeholder="기업명"/>
+                  기업의 로고를 사용하는 데 동의합니다.
+                </label>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 2. 기업 정보 -->
+      <div class="section-header">2. 기업 정보</div>
+
+      <div class="sub-header">기업 기본 정보</div>
+      <table class="detail-table" style="margin-bottom:16px;">
+        <colgroup>
+          <col style="width:160px;">
+          <col>
+          <col style="width:160px;">
+          <col>
+        </colgroup>
+        <tr>
+          <th>기업명 <span class="required">*</span></th>
+          <td colspan="3">
+            <div style="display:flex;gap:6px;align-items:center;">
+              <input type="text" class="form-control" id="entNm" placeholder="검색을 통해 기업을 입력해주세요." style="width:auto;flex:1;" readonly>
+              <button class="btn btn-secondary btn-sm" style="white-space:nowrap;"><i class="fa fa-search mr-1"></i>기업 검색</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>대표자</th>
+          <td><input type="text" class="form-control" id="ceoNm" readonly></td>
+          <th>사업자등록번호</th>
+          <td><input type="text" class="form-control" id="bizNo" maxlength="10" readonly></td>
+        </tr>
+        <tr>
+          <th>대표 업종</th>
+          <td><input type="text" class="form-control" id="entSctr" readonly></td>
+          <th>담당자</th>
+          <td><input type="text" class="form-control" id="mberNm" readonly></td>
+        </tr>
+        <tr>
+          <th>이메일</th>
+          <td><input type="text" class="form-control" id="emailAdres" readonly></td>
+          <th>연락처 / 사무실</th>
+          <td><input type="text" class="form-control" id="telNo" readonly></td>
+        </tr>
+        <tr>
+          <th>연락처 / 휴대전화</th>
+          <td><input type="text" class="form-control" id="phoneNo" readonly></td>
+          <td colspan="2"></td>
+        </tr>
+      </table>
+
+      <div class="sub-header">기업 상세 정보</div>
+      <table class="detail-table" style="margin-bottom:16px;">
+        <colgroup>
+          <col style="width:160px;">
+          <col>
+          <col style="width:160px;">
+          <col>
+        </colgroup>
+        <tr>
+          <th>기업형태 <span class="required">*</span></th>
+          <td>
+            <label style="margin-right:10px;"><input type="radio" name="entTypCd" value="01"> 대기업</label>
+            <label style="margin-right:10px;"><input type="radio" name="entTypCd" value="02"> 중견기업</label>
+            <label style="margin-right:10px;"><input type="radio" name="entTypCd" value="03"> 중소기업</label>
+            <span id="wrapCorpNo" style="display:none;">
+              <input type="text" class="form-control" style="display:inline-block;width:200px;margin-left:8px;" maxlength="13" placeholder="법인등록번호 13자리"/>
+            </span>
+          </td>
+          <th>분류 <span class="required">*</span></th>
+          <td>
+            <select class="form-control" id="bizClsCd">
+              <option value="">:: 선택 ::</option>
+              <option>제조업</option>
+              <option>서비스업</option>
+              <option>건설업</option>
+              <option>운수업</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>설립연도<br><span style="font-weight:normal;font-size:11px;">(2024-10월 기준, 추가 입력 항목)</span></th>
+          <td colspan="3">
+            <input type="text" class="form-control" id="foundingYear" maxlength="4" placeholder="설립연도" style="width:100px;display:inline-block;">
+            <span style="font-size:11px;margin-left:6px;">(* 기업 기준 : 필수 입력 항목, 관리자는 해당사항 없음)</span>
+          </td>
+        </tr>
+        <tr>
+          <th>주소 <span class="required">*</span></th>
+          <td colspan="3">
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="margin-bottom:4px;display:flex;align-items:center;gap:6px;">
+                <input type="text" class="form-control" id="zipNo" style="width:100px;" maxlength="5" placeholder="우편번호" readonly>
+                <button class="btn btn-secondary btn-sm" style="white-space:nowrap;"><i class="fa fa-search mr-1"></i>주소 검색</button>
+              </li>
+              <li style="margin-bottom:4px;"><input type="text" class="form-control" id="address1" placeholder="주소" readonly></li>
+              <li><input type="text" class="form-control" id="address2" placeholder="상세주소"></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>매출액(억원) <span class="required">*</span></th>
+          <td><input type="text" class="form-control" id="totSales" maxlength="13" placeholder="매출액(억원)"></td>
+          <th>종업원 수 <span class="required">*</span></th>
+          <td>
+            <select class="form-control" id="empCntCd">
+              <option value="">:: 선택 ::</option>
+              <option>50인 미만</option>
+              <option>50~299인</option>
+              <option>300인 이상</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <div class="sub-header">보유·임차 차량 정보</div>
+      <table class="detail-table" style="margin-bottom:16px;text-align:center;">
+        <thead>
+          <tr>
+            <th rowspan="2" style="width:90px;">구분</th>
+            <th colspan="3">보유(대)</th>
+            <th rowspan="2">계(대)</th>
+            <th colspan="3">임차(대)</th>
+            <th rowspan="2">계(대)</th>
+            <th rowspan="2">총계(대)</th>
+          </tr>
+          <tr>
+            <th>승용</th><th>승합</th><th>화물</th>
+            <th>승용</th><th>승합</th><th>화물</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>내연기관차</th>
+            <td><input type="text" class="form-control" style="text-align:right;" title="내연기관차 승용 보유 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="내연기관차 승합 보유 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="내연기관차 화물 보유 수"></td>
+            <td>0</td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="내연기관차 승용 임차 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="내연기관차 승합 임차 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="내연기관차 화물 임차 수"></td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th>전기자동차</th>
+            <td><input type="text" class="form-control" style="text-align:right;" title="전기자동차 승용 보유 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="전기자동차 승합 보유 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="전기자동차 화물 보유 수"></td>
+            <td>0</td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="전기자동차 승용 임차 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="전기자동차 승합 임차 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="전기자동차 화물 임차 수"></td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th>수소전기차</th>
+            <td><input type="text" class="form-control" style="text-align:right;" title="수소전기차 승용 보유 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="수소전기차 승합 보유 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="수소전기차 화물 보유 수"></td>
+            <td>0</td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="수소전기차 승용 임차 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="수소전기차 승합 임차 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="수소전기차 화물 임차 수"></td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th>제외차종</th>
+            <td><input type="text" class="form-control" style="text-align:right;" title="제외차종 승용 보유 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="제외차종 승합 보유 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="제외차종 화물 보유 수"></td>
+            <td>0</td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="제외차종 승용 임차 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="제외차종 승합 임차 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="제외차종 화물 임차 수"></td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>총계</th>
+            <td>0</td><td>0</td><td>0</td>
+            <td>0</td>
+            <td>0</td><td>0</td><td>0</td>
+            <td>0</td>
+            <td><strong>0</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="sub-header">보유 충전기 정보</div>
+      <table class="detail-table" style="margin-bottom:16px;text-align:center;">
+        <thead>
+          <tr>
+            <th>완속(기)</th>
+            <th>급속(기)</th>
+            <th>수소(기)</th>
+            <th>총계(기)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" class="form-control" style="text-align:right;" title="보유 완속 충전기 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="보유 급속 충전기 수"></td>
+            <td><input type="text" class="form-control" style="text-align:right;" title="보유 수소 충전기 수"></td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 3. 중장기 계획 -->
+      <div class="section-header">3. 중장기 계획</div>
+
+      <div class="sub-header">중장기 목표</div>
+      <div style="padding:8px 4px 12px;font-size:13px;line-height:2.2;">
+        <input type="text" class="form-control" style="display:inline-block;width:120px;margin-right:5px;" readonly placeholder="기업명"/> 은(는)
+        <select class="form-control" style="display:inline-block;width:80px;margin:0 5px;" id="goalYear">
+          <option>2030년</option>
+          <option>2035년</option>
+        </select>
+        까지 현재 보유하거나 임차하는 차량을 무공해차로 100% 전환할 것을 목표로 합니다.
+      </div>
+
+      <div class="sub-header">중장기 계획</div>
+      <table class="detail-table" style="margin-bottom:16px;text-align:center;font-size:12px;">
+        <thead>
+          <tr>
+            <th rowspan="2">년도</th>
+            <th rowspan="2">구분</th>
+            <th colspan="5">무공해차 증차</th>
+            <th colspan="3">충전 인프라</th>
+            <th rowspan="2">상세 계획</th>
+            <th rowspan="2">실적</th>
+          </tr>
+          <tr>
+            <th>누적 전환율<br>(%)</th>
+            <th>전환율<br>(%)</th>
+            <th>전기<br>(대)</th>
+            <th>수소<br>(대)</th>
+            <th>계<br>(대)</th>
+            <th>완속<br>(기)</th>
+            <th>급속<br>(기)</th>
+            <th>수소<br>(기)</th>
+          </tr>
+        </thead>
+        <tbody id="campplanList">
+          <tr>
+            <td>2026</td>
+            <td>계획</td>
+            <td><input type="text" class="form-control" style="text-align:right;"></td>
+            <td><input type="text" class="form-control" style="text-align:right;"></td>
+            <td><input type="text" class="form-control" style="text-align:right;"></td>
+            <td><input type="text" class="form-control" style="text-align:right;"></td>
+            <td>0</td>
+            <td><input type="text" class="form-control" style="text-align:right;"></td>
+            <td><input type="text" class="form-control" style="text-align:right;"></td>
+            <td><input type="text" class="form-control" style="text-align:right;"></td>
+            <td><button class="btn btn-secondary btn-sm">상세</button></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr id="totalPlanRow">
+            <th colspan="4" style="text-align:center;">합계 <span style="font-weight:normal;">(계획 기준)</span></th>
+            <td>0</td><td>0</td><td>0</td>
+            <td>0</td><td>0</td><td>0</td>
+            <td colspan="2"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <!-- 4. 가입신청서 -->
+      <div class="section-header">4. 가입신청서</div>
+      <table class="detail-table" style="margin-bottom:16px;">
+        <colgroup>
+          <col style="width:200px;">
+          <col>
+        </colgroup>
+        <tr>
+          <th>가입신청서 파일 첨부 <span class="required">*</span></th>
+          <td>
+            <div style="margin-bottom:6px;">
+              <input type="file" id="aplFileId" accept=".pdf">
+            </div>
+            <div style="font-size:12px;color:#666;margin-top:6px;">
+              * 업로드 허용 확장자 : pdf<br>
+              * 파일은 최대 10MB까지 업로드할 수 있습니다.
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div class="btn-area">
+        <a href="camp_list.html" class="btn btn-secondary"><i class="fa fa-close mr-1"></i>취소</a>
+        <button class="btn btn-primary" onclick="alert('캠페인 신청이 완료되었습니다.');"><i class="fa fa-save mr-1"></i>저장</button>
+      </div>
+
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 2;</script>
+</body>
+</html>

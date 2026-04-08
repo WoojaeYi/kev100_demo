@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메뉴 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-list mr-2" style="color:#1f8dab;font-size:17px;"></i>메뉴 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">메뉴 목록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>메뉴명 &nbsp;</label>
+          <input type="text" class="form-control" style="width:220px;" placeholder="메뉴명 검색">
+          <select class="form-control" style="width:120px;"><option value="">∷ 사용여부 ∷</option><option>사용</option><option>미사용</option></select>
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+        </div>
+      </div>
+      <div class="table-info">
+        <div style="font-size:13px;color:#666;">총 <strong>22</strong>건</div>
+        <a href="menucreate_manage.html" class="btn btn-dark btn-sm"><i class="fa fa-pencil mr-1"></i>메뉴 관리</a>
+      </div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>메뉴번호</th><th>상위메뉴</th><th>메뉴명</th><th>URL</th><th>순서</th><th>사용</th><th>관리</th></tr></thead>
+          <tbody id="menuListBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const menus = [
+  {no:22,cd:'MENU0601',parent:'시스템관리',nm:'개인정보 처리방침',url:'/admin/policy/policyRead.do',sort:6,use:'Y'},
+  {no:21,cd:'MENU0502',parent:'통계',nm:'다운로드 통계',url:'/admin/atchfiledownload/monthlyStat.do',sort:2,use:'Y'},
+  {no:20,cd:'MENU0501',parent:'통계',nm:'사이트 방문 통계',url:'/admin/sitelog/sitelogDateGraph.do',sort:1,use:'Y'},
+  {no:19,cd:'MENU0402',parent:'배치관리',nm:'배치 설정',url:'/admin/expthread/expthreadList.do',sort:2,use:'Y'},
+  {no:18,cd:'MENU0401',parent:'배치관리',nm:'배치 이력',url:'/admin/expthread/expthreadList.do',sort:1,use:'Y'},
+  {no:17,cd:'MENU0307',parent:'시스템관리',nm:'메뉴 관리',url:'/admin/menucreate/menucreateManage.do',sort:7,use:'Y'},
+  {no:16,cd:'MENU0306',parent:'시스템관리',nm:'코드 상세 관리',url:'/admin/codedetail/codedetailList.do',sort:6,use:'Y'},
+  {no:15,cd:'MENU0305',parent:'시스템관리',nm:'분류코드 관리',url:'/admin/clcode/clcodeList.do',sort:5,use:'Y'},
+  {no:14,cd:'MENU0304',parent:'시스템관리',nm:'코드 관리',url:'/admin/code/codeList.do',sort:4,use:'Y'},
+  {no:13,cd:'MENU0303',parent:'시스템관리',nm:'프로그램 관리',url:'/admin/program/programList.do',sort:3,use:'Y'},
+];
+const USE={'Y':'<span class="use">사용</span>','N':'<span class="notUse">미사용</span>'};
+document.getElementById('menuListBody').innerHTML = menus.map(d=>`
+  <tr><td>${d.no}</td><td style="font-size:12px;color:#888;">${d.cd}</td><td>${d.parent}</td><td class="t-a-left">${d.nm}</td>
+  <td class="t-a-left" style="font-size:12px;color:#888;">${d.url}</td><td>${d.sort}</td><td>${USE[d.use]}</td>
+  <td><a href="menucreate_manage.html" class="btn btn-secondary btn-sm"><i class="fa fa-pencil mr-1"></i>수정</a></td></tr>`).join('');
+</script>
+</body></html>

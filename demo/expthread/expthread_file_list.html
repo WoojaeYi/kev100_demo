@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>배치 파일 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-folder-open mr-2" style="color:#1f8dab;font-size:17px;"></i>배치 파일 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>배치관리</li><li><i class="fa fa-angle-right"></i></li><li><a href="expthread_list.html">배치이력</a></li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">파일 목록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div style="background:#f8fbfc;border:1px solid #e3eaf0;border-radius:6px;padding:14px 20px;margin-bottom:20px;">
+        <div style="display:flex;gap:32px;flex-wrap:wrap;">
+          <div><span style="font-size:12px;color:#888;">배치작업</span><div style="font-size:13.5px;font-weight:700;color:#0e424f;">파일정리 배치</div></div>
+          <div><span style="font-size:12px;color:#888;">실행시각</span><div style="font-size:13.5px;font-weight:700;color:#0e424f;">2026-03-31 02:00:00</div></div>
+          <div><span style="font-size:12px;color:#888;">상태</span><div><span class="use mt-1">성공</span></div></div>
+          <div><span style="font-size:12px;color:#888;">처리건수</span><div style="font-size:13.5px;font-weight:700;color:#0e424f;">1,247건</div></div>
+        </div>
+      </div>
+      <div class="table-info"><div style="font-size:13px;color:#666;">처리 파일 총 <strong>8</strong>건</div></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>파일명</th><th>파일경로</th><th>파일크기</th><th>처리결과</th><th>처리시각</th></tr></thead>
+          <tbody id="fileBody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top:16px;"><a href="expthread_list.html" class="btn btn-secondary"><i class="fa fa-arrow-left mr-1"></i>목록으로</a></div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const files = [
+  {no:8,nm:'tmp_20260331_001.dat',path:'/upload/tmp/',sz:'1.2 MB',rst:'삭제완료',dtm:'2026-03-31 02:01:05'},
+  {no:7,nm:'tmp_20260331_002.dat',path:'/upload/tmp/',sz:'3.4 MB',rst:'삭제완료',dtm:'2026-03-31 02:01:12'},
+  {no:6,nm:'export_20260330.csv',path:'/upload/export/',sz:'8.7 MB',rst:'이동완료',dtm:'2026-03-31 02:01:55'},
+  {no:5,nm:'log_20260330.log',path:'/logs/',sz:'0.4 MB',rst:'삭제완료',dtm:'2026-03-31 02:02:10'},
+  {no:4,nm:'cache_user_20260330.dat',path:'/cache/',sz:'0.8 MB',rst:'삭제완료',dtm:'2026-03-31 02:02:31'},
+  {no:3,nm:'report_2026Q1.pdf',path:'/upload/report/',sz:'12.3 MB',rst:'이동완료',dtm:'2026-03-31 02:02:50'},
+  {no:2,nm:'thumb_20260330_batch.zip',path:'/upload/thumb/',sz:'4.5 MB',rst:'삭제완료',dtm:'2026-03-31 02:03:10'},
+  {no:1,nm:'old_backup_20260301.zip',path:'/backup/',sz:'45.6 MB',rst:'삭제완료',dtm:'2026-03-31 02:03:24'},
+];
+const RST_COLOR={'삭제완료':'#e53935','이동완료':'#1f8dab'};
+document.getElementById('fileBody').innerHTML = files.map(d=>`
+  <tr><td>${d.no}</td><td class="t-a-left">${d.nm}</td><td class="t-a-left" style="font-size:12px;color:#888;">${d.path}</td>
+  <td>${d.sz}</td><td style="color:${RST_COLOR[d.rst]||'#333'};font-weight:600;">${d.rst}</td><td>${d.dtm}</td></tr>`).join('');
+</script>
+</body></html>

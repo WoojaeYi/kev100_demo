@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>콘텐츠 등록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.section-header{font-size:14px;font-weight:700;color:#0e424f;border-left:3px solid #0e424f;padding-left:10px;margin:24px 0 12px;}.section-header:first-child{margin-top:0;}.btn-area{display:flex;justify-content:center;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid #e5ecf1;}.editor-mock{background:#fff;border:1px solid #cdd8e0;border-radius:4px;padding:16px;min-height:300px;font-size:13.5px;line-height:1.8;color:#888;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-file-text mr-2" style="color:#1f8dab;font-size:17px;"></i>콘텐츠 등록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li><a href="content_list.html">콘텐츠관리</a></li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">등록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="section-header">콘텐츠 정보</div>
+      <table class="detail-table">
+        <tr>
+          <th style="width:160px;">콘텐츠명 <span style="color:#c62828;">*</span></th>
+          <td colspan="3"><input type="text" class="form-control" placeholder="콘텐츠명을 입력하세요"></td>
+        </tr>
+        <tr>
+          <th>콘텐츠 ID</th>
+          <td><input type="text" class="form-control" style="width:200px;" placeholder="자동생성" readonly style="background:#f5f5f5;"></td>
+          <th style="width:160px;">CSS 적용</th>
+          <td>
+            <label style="margin-right:12px;cursor:pointer;"><input type="checkbox"> 기본 CSS</label>
+            <label style="margin-right:12px;cursor:pointer;"><input type="checkbox"> EV스타일</label>
+          </td>
+        </tr>
+        <tr>
+          <th>사용여부</th>
+          <td colspan="3">
+            <label style="margin-right:16px;cursor:pointer;"><input type="radio" name="useAt" value="Y" checked> 사용</label>
+            <label style="cursor:pointer;"><input type="radio" name="useAt" value="N"> 미사용</label>
+          </td>
+        </tr>
+      </table>
+      <div class="section-header">콘텐츠 내용 <span style="font-size:12px;font-weight:400;color:#888;">(HTML 에디터)</span></div>
+      <div class="editor-mock">
+        <div style="background:#f5f5f5;border:1px solid #ddd;border-radius:3px;padding:8px;margin-bottom:8px;display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm"><i class="fa fa-bold"></i></button>
+          <button class="btn btn-secondary btn-sm"><i class="fa fa-italic"></i></button>
+          <button class="btn btn-secondary btn-sm"><i class="fa fa-underline"></i></button>
+          <button class="btn btn-secondary btn-sm"><i class="fa fa-list-ul"></i></button>
+          <button class="btn btn-secondary btn-sm"><i class="fa fa-list-ol"></i></button>
+          <button class="btn btn-secondary btn-sm"><i class="fa fa-link"></i></button>
+          <button class="btn btn-secondary btn-sm"><i class="fa fa-image"></i></button>
+        </div>
+        <textarea class="form-control" rows="12" style="width:100%;resize:vertical;border:none;background:transparent;" placeholder="콘텐츠 HTML 내용을 입력하세요..."></textarea>
+      </div>
+      <div class="btn-area">
+        <a href="content_list.html" class="btn btn-secondary"><i class="fa fa-list mr-1"></i>취소</a>
+        <button class="btn btn-dark" onclick="window.open('about:blank')"><i class="fa fa-eye mr-1"></i>미리보기</button>
+        <button class="btn btn-primary" onclick="alert('등록되었습니다.');"><i class="fa fa-save mr-1"></i>저장</button>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 4;</script>
+</body></html>

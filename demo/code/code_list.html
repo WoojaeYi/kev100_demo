@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공통코드 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area{padding:24px 28px;}
+.code-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.panel{background:#fff;border:1px solid #e5ecf1;border-radius:4px;}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #e5ecf1;}
+.panel-head h3{font-size:14px;font-weight:700;color:#0e424f;display:flex;align-items:center;gap:6px;}
+.panel-body{padding:0;}
+.selected-row{background:#eef6f8 !important;}
+.code-table{width:100%;border-collapse:collapse;font-size:13px;border-top:1px solid #000;}
+.code-table thead th{font-weight:500;padding:9px 10px;background:#f8fbfc;border-bottom:1px solid #e0e8ec;border-right:1px solid #ecf3f5;text-align:center;white-space:nowrap;}
+.code-table tbody tr{border-bottom:1px solid #ecf3f5;cursor:pointer;transition:background 0.1s;}
+.code-table tbody tr:hover,.code-table tbody tr.active{background:#eef6f8;}
+.code-table tbody td{padding:8px 10px;text-align:center;font-size:13px;border-right:1px solid #ecf3f5;vertical-align:middle;}
+.code-table tbody td:last-child{border-right:0;}
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-code mr-2" style="color:#1f8dab;font-size:17px;"></i>공통코드 관리</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">공통코드 관리</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="code-layout">
+        <!-- 좌: 코드그룹 -->
+        <div class="panel">
+          <div class="panel-head">
+            <h3><i class="fa fa-list-ul" style="color:#1f8dab;"></i>코드 그룹</h3>
+            <button class="btn btn-dark btn-sm"><i class="fa fa-plus mr-1"></i>그룹추가</button>
+          </div>
+          <div class="panel-body">
+            <div class="searchBox" style="padding:10px 14px;margin-bottom:0;border-radius:0;border:none;border-bottom:1px solid #e5ecf1;">
+              <div class="input-group">
+                <input type="text" class="form-control" style="flex:1;" placeholder="그룹코드/명 검색">
+                <button class="btn btn-dark"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+            <table class="code-table">
+              <thead><tr><th>그룹코드</th><th>그룹명</th><th>사용</th></tr></thead>
+              <tbody id="groupBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 우: 코드상세 -->
+        <div class="panel">
+          <div class="panel-head">
+            <h3><i class="fa fa-tag" style="color:#1f8dab;"></i>코드 상세 <span id="groupLabel" style="color:#888;font-weight:400;font-size:12.5px;margin-left:6px;"></span></h3>
+            <button class="btn btn-dark btn-sm"><i class="fa fa-plus mr-1"></i>코드추가</button>
+          </div>
+          <div class="panel-body">
+            <div class="searchBox" style="padding:10px 14px;margin-bottom:0;border-radius:0;border:none;border-bottom:1px solid #e5ecf1;">
+              <div class="input-group">
+                <input type="text" class="form-control" style="flex:1;" placeholder="코드/명 검색">
+                <button class="btn btn-dark"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+            <table class="code-table">
+              <thead><tr><th>코드</th><th>코드명</th><th>정렬</th><th>사용</th><th>관리</th></tr></thead>
+              <tbody id="codeBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const groups = [
+  {cd:'ENT_CLS',nm:'기업분류',use:'Y'},{cd:'ACCT_STATUS',nm:'계정상태',use:'Y'},
+  {cd:'CAMP_DIV',nm:'캠페인신청구분',use:'Y'},{cd:'CAMP_STATUS',nm:'캠페인상태',use:'Y'},
+  {cd:'QA_STATUS',nm:'Q&A답변상태',use:'Y'},{cd:'BBS_TYPE',nm:'게시판유형',use:'Y'},
+  {cd:'SITE_STATUS',nm:'사이트상태',use:'Y'},{cd:'FILE_TYPE',nm:'파일유형',use:'Y'},
+  {cd:'ROLE_TYPE',nm:'권한유형',use:'Y'},{cd:'NOTICE_TYPE',nm:'공지유형',use:'N'},
+];
+const codeData = {
+  'ENT_CLS':[{cd:'001',nm:'중소기업',ord:1},{cd:'002',nm:'중견기업',ord:2},{cd:'003',nm:'대기업',ord:3}],
+  'ACCT_STATUS':[{cd:'001',nm:'정상',ord:1},{cd:'002',nm:'승인대기',ord:2},{cd:'003',nm:'반려',ord:3},{cd:'004',nm:'탈퇴',ord:4}],
+  'CAMP_DIV':[{cd:'001',nm:'신규신청',ord:1},{cd:'002',nm:'연장신청',ord:2}],
+  'CAMP_STATUS':[{cd:'001',nm:'승인완료',ord:1},{cd:'002',nm:'검토중',ord:2},{cd:'003',nm:'승인대기',ord:3},{cd:'004',nm:'반려',ord:4}],
+};
+const USE = {'Y':'<span class="use">사용</span>','N':'<span class="notUse">미사용</span>'};
+let selGroup = 'ENT_CLS';
+function renderGroups(){
+  document.getElementById('groupBody').innerHTML = groups.map(g=>`
+    <tr class="${g.cd===selGroup?'active':''}" onclick="selectGroup('${g.cd}','${g.nm}')">
+      <td>${g.cd}</td><td class="t-a-left">${g.nm}</td><td>${USE[g.use]}</td>
+    </tr>`).join('');
+}
+function renderCodes(gcd){
+  const codes = codeData[gcd]||[];
+  document.getElementById('codeBody').innerHTML = codes.length ? codes.map(c=>`
+    <tr>
+      <td>${c.cd}</td><td class="t-a-left">${c.nm}</td><td>${c.ord}</td><td><span class="use">사용</span></td>
+      <td><button class="btn btn-secondary btn-sm"><i class="fa fa-pencil"></i></button></td>
+    </tr>`).join('') : '<tr><td colspan="5" style="color:#aaa;padding:20px;">코드 없음</td></tr>';
+}
+function selectGroup(gcd, gnm){
+  selGroup=gcd;
+  document.getElementById('groupLabel').textContent='('+gnm+')';
+  renderGroups(); renderCodes(gcd);
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  renderGroups();
+  document.getElementById('groupLabel').textContent='(기업분류)';
+  renderCodes(selGroup);
+});
+</script>
+</body></html>

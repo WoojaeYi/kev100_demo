@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메일 발송 로그 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.table-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.table-info .total { font-size:13px; color:#666; }
+.table-info .total strong { color:#0e424f; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-envelope mr-2" style="color:#1f8dab;font-size:17px;"></i>메일 발송 로그</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>메일관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">메일 발송 로그</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>기간 &nbsp;</label>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-01">
+          <span style="line-height:32px;padding:0 6px;color:#888;">~</span>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-30">
+          <select class="form-control" style="width:140px;">
+            <option value="">∷ 발송상태 ∷</option>
+            <option>성공</option><option>실패</option><option>대기</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>수신자 이메일 &nbsp;</label>
+          <input type="text" class="form-control" style="width:260px;" placeholder="이메일 주소 입력">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>초기화</button>
+        </div>
+      </div>
+
+      <div class="table-info">
+        <div class="total">총 <strong>1,248</strong>건</div>
+        <button class="btn btn-secondary btn-sm"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead>
+            <tr>
+              <th>번호</th><th>수신자 이메일</th><th>수신자명</th><th>제목</th>
+              <th>발송일시</th><th>발송상태</th><th>상세</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1248</td><td>kim@ev100.or.kr</td><td>김민준</td><td>[K-EV100] 회원가입 승인 안내</td><td>2026-03-30 14:23:11</td><td><span class="use">성공</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1247</td><td>lee@ecoenergy.com</td><td>이서연</td><td>[K-EV100] 캠페인 참여 안내</td><td>2026-03-30 13:55:04</td><td><span class="use">성공</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1246</td><td>park@greenmobility.co.kr</td><td>박지호</td><td>[K-EV100] 비밀번호 초기화 안내</td><td>2026-03-30 13:42:30</td><td><span class="reject">실패</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1245</td><td>choi@smartev.co.kr</td><td>최지우</td><td>[K-EV100] 가입 반려 안내</td><td>2026-03-30 13:30:15</td><td><span class="use">성공</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1244</td><td>jung@futurecar.com</td><td>정다은</td><td>[K-EV100] 시스템 점검 안내</td><td>2026-03-30 12:58:47</td><td><span class="use">성공</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1243</td><td>kang@cleanenergy.co.kr</td><td>강민서</td><td>[K-EV100] 캠페인 승인 안내</td><td>2026-03-30 12:35:22</td><td><span class="ing">대기</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1242</td><td>yoon@evcharge.co.kr</td><td>윤지성</td><td>[K-EV100] 회원가입 승인 안내</td><td>2026-03-30 12:10:08</td><td><span class="use">성공</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1241</td><td>lim@greencar.co.kr</td><td>임수아</td><td>[K-EV100] 비밀번호 초기화 안내</td><td>2026-03-30 11:48:55</td><td><span class="reject">실패</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1240</td><td>oh@futuremobility.com</td><td>오태양</td><td>[K-EV100] 캠페인 참여 안내</td><td>2026-03-30 11:30:40</td><td><span class="use">성공</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+            <tr><td>1239</td><td>han@ev100tech.co.kr</td><td>한가람</td><td>[K-EV100] 시스템 공지</td><td>2026-03-30 11:05:17</td><td><span class="ing">대기</span></td><td><a href="mailsendlog_read.html" class="btn btn-secondary btn-sm">상세</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-10 / 1,248건</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 4;</script>
+</body></html>

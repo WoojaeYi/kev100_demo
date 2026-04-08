@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>년도별 실적 현황 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.chart-panel{background:#fff;border:1px solid #e3eaf0;border-radius:8px;padding:20px;margin-bottom:16px;}.chart-title{font-size:14px;font-weight:700;color:#0e424f;margin-bottom:12px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-trophy mr-2" style="color:#1f8dab;font-size:17px;"></i>년도별 실적 현황</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페인 관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">년도별 실적 현황</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>실적 년도&nbsp;</label>
+          <select id="year" class="form-control" style="width:100px;"><option>전체</option><option selected>2026년</option><option>2025년</option></select>
+          <button class="btn btn-dark ml-1"><i class="fa fa-search mr-1"></i>조회</button>
+        </div>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#0e424f;margin:16px 0 12px;border-left:3px solid #0e424f;padding-left:10px;">증차 실적</div>
+      <div class="row">
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">유종별 현황</div><div id="canvas_inCarStatByEnergy" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">매입/임차별 현황</div><div id="canvas_inCarStatByInType" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">차종별 현황</div><div id="canvas_inCarStatByCarType" style="height:220px;"></div></div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">내연기관차 차종별 현황</div><div id="canvas_inInterCarStatByCarType" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">전기자동차 차종별 현황</div><div id="canvas_inElectCarStatByCarType" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">수소전기차 차종별 현황</div><div id="canvas_inHydrgCarStatByCarType" style="height:220px;"></div></div></div>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#0e424f;margin:16px 0 12px;border-left:3px solid #0e424f;padding-left:10px;">감차 실적</div>
+      <div class="row">
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">유종별 현황</div><div id="canvas_deCarStatByEnergy" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">매각/폐차/해지별 현황</div><div id="canvas_deCarStatByInType" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">차종별 현황</div><div id="canvas_deCarStatByCarType" style="height:220px;"></div></div></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">내연기관차 차종별 현황</div><div id="canvas_deInterCarStatByCarType" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">전기자동차 차종별 현황</div><div id="canvas_deElectCarStatByCarType" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">수소전기차 차종별 현황</div><div id="canvas_deHydrgCarStatByCarType" style="height:220px;"></div></div></div>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#0e424f;margin:16px 0 12px;border-left:3px solid #0e424f;padding-left:10px;">충전인프라 증감 실적</div>
+      <div class="row">
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">증설 현황</div><div id="canvas_inChargerStat" style="height:220px;"></div></div></div>
+        <div class="col-md-4"><div class="chart-panel"><div class="chart-title">감설 현황</div><div id="canvas_deChargerStat" style="height:220px;"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+
+var COLORS = ['#26B99A','#3f5872','#BDC3C7','#3498DB','#9B59B6','#8abb6f','#759c6a','#bfd3b7'];
+
+function drawPieChart(canvasId, dataset) {
+  var el = document.getElementById(canvasId);
+  if (!el) return;
+  var chart = echarts.init(el);
+  var isEmpty = !dataset.sumValue || dataset.sumValue === 0;
+
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      formatter: function(p) {
+        if (p.name === '데이터 없음') return '데이터 없음';
+        return p.name + ' : ' + p.value + ' 대 (' + p.percent.toFixed(1) + '%)';
+      }
+    },
+    // 범례를 하단으로 배치하여 라벨과 겹침 방지
+    legend: {
+      orient: 'horizontal',
+      bottom: 0,
+      left: 'center',
+      textStyle: { fontSize: 11 },
+      data: dataset.datas.map(function(d){ return d.name; })
+    },
+    color: COLORS,
+    series: [
+      {
+        type: 'pie',
+        radius: ['38%', '62%'],
+        center: ['50%', '44%'],   // 범례 공간 확보를 위해 위로
+        avoidLabelOverlap: true,
+        label: {
+          show: !isEmpty,
+          fontSize: 11,
+          formatter: function(p){ return p.value + '대\n(' + p.percent.toFixed(0) + '%)'; }
+        },
+        labelLine: { show: !isEmpty, length: 8, length2: 6 },
+        itemStyle: { borderRadius: 4, borderColor: '#fff', borderWidth: 1 },
+        data: isEmpty
+          ? [{ value:1, name:'데이터 없음', itemStyle:{color:'#eeeeee'}, label:{show:false}, labelLine:{show:false}, tooltip:{show:false} }]
+          : dataset.datas,
+        emphasis: { label: { show: true, fontSize: 12, fontWeight: 'bold' } }
+      },
+      {
+        name: '전체', type: 'pie',
+        radius: ['0', '28%'], center: ['50%', '44%'],
+        silent: true,
+        label: {
+          show: true, position: 'center',
+          formatter: function(){ return '총\n' + dataset.sumValue + ' 대'; },
+          fontSize: 12, fontWeight: 'bold', color: '#333', lineHeight: 18
+        },
+        labelLine: { show: false },
+        data: [{ value: isEmpty ? 1 : dataset.sumValue, name: '전체' }],
+        itemStyle: { color: 'none', borderWidth: 0 },
+        tooltip: { show: false }
+      }
+    ]
+  });
+}
+
+// 샘플 데이터 (증차 실적)
+var sampleData = {
+  inCarStatByEnergy:      { datas:[{name:'내연기관차',value:30},{name:'전기자동차',value:62},{name:'수소전기차',value:8}], sumValue:100 },
+  inCarStatByInType:      { datas:[{name:'매입',value:65},{name:'임차',value:35}], sumValue:100 },
+  inCarStatByCarType:     { datas:[{name:'승용',value:55},{name:'승합',value:28},{name:'화물',value:17}], sumValue:100 },
+  inInterCarStatByCarType:{ datas:[{name:'승용',value:18},{name:'승합',value:8},{name:'화물',value:4}], sumValue:30 },
+  inElectCarStatByCarType:{ datas:[{name:'승용',value:40},{name:'승합',value:15},{name:'화물',value:7}], sumValue:62 },
+  inHydrgCarStatByCarType:{ datas:[{name:'승용',value:5},{name:'승합',value:2},{name:'화물',value:1}], sumValue:8 },
+  // 감차 실적
+  deCarStatByEnergy:      { datas:[{name:'내연기관차',value:42},{name:'전기자동차',value:6},{name:'수소전기차',value:2}], sumValue:50 },
+  deCarStatByInType:      { datas:[{name:'매각',value:25},{name:'폐차',value:18},{name:'해지',value:7}], sumValue:50 },
+  deCarStatByCarType:     { datas:[{name:'승용',value:28},{name:'승합',value:14},{name:'화물',value:8}], sumValue:50 },
+  deInterCarStatByCarType:{ datas:[{name:'승용',value:22},{name:'승합',value:13},{name:'화물',value:7}], sumValue:42 },
+  deElectCarStatByCarType:{ datas:[{name:'승용',value:4},{name:'승합',value:1},{name:'화물',value:1}], sumValue:6 },
+  deHydrgCarStatByCarType:{ datas:[{name:'승용',value:1},{name:'승합',value:1},{name:'화물',value:0}], sumValue:2 },
+  // 충전인프라
+  inChargerStat:          { datas:[{name:'완속',value:12},{name:'급속',value:6},{name:'수소',value:2}], sumValue:20 },
+  deChargerStat:          { datas:[{name:'완속',value:4},{name:'급속',value:2},{name:'수소',value:0}], sumValue:6 }
+};
+
+$(function() {
+  Object.keys(sampleData).forEach(function(id) {
+    drawPieChart('canvas_' + id, sampleData[id]);
+  });
+});
+</script>
+</body></html>

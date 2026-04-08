@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메일 발송 로그 상세 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.mail-preview { border:1px solid #dde3e8; background:#f8fbfc; padding:20px 24px; border-radius:6px; min-height:180px; line-height:1.8; color:#333; font-size:14px; margin-top:20px; }
+.mail-preview h4 { font-size:14px; font-weight:700; color:#0e424f; margin-bottom:12px; border-bottom:1px solid #dde3e8; padding-bottom:8px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-envelope mr-2" style="color:#1f8dab;font-size:17px;"></i>메일 발송 로그 상세</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>메일관리</li><li><i class="fa fa-angle-right"></i></li>
+          <li><a href="mailsendlog_list.html">메일 발송 로그</a></li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">상세</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <table class="detail-table">
+        <tbody>
+          <tr>
+            <th style="width:160px;">수신자 이메일</th>
+            <td>park@greenmobility.co.kr</td>
+            <th style="width:160px;">수신자명</th>
+            <td>박지호</td>
+          </tr>
+          <tr>
+            <th>제목</th>
+            <td colspan="3">[K-EV100] 비밀번호 초기화 안내</td>
+          </tr>
+          <tr>
+            <th>발송일시</th>
+            <td>2026-03-30 13:42:30</td>
+            <th>발송상태</th>
+            <td><span class="reject">실패</span></td>
+          </tr>
+          <tr>
+            <th>실패사유</th>
+            <td colspan="3" style="color:#c62828;">SMTP 연결 오류 - 수신 서버 응답 없음 (timeout 30s)</td>
+          </tr>
+          <tr>
+            <th>사용 템플릿</th>
+            <td>TPL_PWD_RESET</td>
+            <th>발송 시도 횟수</th>
+            <td>3회</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="mail-preview">
+        <h4><i class="fa fa-eye mr-1"></i>메일 내용 미리보기</h4>
+        <p>안녕하세요, <strong>박지호</strong>님.</p>
+        <p>K-EV100 서비스 포털 비밀번호 초기화 요청이 접수되었습니다.</p>
+        <p>아래 링크를 클릭하여 새로운 비밀번호를 설정해 주세요.</p>
+        <p><a href="#" style="color:#1f8dab;">[비밀번호 재설정 링크]</a></p>
+        <p style="color:#888;font-size:12px;">본 링크는 발송 후 24시간 동안만 유효합니다.<br>본인이 요청하지 않으셨다면 이 메일을 무시해 주세요.</p>
+        <br>
+        <p>감사합니다.<br>K-EV100 서비스 포털 운영팀</p>
+      </div>
+
+      <div style="margin-top:24px;display:flex;gap:8px;justify-content:center;">
+        <a href="mailsendlog_list.html" class="btn btn-secondary"><i class="fa fa-list mr-1"></i>목록</a>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>window.currentGnb = 4;</script>
+</body></html>

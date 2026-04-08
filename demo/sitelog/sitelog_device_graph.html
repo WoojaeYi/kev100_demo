@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사이트 접속 통계 - 기기별 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.content-area { padding: 24px 28px; }
+.chart-wrap { background:#fff; border:1px solid #e3eaf0; border-radius:8px; padding:24px; margin-bottom:24px; display:flex; align-items:center; gap:40px; }
+.chart-title { font-size:15px; font-weight:700; color:#0e424f; margin-bottom:16px; }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12">
+        <span><i class="fa fa-pie-chart mr-2" style="color:#1f8dab;font-size:17px;"></i>사이트 접속 통계 - 기기별</span>
+      </div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block">
+        <ul class="locationList">
+          <li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li>
+          <li>통계</li><li><i class="fa fa-angle-right"></i></li>
+          <li style="color:#0e424f;font-weight:600;">기기별 통계</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <label>기간 &nbsp;</label>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-01">
+          <span style="line-height:32px;padding:0 6px;color:#888;">~</span>
+          <input type="date" class="form-control" style="width:140px;" value="2026-03-30">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>조회</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div style="flex:1;">
+          <div class="chart-title"><i class="fa fa-pie-chart mr-1"></i>기기별 접속 비율</div>
+          <canvas id="deviceChart" width="300" height="300" style="max-width:300px;"></canvas>
+        </div>
+        <div style="flex:1;">
+          <div class="chart-title">기기 현황</div>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-top:12px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <i class="fa fa-desktop" style="font-size:28px;color:#1f8dab;"></i>
+              <div>
+                <div style="font-size:13px;color:#888;">PC</div>
+                <div style="font-size:22px;font-weight:700;color:#0e424f;">62.5%</div>
+                <div style="font-size:12px;color:#aaa;">5,214건</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <i class="fa fa-mobile" style="font-size:28px;color:#388e3c;"></i>
+              <div>
+                <div style="font-size:13px;color:#888;">모바일</div>
+                <div style="font-size:22px;font-weight:700;color:#0e424f;">30.2%</div>
+                <div style="font-size:12px;color:#aaa;">2,519건</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <i class="fa fa-tablet" style="font-size:28px;color:#f57c00;"></i>
+              <div>
+                <div style="font-size:13px;color:#888;">태블릿</div>
+                <div style="font-size:22px;font-weight:700;color:#0e424f;">7.3%</div>
+                <div style="font-size:12px;color:#aaa;">609건</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead>
+            <tr><th>순위</th><th>기기</th><th>접속 수</th><th>비율</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><i class="fa fa-desktop mr-1"></i>PC</td><td>5,214</td><td>62.5%</td></tr>
+            <tr><td>2</td><td><i class="fa fa-mobile mr-1"></i>모바일</td><td>2,519</td><td>30.2%</td></tr>
+            <tr><td>3</td><td><i class="fa fa-tablet mr-1"></i>태블릿</td><td>609</td><td>7.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const ctx = document.getElementById('deviceChart').getContext('2d');
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['PC','모바일','태블릿'],
+    datasets: [{ data: [62.5, 30.2, 7.3], backgroundColor: ['#1f8dab','#388e3c','#f57c00'], borderWidth: 2 }]
+  },
+  options: { responsive: false, legend: { display: false } }
+});
+</script>
+</body></html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 관리 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../../assets/style.css" rel="stylesheet">
+<link href="../../assets/kor-campaign.css" rel="stylesheet">
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item dropdown" style="padding-left:10px;position:relative;">
+        <a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a>
+        
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="row"><div class="col-md-12">
+        <div class="page-title"><span>캠페인 참여 신청 - Step 3. 중장기 계획</span></div>
+        <div class="x_panel">
+            <div class="x_content" style="padding: 10px 40px;">
+                    <form class="campaign iner">
+                        <div class="step">
+            <ul class="progressbar clearfix">
+                <li class="done"><a href="javascript:void(0);"><span>캠페인 참가 동의</span></a></li>
+                <li class="done"><a href="javascript:void(0);"><span>정보 입력</span></a></li>
+                <li class="active"><a href="javascript:void(0);"><span>중장기 계획</span></a></li>
+                <li><a href="javascript:void(0);"><span>년 증감 계획</span></a></li>
+                <li><a href="javascript:void(0);"><span>가입신청서 제출 및 신청</span></a></li>
+                <li>신청 완료</li>
+            </ul>
+        </div>
+
+        <div class="board_write bd_none">
+            <!--
+            <div class="board_top">
+                <p class="cmt01" style="margin-bottom: 10px;">표시항목은 필수입력항목입니다.</p>
+            </div>
+            -->
+
+            <div class="campaign_title">
+                Step2. 보유·임차 차량 / 충전기 입력 정보
+            </div>
+            <div class="clearfix">
+                <div class="totalCarSummary">
+                    <div class="form_box navy">
+                        <table class="center">
+                            <caption>내연기관 차량</caption>
+                            <thead>
+                            <tr>
+                                <th colspan="3">내연기관 차량</th>
+                            </tr>
+                            <tr>
+                                <th class="txt-sm">보유</th>
+                                <th class="txt-sm">임차</th>
+                                <th class="txt-sm">계</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>85<span class="unit">대</span></td>
+                                <td>30<span class="unit">대</span></td>
+                                <td>115<span class="unit">대</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form_box navy">
+                        <table class="center">
+                            <caption>전기 차량</caption>
+                            <thead>
+                            <tr>
+                                <th colspan="3">전기 차량</th>
+                            </tr>
+                            <tr>
+                                <th class="txt-sm">보유</th>
+                                <th class="txt-sm">임차</th>
+                                <th class="txt-sm">계</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>5<span class="unit">대</span></td>
+                                <td>3<span class="unit">대</span></td>
+                                <td>8<span class="unit">대</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form_box navy">
+                        <table class="center">
+                            <caption>수소전기 차량</caption>
+                            <thead>
+                            <tr>
+                                <th colspan="3">수소전기 차량</th>
+                            </tr>
+                            <tr>
+                                <th class="txt-sm">보유</th>
+                                <th class="txt-sm">임차</th>
+                                <th class="txt-sm">계</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>2<span class="unit">대</span></td>
+                                <td>0<span class="unit">대</span></td>
+                                <td>2<span class="unit">대</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form_box navy">
+                        <table class="center">
+                            <caption>제외차종</caption>
+                            <thead>
+                            <tr>
+                                <th colspan="3">제외차종</th>
+                            </tr>
+                            <tr>
+                                <th class="txt-sm">보유</th>
+                                <th class="txt-sm">임차</th>
+                                <th class="txt-sm">계</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>3<span class="unit">대</span></td>
+                                <td>0<span class="unit">대</span></td>
+                                <td>3<span class="unit">대</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix mt20">
+                <div class="totalCarAndChargerSummary">
+                    <div class="form_box navy">
+                        <table class="center">
+                            <caption>총 보유·임차 차량 수</caption>
+                            <thead>
+                            <tr>
+                                <th colspan="3">차량 총계</th>
+                            </tr>
+                            <tr>
+                                <th class="txt-sm">보유</th>
+                                <th class="txt-sm">임차</th>
+                                <th class="txt-sm">총합</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>95<span class="unit">대</span></td>
+                                <td>33<span class="unit">대</span></td>
+                                <td class="t-blue">128<span class="unit">대</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form_box navy">
+                        <table class="center">
+                            <caption>충전기</caption>
+                            <thead>
+                            <tr>
+                                <th colspan="3">충전기</th>
+                            </tr>
+                            <tr>
+                                <th class="txt-sm">완속</th>
+                                <th class="txt-sm">급속</th>
+                                <th class="txt-sm">수소</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>4<span class="unit">기</span></td>
+                                <td>2<span class="unit">기</span></td>
+                                <td>1<span class="unit">기</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign_title">
+                중장기 목표
+            </div>
+            <div class="agreement txt-18 ac">
+                "<span class="entNm t-blue">한국물류(주)</span>" 기업은
+                <span class="f-select wp_10">
+                    <select name="goalYear" class="form-control">
+                        <option value="2026">2026년</option>
+                        <option value="2027">2027년</option>
+                        <option value="2028">2028년</option>
+                        <option value="2029">2029년</option>
+                        <option value="2030" selected>2030년</option>
+                    </select>
+                </span>
+                까지 현재 보유하거나 임차하는 차량을 무공해차로 100% 전환할 것을 목표로 합니다.
+            </div>
+            <div class="campaign_title">
+                중장기 계획
+            </div>
+            <div class="form_box">
+                <table class="center">
+                    <colgroup>
+                        <col style="width: 10%;"/>
+                        <col style=""/>
+                        <col style=""/>
+                        <col style="width: 12%;"/>
+                        <col style="width: 12%;"/>
+                        <col style="width: 11%;"/>
+                        <col style="width: 11%;"/>
+                        <col style="width: 11%;"/>
+                        <col style="width: 11%;"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th rowspan="2">년도</th>
+                        <th colspan="5">무공해차 증차</th>
+                        <th colspan="3">충전 인프라</th>
+                    </tr>
+                    <tr>
+                        <th>누적 전환율 <span class="unit">(%)</span></th>
+                        <th>전환율 <span class="unit">(%)</span></th>
+                        <th>전기 <span class="unit">(대)</span></th>
+                        <th>수소 <span class="unit">(대)</span></th>
+                        <th>계 <span class="unit">(대)</span></th>
+                        <th>완속 <span class="unit">(기)</span></th>
+                        <th>급속 <span class="unit">(기)</span></th>
+                        <th>수소 <span class="unit">(기)</span></th>
+                    </tr>
+                    </thead>
+                    <tbody id="campplanList">
+                        <tr id="campplanRow_0" class="campplanRow" data-campplanIndex="0" data-campplanYear="2026">
+                            <td class="center">
+                                <input type="hidden" id="campplanYear_0" name="campplanList[0].year" class="campplanYear" value="2026">
+                                <span class="number planYear">2026</span>
+                            </td>
+                            <td><span id="txtRateOfAccumTransfer_0" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span id="txtRateOfTransfer_0" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electCarCnt_0" name="campplanList[0].electCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2026년도 전기 차량 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgCarCnt_0" name="campplanList[0].hydrgCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2026년도 수소 차량 수"/></span></td>
+                            <td><span id="txtTotalEcoCarCnt_0" class="f_ipt wp_90 formatNumber"></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electSlowChrgrCnt_0" name="campplanList[0].electSlowChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2026년도 완속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electFastChrgrCnt_0" name="campplanList[0].electFastChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2026년도 급속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgChrgrCnt_0" name="campplanList[0].hydrgChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2026년도 수소 충전기 수"/></span></td>
+                        </tr>
+                        <tr id="campplanRow_1" class="campplanRow" data-campplanIndex="1" data-campplanYear="2027">
+                            <td class="center">
+                                <input type="hidden" id="campplanYear_1" name="campplanList[1].year" class="campplanYear" value="2027">
+                                <span class="number planYear">2027</span>
+                            </td>
+                            <td><span id="txtRateOfAccumTransfer_1" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span id="txtRateOfTransfer_1" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electCarCnt_1" name="campplanList[1].electCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2027년도 전기 차량 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgCarCnt_1" name="campplanList[1].hydrgCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2027년도 수소 차량 수"/></span></td>
+                            <td><span id="txtTotalEcoCarCnt_1" class="f_ipt wp_90 formatNumber"></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electSlowChrgrCnt_1" name="campplanList[1].electSlowChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2027년도 완속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electFastChrgrCnt_1" name="campplanList[1].electFastChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2027년도 급속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgChrgrCnt_1" name="campplanList[1].hydrgChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2027년도 수소 충전기 수"/></span></td>
+                        </tr>
+                        <tr id="campplanRow_2" class="campplanRow" data-campplanIndex="2" data-campplanYear="2028">
+                            <td class="center">
+                                <input type="hidden" id="campplanYear_2" name="campplanList[2].year" class="campplanYear" value="2028">
+                                <span class="number planYear">2028</span>
+                            </td>
+                            <td><span id="txtRateOfAccumTransfer_2" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span id="txtRateOfTransfer_2" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electCarCnt_2" name="campplanList[2].electCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2028년도 전기 차량 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgCarCnt_2" name="campplanList[2].hydrgCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2028년도 수소 차량 수"/></span></td>
+                            <td><span id="txtTotalEcoCarCnt_2" class="f_ipt wp_90 formatNumber"></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electSlowChrgrCnt_2" name="campplanList[2].electSlowChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2028년도 완속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electFastChrgrCnt_2" name="campplanList[2].electFastChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2028년도 급속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgChrgrCnt_2" name="campplanList[2].hydrgChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2028년도 수소 충전기 수"/></span></td>
+                        </tr>
+                        <tr id="campplanRow_3" class="campplanRow" data-campplanIndex="3" data-campplanYear="2029">
+                            <td class="center">
+                                <input type="hidden" id="campplanYear_3" name="campplanList[3].year" class="campplanYear" value="2029">
+                                <span class="number planYear">2029</span>
+                            </td>
+                            <td><span id="txtRateOfAccumTransfer_3" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span id="txtRateOfTransfer_3" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electCarCnt_3" name="campplanList[3].electCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2029년도 전기 차량 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgCarCnt_3" name="campplanList[3].hydrgCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2029년도 수소 차량 수"/></span></td>
+                            <td><span id="txtTotalEcoCarCnt_3" class="f_ipt wp_90 formatNumber"></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electSlowChrgrCnt_3" name="campplanList[3].electSlowChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2029년도 완속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electFastChrgrCnt_3" name="campplanList[3].electFastChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2029년도 급속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgChrgrCnt_3" name="campplanList[3].hydrgChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2029년도 수소 충전기 수"/></span></td>
+                        </tr>
+                        <tr id="campplanRow_4" class="campplanRow" data-campplanIndex="4" data-campplanYear="2030">
+                            <td class="center">
+                                <input type="hidden" id="campplanYear_4" name="campplanList[4].year" class="campplanYear" value="2030">
+                                <span class="number planYear">2030</span>
+                            </td>
+                            <td><span id="txtRateOfAccumTransfer_4" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span id="txtRateOfTransfer_4" class="f_ipt wp_90 formatNumber">0</span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electCarCnt_4" name="campplanList[4].electCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2030년도 전기 차량 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgCarCnt_4" name="campplanList[4].hydrgCarCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2030년도 수소 차량 수"/></span></td>
+                            <td><span id="txtTotalEcoCarCnt_4" class="f_ipt wp_90 formatNumber"></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electSlowChrgrCnt_4" name="campplanList[4].electSlowChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2030년도 완속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="electFastChrgrCnt_4" name="campplanList[4].electFastChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2030년도 급속 충전기 수"/></span></td>
+                            <td><span class="f_ipt wp_90"><input type="text" id="hydrgChrgrCnt_4" name="campplanList[4].hydrgChrgrCnt" value="" class="maskNumeric planCarCnt" maxlength="13" title="2030년도 수소 충전기 수"/></span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th colspan="3">합계 (보유·임차 차량 포함)</th>
+                        <td><span id="txtTotalElectCarCnt" class="f_ipt wp_90 formatNumber"></span></td>
+                        <td><span id="txtTotalHydrgCarCnt" class="f_ipt wp_90 formatNumber"></span></td>
+                        <td>
+                            <span id="txtTotalEcoCarCnt" class="f_ipt wp_90 formatNumber"></span>
+                            <span id="txtEcoCarInfo" class="f_ipt wp_90 formatNumber calculateResult"></span>
+                        </td>
+                        <td><span id="txtTotalElectSlowChrgrCnt" class="f_ipt wp_90 formatNumber"></span></td>
+                        <td><span id="txtTotalElectFastChrgrCnt" class="f_ipt wp_90 formatNumber"></span></td>
+                        <td><span id="txtTotalHydrgChrgrCnt" class="f_ipt wp_90 formatNumber"></span></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            
+        </div>
+
+    
+                    </form>
+                </div>
+                <div class="text-center" style="border-top:1px solid #eee; background:#f5f5f5; padding: 20px; margin: 10px -40px -10px;">
+                    <button type="button" class="btn btn-default" onclick="history.back()"><i class="fa fa-angle-left"></i> 이전</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='step4.html'">다음 <i class="fa fa-angle-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div></div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../assets/menu.js"></script><script src="../../assets/main.js"></script>
+<script>
+window.currentGnb = 6;
+</script>
+</body></html>

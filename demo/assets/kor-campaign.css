@@ -1,0 +1,273 @@
+/* KOR CAMPAIGN FRONT-OFFICE STYLES (MATCHING DEMO THEME: #0e424f, #1f8dab) */
+.red { color: #e53935; font-weight: 600; }
+.blue { color: #1565c0; font-weight: 600; }
+.campaign { font-family: 'Noto Sans KR', sans-serif; font-size: 15px; color: #333; }
+
+/* Campaign Title */
+.campaign_title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0e424f; /* Demo Theme Navy */
+    padding-left: 15px;
+    padding-bottom: 12px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #0e424f;
+    position: relative;
+}
+.campaign_title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 4px;
+    background: #1f8dab; /* Demo Theme Teal */
+}
+
+/* Board Write (Table Layout) */
+.board_write { width: 100%; }
+.board_top { text-align: right; margin-bottom: 15px; font-size: 13px; color: #e74c3c; }
+.form_box { border-top: 2px solid #0e424f; border-bottom: 1px solid #ccc; width: 100%; margin-bottom: 25px; }
+.form_box.bd_none { border-top: none; }
+.form_box table { width: 100%; border-collapse: collapse; }
+.form_box table th, .form_box table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #fff;
+    text-align: left;
+    border-right: 1px solid #e0e0e0;
+}
+.form_box table th {
+    background: #f8fbfc;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+    border-left: 1px solid #e0e0e0;
+}
+.form_box table th.lb { text-align: left; }
+.form_box table th.req label::after {
+    content: '*';
+    color: #e74c3c;
+    margin-left: 3px;
+}
+.form_box table th.center { text-align: center; }
+
+/* Progress Bar (kor style steps) */
+.step { margin: 40px 0; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+.progressbar {
+    counter-reset: step;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.progressbar li {
+    list-style-type: none;
+    width: 16%;
+    float: left;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    color: #999;
+}
+.progressbar li::before {
+    counter-increment: step;
+    content: counter(step);
+    width: 45px;
+    height: 45px;
+    line-height: 40px;
+    border: 3px solid #ddd;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 18px;
+    font-weight: 700;
+    z-index: 2;
+    position: relative;
+}
+.progressbar li::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #ddd;
+    top: 22px;
+    left: -50%;
+    z-index: 1;
+}
+.progressbar li:first-child::after { content: none; }
+.progressbar li.active { color: #1f8dab; font-weight: 700; }
+.progressbar li.active::before {
+    border-color: #1f8dab;
+    background-color: #1f8dab;
+    color: white;
+}
+.progressbar li.active ~ li::before { border-color: #ddd; color: #999; }
+.progressbar li.done { color: #0e424f; font-weight: 700; }
+.progressbar li.done::before {
+    border-color: #0e424f;
+    background-color: #0e424f;
+    color: white;
+}
+.progressbar li.done::after { background-color: #0e424f; }
+.progressbar li.active::after { background-color: #0e424f; }
+
+/* Inputs and Forms */
+.f_ipt { display: inline-flex; align-items: center; width: 100%; }
+.f_ipt input[type="text"], .f_ipt input[type="password"], .f_ipt input[type="email"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+.f_ipt input[readonly] { background: #fbfbfb; color: #666; }
+.f-select { display: inline-block; width: 100%; }
+.f-select select {
+    width: 100%;
+    height: auto;
+    padding: 6px 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+}
+.btn_type02 {
+    background: #444;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.btn_type02.blue_ms { background: #1f8dab; }
+.btn_type02.gray { background: #888; }
+.btn_type02.yellow { background: #f39c12; }
+.wp_100 { width: 100%; }
+.wp_70 { width: 70%; }
+.wp_60 { width: 60%; }
+.wp_30 { width: 30%; }
+.wp_10 { width: 10%; }
+.mt5 { margin-top: 5px; }
+.mt10 { margin-top: 10px; }
+ul.address-list { list-style: none; padding: 0; margin: 0; }
+
+.table.center th, .table.center td { text-align: center; }
+.table th[rowspan], .table td[rowspan] { vertical-align: middle; }
+
+/* --- ADDED OVERRIDES TO FIX DEMO FORMS --- */
+fieldset { border: none; padding: 0; margin: 0; }
+legend { display: none; }
+.blind { display: none !important; }
+
+/* Scroll box for terms and conditions */
+li.a-box, div.a-box { list-style: none; height: 250px; overflow-y: auto; overflow-x: hidden; padding: 20px; border: 1px solid #ddd; background: #fafafa; margin-bottom: 20px; display: block; }
+.a-box h3 { margin-top: 0; font-size: 16px; font-weight: bold; }
+.a-box p { font-size: 14px; line-height: 1.6; color: #555; }
+
+/* Checkbox and Radio styling (kor based) */
+.cbox { display: inline-block; position: relative; padding-left: 30px; margin-bottom: 12px; cursor: pointer; font-size: 15px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.cbox input { position: absolute !important; opacity: 0 !important; cursor: pointer !important; height: 0 !important; width: 0 !important; margin: 0 !important; }
+.cbox .checkmark { position: absolute; top: 2px; left: 0; height: 20px; width: 20px; background-color: #eee; border: 1px solid #ccc; border-radius: 3px; }
+.cbox:hover input ~ .checkmark { background-color: #ccc; }
+.cbox input:checked ~ .checkmark { background-color: #1f8dab; border-color: #1f8dab; }
+.cbox .checkmark:after { content: ""; position: absolute; display: none; }
+.cbox input:checked ~ .checkmark:after { display: block; }
+.cbox .checkmark:after { left: 6px; top: 2px; width: 6px; height: 12px; border: solid white; border-width: 0 2px 2px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); }
+
+/* ===== CAMPAIGN FORM: LAYOUT GRIDS ===== */
+.totalCarSummary { width: 100%; margin: 0 auto; overflow: hidden; }
+.totalCarSummary .form_box { width: 23.5%; float: left; margin-right: 2%; margin-bottom: 0; }
+.totalCarSummary .form_box:last-child { margin-right: 0; }
+
+.totalCarAndChargerSummary { width: 60%; margin: 0 auto; overflow: hidden; }
+.totalCarAndChargerSummary .form_box { width: 48%; float: left; margin-right: 4%; margin-bottom: 0; }
+.totalCarAndChargerSummary .form_box:last-child { margin-right: 0; }
+
+.mwp_50 { width: 100%; overflow: hidden; }
+.mwp_50 .form_box { width: 49%; float: left; margin-bottom: 0; }
+.mwp_50 .form_box.ml1p { margin-left: 1%; }
+.mwp_50 .form_box.mr1p { margin-right: 1%; }
+
+/* ===== CAMPAIGN FORM: NAVY BOX (Step2 요약) ===== */
+.form_box.navy { border-top: 2px solid #0e424f; }
+.form_box.navy table th {
+    color: #fff;
+    background: #0e424f;
+    border-right: 1px solid #2a5f70;
+    border-bottom: 1px solid #2a5f70;
+    border-top: 0;
+    text-align: center;
+}
+.form_box.navy table th.txt-sm { font-size: 13px; font-weight: 500; }
+.form_box.navy table td {
+    color: #333;
+    font-size: 20px;
+    padding: 12px 10px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: none;
+}
+.form_box.navy table td span.unit { font-size: 13px; font-weight: 400; margin-left: 2px; }
+.form_box.navy table td.t-blue { color: #1f8dab; }
+
+/* ===== CAMPAIGN FORM: BLUE BOX (Step3 요약) ===== */
+.form_box.blue { border-top: 2px solid #1f8dab; }
+.form_box.blue table th {
+    color: #fff;
+    background: #1f8dab;
+    border-right: 1px solid #4db8d4;
+    border-bottom: 0;
+    border-top: 0;
+    text-align: center;
+}
+.form_box.blue table th.txt-sm { font-size: 13px; font-weight: 500; }
+.form_box.blue table td {
+    color: #333;
+    font-size: 20px;
+    padding: 12px 10px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: none;
+}
+.form_box.blue table td span.unit { font-size: 13px; font-weight: 400; margin-left: 2px; }
+
+/* ===== CAMPAIGN DATA TABLES ===== */
+.form_box table.center th,
+.form_box table.center td { text-align: center; }
+.form_box table th { vertical-align: middle; }
+.form_box table td { vertical-align: middle; }
+.form_box table th.rbd { border-right: 1px solid #c9c9c9; }
+span.unit { font-size: 14px; }
+table .number { font-size: 14px; }
+.calculateResult { display: none !important; text-align: right; font-size: 12px; }
+
+/* ===== UTILITY CLASSES ===== */
+.t-blue { color: #1f8dab; }
+.ac { text-align: center; }
+.mt20 { margin-top: 20px !important; }
+.txt-18 { font-size: 18px; }
+.wp_80 { width: 80%; }
+.wp_90 { width: 90%; }
+
+/* ===== AGREEMENT BOX ===== */
+.agreement {
+    border: 1px solid #c9d8dc;
+    padding: 18px 24px;
+    background: #f4f8fa;
+    border-radius: 4px;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+.agreement .entNm { font-weight: 700; }
+.agreement .f-select { width: auto; display: inline-block; }
+.agreement .f-select select { padding: 6px 10px; font-size: 16px; height: auto; }

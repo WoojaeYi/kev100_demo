@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>프로그램 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-code mr-2" style="color:#1f8dab;font-size:17px;"></i>프로그램 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>시스템관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">프로그램 목록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>URL 방식 &nbsp;</label>
+          <select class="form-control" style="width:130px;"><option value="">∷ 전체 ∷</option><option>GET</option><option>POST</option><option>DELETE</option><option>PUT</option></select>
+          <select class="form-control" style="width:150px;"><option value="">∷ 사용여부 ∷</option><option>사용</option><option>미사용</option></select>
+        </div>
+        <div class="input-group">
+          <label>키워드 &nbsp;</label>
+          <select class="form-control" style="width:120px;"><option>프로그램ID</option><option>프로그램명</option><option>URL</option></select>
+          <input type="text" class="form-control" style="width:220px;" placeholder="검색어 입력">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+        </div>
+      </div>
+      <div class="table-info">
+        <div style="font-size:13px;color:#666;">총 <strong>124</strong>건</div>
+        <a href="program_form.html" class="btn btn-dark btn-sm"><i class="fa fa-pencil mr-1"></i>등록</a>
+      </div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>프로그램ID</th><th>프로그램명</th><th>URL</th><th>방식</th><th>사용</th><th>관리</th></tr></thead>
+          <tbody id="pgmBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 4;
+const data = [
+  {no:124,id:'PGM0124',nm:'배치 이력 목록',url:'/admin/expthread/expthreadList.do',method:'GET',use:'Y'},
+  {no:123,id:'PGM0123',nm:'배치 파일 목록',url:'/admin/expthread/expthreadFileList.do',method:'GET',use:'Y'},
+  {no:122,id:'PGM0122',nm:'메뉴 관리',url:'/admin/menucreate/menucreateManage.do',method:'GET',use:'Y'},
+  {no:121,id:'PGM0121',nm:'메뉴 권한 목록',url:'/admin/menucreate/menucreateAuthorList.do',method:'GET',use:'Y'},
+  {no:120,id:'PGM0120',nm:'프로그램 목록',url:'/admin/program/programList.do',method:'GET',use:'Y'},
+  {no:119,id:'PGM0119',nm:'프로그램 등록',url:'/admin/program/programInsert.do',method:'POST',use:'Y'},
+  {no:118,id:'PGM0118',nm:'분류코드 목록',url:'/admin/clcode/clcodeList.do',method:'GET',use:'Y'},
+  {no:117,id:'PGM0117',nm:'코드 목록',url:'/admin/code/codeList.do',method:'GET',use:'Y'},
+  {no:116,id:'PGM0116',nm:'캠페인 목록',url:'/admin/camp/campList.do',method:'GET',use:'Y'},
+  {no:115,id:'PGM0115',nm:'기업 회원 목록',url:'/admin/account/accountList.do',method:'GET',use:'Y'},
+];
+const METHOD_COLOR={'GET':'#1f8dab','POST':'#388e3c','DELETE':'#e53935','PUT':'#ff8f00'};
+const USE={'Y':'<span class="use">사용</span>','N':'<span class="notUse">미사용</span>'};
+document.getElementById('pgmBody').innerHTML = data.map(d=>`
+  <tr><td>${d.no}</td><td style="font-size:12px;color:#888;">${d.id}</td><td class="t-a-left"><a href="program_read.html">${d.nm}</a></td>
+  <td class="t-a-left" style="font-size:12px;color:#888;">${d.url}</td>
+  <td><span style="background:${METHOD_COLOR[d.method]||'#555'};color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">${d.method}</span></td>
+  <td>${USE[d.use]}</td>
+  <td><a href="program_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-eye mr-1"></i>조회</a></td></tr>`).join('');
+</script>
+</body></html>

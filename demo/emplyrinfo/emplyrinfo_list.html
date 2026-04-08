@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원정보(공무원) 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}.table-info .total{font-size:13px;color:#666;}.table-info .total strong{color:#0e424f;font-weight:700;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-id-badge mr-2" style="color:#1f8dab;font-size:17px;"></i>회원정보(공무원) 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>회원관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">공무원 회원 목록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>소속기관 &nbsp;</label>
+          <input type="text" class="form-control" style="width:180px;" placeholder="소속기관 입력">
+          <label style="margin-left:12px;">계정상태 &nbsp;</label>
+          <select class="form-control" style="width:130px;"><option value="">∷ 전체 ∷</option><option>정상</option><option>승인대기</option><option>반려</option><option>탈퇴</option></select>
+        </div>
+        <div class="input-group">
+          <label>키워드 &nbsp;</label>
+          <select class="form-control" style="width:100px;"><option>이름</option><option>아이디</option><option>이메일</option></select>
+          <input type="text" class="form-control" style="width:220px;" placeholder="검색어 입력">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary ml-1"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
+        </div>
+      </div>
+      <div class="table-info"><div class="total">총 <strong>42</strong>건</div></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>아이디</th><th>이름</th><th>소속기관</th><th>직급</th><th>이메일</th><th>가입일</th><th>계정상태</th><th>관리</th></tr></thead>
+          <tbody id="emplyrBody"></tbody>
+        </table>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">1-10 / 42건</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 3;
+const data = [
+  {no:42,id:'park.jh',nm:'박지호',org:'환경부',rank:'사무관',email:'park.jh@korea.kr',dt:'2024-01-15',st:'정상'},
+  {no:41,id:'kim.ms',nm:'김민서',org:'국토교통부',rank:'주무관',email:'kim.ms@korea.kr',dt:'2024-02-20',st:'정상'},
+  {no:40,id:'lee.sy',nm:'이서연',org:'산업통상자원부',rank:'사무관',email:'lee.sy@korea.kr',dt:'2024-03-10',st:'정상'},
+  {no:39,id:'choi.jw',nm:'최지우',org:'환경부',rank:'서기관',email:'choi.jw@korea.kr',dt:'2024-04-05',st:'정상'},
+  {no:38,id:'jung.de',nm:'정다은',org:'기획재정부',rank:'주무관',email:'jung.de@korea.kr',dt:'2024-05-12',st:'정상'},
+  {no:37,id:'kang.ms2',nm:'강민서',org:'과학기술정보통신부',rank:'사무관',email:'kang.ms@korea.kr',dt:'2024-06-18',st:'정상'},
+  {no:36,id:'yoon.js',nm:'윤지성',org:'중소벤처기업부',rank:'주무관',email:'yoon.js@korea.kr',dt:'2024-07-22',st:'승인대기'},
+  {no:35,id:'lim.sa',nm:'임수아',org:'고용노동부',rank:'사무관',email:'lim.sa@korea.kr',dt:'2024-08-30',st:'정상'},
+  {no:34,id:'oh.ty',nm:'오태양',org:'환경부',rank:'서기관',email:'oh.ty@korea.kr',dt:'2024-09-14',st:'반려'},
+  {no:33,id:'han.sh',nm:'한소희',org:'행정안전부',rank:'주무관',email:'han.sh@korea.kr',dt:'2024-10-07',st:'정상'},
+];
+const ST={'정상':'<span class="use">정상</span>','승인대기':'<span class="ing">승인대기</span>','반려':'<span class="reject">반려</span>','탈퇴':'<span class="notUse">탈퇴</span>'};
+document.getElementById('emplyrBody').innerHTML = data.map(d=>`
+  <tr><td>${d.no}</td><td>${d.id}</td><td><a href="emplyrinfo_read.html">${d.nm}</a></td><td>${d.org}</td><td>${d.rank}</td><td>${d.email}</td><td>${d.dt}</td><td>${ST[d.st]}</td>
+  <td><a href="emplyrinfo_read.html" class="btn btn-secondary btn-sm"><i class="fa fa-eye mr-1"></i>조회</a></td></tr>`).join('');
+</script>
+</body></html>

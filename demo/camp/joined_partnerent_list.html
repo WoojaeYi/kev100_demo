@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캠페인 참여 기업 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item dropdown" style="padding-left:10px;position:relative;"><a href="#" class="user-profile dropdown-toggle"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-building mr-2" style="color:#1f8dab;font-size:17px;"></i>캠페인 참여 기업 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>캠페인 관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">캠페인 참여 기업 목록</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group">
+          <!-- 검색키 (JSP: entNm / bizNo / ceoNm) -->
+          <select id="searchKey" class="form-control" style="width:140px;">
+            <option value="entNm">기업명</option>
+            <option value="bizNo">사업자번호</option>
+            <option value="ceoNm">대표자명</option>
+          </select>
+          <input type="text" id="searchValue" class="form-control ml-1" style="width:200px;" placeholder="검색어를 입력하세요">
+          <button class="btn btn-dark ml-1"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary ml-1"><i class="fa fa-refresh mr-1"></i>초기화</button>
+          <!-- 페이지당 건수 (JSP: maxPageItems) -->
+          <div style="margin-left:auto;">
+            <select id="maxPageItems" class="form-control" style="width:90px;">
+              <option value="10">10건씩</option>
+              <option value="20">20건씩</option>
+              <option value="30">30건씩</option>
+              <option value="40">40건씩</option>
+              <option value="50">50건씩</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="table-info">
+        <div style="font-size:13px;color:#666;">총 <strong style="color:#0e424f;font-weight:700;">25</strong>개 참여기업</div>
+      </div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <colgroup>
+            <col style="width: 5%;">
+            <col style="width: auto;">
+            <col style="width: 15%;">
+            <col style="width: 15%;">
+            <col style="width: 10%;">
+            <col style="width: 10%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>기업명</th>
+              <th>소재지</th>
+              <th>사업 분야</th>
+              <th>참여년도</th>
+              <th>목표 년도</th>
+            </tr>
+          </thead>
+          <tbody id="entBody"></tbody>
+        </table>
+      </div>
+      <!-- 페이징 (JSP: pagination) -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+        <div class="dataTables_info">Showing <strong>1</strong> to <strong>10</strong> of <strong>25</strong> entries</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+// JSP 컬럼: 번호, 기업명, 소재지, 사업 분야, 참여년도, 목표 년도
+const data = [
+  {no:25, entNm:'㈜대한유통', siNm:'경기', sggNm:'수원시', bizClsNm:'서비스업', joinYear:2026, goalYear:2030},
+  {no:24, entNm:'스마트솔루션즈', siNm:'서울', sggNm:'서초구', bizClsNm:'제조업', joinYear:2026, goalYear:2030},
+  {no:23, entNm:'글로벌네트웍스', siNm:'인천', sggNm:'남동구', bizClsNm:'서비스업', joinYear:2026, goalYear:2030},
+  {no:22, entNm:'친환경렌터카', siNm:'제주', sggNm:'제주시', bizClsNm:'운수업', joinYear:2026, goalYear:2030},
+  {no:21, entNm:'에버그린물류', siNm:'경기', sggNm:'평택시', bizClsNm:'운수업', joinYear:2025, goalYear:2030},
+  {no:20, entNm:'케이일렉트로닉스', siNm:'경북', sggNm:'구미시', bizClsNm:'제조업', joinYear:2025, goalYear:2030},
+  {no:19, entNm:'미래오토', siNm:'울산', sggNm:'북구', bizClsNm:'제조업', joinYear:2025, goalYear:2029},
+  {no:18, entNm:'태양광발전소', siNm:'전남', sggNm:'나주시', bizClsNm:'에너지업', joinYear:2025, goalYear:2029},
+  {no:17, entNm:'그린시티호텔', siNm:'부산', sggNm:'해운대구', bizClsNm:'서비스업', joinYear:2025, goalYear:2029},
+  {no:16, entNm:'한국스틸', siNm:'경북', sggNm:'포항시', bizClsNm:'제조업', joinYear:2025, goalYear:2029},
+  {no:15, entNm:'디지탈테크', siNm:'서울', sggNm:'가산동', bizClsNm:'제조업', joinYear:2025, goalYear:2029},
+  {no:14, entNm:'청정에너지', siNm:'강원', sggNm:'춘천시', bizClsNm:'에너지업', joinYear:2025, goalYear:2029},
+  {no:13, entNm:'신세계투어', siNm:'서울', sggNm:'중구', bizClsNm:'서비스업', joinYear:2025, goalYear:2029},
+  {no:12, entNm:'에코로지스틱스', siNm:'충남', sggNm:'천안시', bizClsNm:'운수업', joinYear:2025, goalYear:2029},
+  {no:11, entNm:'현대운수', siNm:'서울', sggNm:'송파구', bizClsNm:'운수업', joinYear:2024, goalYear:2028},
+  {no:10, entNm:'한국화학', siNm:'전남', sggNm:'여수시', bizClsNm:'제조업', joinYear:2024, goalYear:2028},
+  {no:9, entNm:'삼영물산', siNm:'경남', sggNm:'창원시', bizClsNm:'제조업', joinYear:2024, goalYear:2028},
+  {no:8, entNm:'우주물류', siNm:'경기', sggNm:'김포시', bizClsNm:'운수업', joinYear:2024, goalYear:2028},
+  {no:7, entNm:'한마음복지재단', siNm:'서울', sggNm:'마포구', bizClsNm:'서비스업', joinYear:2024, goalYear:2028},
+  {no:6, entNm:'지오건설', siNm:'경기', sggNm:'수원시', bizClsNm:'건설업', joinYear:2024, goalYear:2028},
+  {no:5, entNm:'㈜에코모터스', siNm:'서울', sggNm:'강남구', bizClsNm:'제조업', joinYear:2026, goalYear:2030},
+  {no:4, entNm:'한국물류㈜', siNm:'경기', sggNm:'성남시', bizClsNm:'서비스업', joinYear:2026, goalYear:2030},
+  {no:3, entNm:'대한건설㈜', siNm:'인천', sggNm:'연수구', bizClsNm:'건설업', joinYear:2025, goalYear:2029},
+  {no:2, entNm:'미래에너지㈜', siNm:'부산', sggNm:'해운대구', bizClsNm:'서비스업', joinYear:2025, goalYear:2028},
+  {no:1, entNm:'그린텍㈜', siNm:'대구', sggNm:'달서구', bizClsNm:'제조업', joinYear:2024, goalYear:2028},
+];
+// 페이징 시연을 위해 10개만 출력 (1페이지 화면)
+document.getElementById('entBody').innerHTML = data.slice(0, 10).map(d=>`
+  <tr>
+    <td>${d.no}</td>
+    <td class="left">${d.entNm}</td>
+    <td>${d.siNm} ${d.sggNm}</td>
+    <td>${d.bizClsNm}</td>
+    <td>${d.joinYear}년</td>
+    <td>${d.goalYear}년</td>
+  </tr>`).join('');
+</script>
+</body></html>

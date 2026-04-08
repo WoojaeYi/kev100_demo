@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>콘텐츠 검색 목록 | K-EV100 관리자</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>.content-area{padding:24px 28px;}.table-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix"><div class="profile_pic"><div class="profile_avatar">관</div></div><div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div></div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+    
+  </div></div>
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right"><li class="nav-item" style="padding-left:10px;"><a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a></li></ul></nav>
+  </div></div>
+  <div class="right_col" role="main">
+    <div class="page-title row">
+      <div class="col-md-6 col-sm-12"><span><i class="fa fa-search mr-2" style="color:#1f8dab;font-size:17px;"></i>콘텐츠 검색 목록</span></div>
+      <div class="col-md-6 col-sm-12 d-none d-sm-block"><ul class="locationList"><li><i class="fa fa-home"></i></li><li><i class="fa fa-angle-right"></i></li><li>콘텐츠관리</li><li><i class="fa fa-angle-right"></i></li><li style="color:#0e424f;font-weight:600;">콘텐츠 검색</li></ul></div>
+    </div>
+    <div class="content-area">
+      <div class="searchBox">
+        <div class="input-group mb-2">
+          <label>사이트 &nbsp;</label>
+          <select class="form-control" style="width:180px;"><option value="">∷ 전체사이트 ∷</option><option>K-EV100 서비스 포털</option></select>
+          <select class="form-control" style="width:130px;"><option value="">∷ 유형 ∷</option><option>공지사항</option><option>FAQ</option><option>배너</option><option>팝업</option></select>
+        </div>
+        <div class="input-group">
+          <label>키워드 &nbsp;</label>
+          <select class="form-control" style="width:100px;"><option>제목</option><option>내용</option></select>
+          <input type="text" class="form-control" style="width:220px;" placeholder="검색어 입력" value="캠페인">
+          <button class="btn btn-dark"><i class="fa fa-search mr-1"></i>검색</button>
+          <button class="btn btn-secondary"><i class="fa fa-refresh mr-1"></i>초기화</button>
+        </div>
+      </div>
+      <div class="table-info"><div style="font-size:13px;color:#666;">"<strong>캠페인</strong>" 검색결과 총 <strong>15</strong>건</div></div>
+      <div class="list_wrapper">
+        <table class="listTable">
+          <thead><tr><th>번호</th><th>사이트</th><th>유형</th><th>제목</th><th>작성자</th><th>작성일</th><th>사용여부</th><th>관리</th></tr></thead>
+          <tbody id="cntBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script><script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 2;
+const items = [
+  {no:15,site:'서비스포털',typ:'공지사항',title:'2026년 K-EV100 캠페인 신청 안내',writer:'관리자',date:'2026-03-28',use:'Y'},
+  {no:14,site:'서비스포털',typ:'FAQ',title:'캠페인 참여 기업 자격 요건',writer:'관리자',date:'2026-03-25',use:'Y'},
+  {no:13,site:'서비스포털',typ:'팝업',title:'[팝업] K-EV100 캠페인 이벤트',writer:'관리자',date:'2026-03-22',use:'N'},
+  {no:12,site:'서비스포털',typ:'공지사항',title:'캠페인 심사 결과 발표',writer:'관리자',date:'2026-03-20',use:'Y'},
+  {no:11,site:'서비스포털',typ:'배너',title:'2026 캠페인 메인 배너',writer:'관리자',date:'2026-03-18',use:'Y'},
+];
+const USE={'Y':'<span class="use">사용</span>','N':'<span class="notUse">미사용</span>'};
+document.getElementById('cntBody').innerHTML = items.map(d=>`
+  <tr><td>${d.no}</td><td>${d.site}</td><td>${d.typ}</td><td class="t-a-left"><a href="content_read.html">${d.title}</a></td><td>${d.writer}</td><td>${d.date}</td><td>${USE[d.use]}</td>
+  <td style="display:flex;gap:4px;justify-content:center;"><a href="content_preview.html" class="btn btn-secondary btn-sm"><i class="fa fa-eye mr-1"></i>미리보기</a><a href="content_form.html" class="btn btn-secondary btn-sm"><i class="fa fa-pencil mr-1"></i>수정</a></td></tr>`).join('');
+</script>
+</body></html>
