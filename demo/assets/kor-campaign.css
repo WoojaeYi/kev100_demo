@@ -131,11 +131,11 @@
 .f-select select {
     width: 100%;
     height: auto;
-    padding: 6px 14px;
+    padding: 6px 30px 6px 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
-    background: #fff;
+    background-color: #fff;
 }
 .btn_type02 {
     background: #444;
