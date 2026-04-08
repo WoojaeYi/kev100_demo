@@ -85,7 +85,7 @@
       </div>
 
       <div class="table-info">
-        <div class="total">총 <strong>12</strong>건</div>
+        <div class="total">총 <strong>20</strong>건</div>
         <button class="btn btn-secondary btn-sm"><i class="fa fa-download mr-1"></i>엑셀다운로드</button>
       </div>
 
@@ -123,11 +123,12 @@
 
       <!-- 페이지네이션 -->
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
-        <div class="dataTables_info">Showing <strong>1</strong> to <strong>10</strong> of <strong>12</strong> entries</div>
+        <div class="dataTables_info">Showing <strong>1</strong> to <strong>10</strong> of <strong>20</strong> entries</div>
         <ul class="pagination">
           <li class="page-item disabled"><a class="page-link"><i class="fa fa-chevron-left"></i></a></li>
           <li class="page-item active"><a class="page-link">1</a></li>
           <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
           <li class="page-item"><a class="page-link"><i class="fa fa-chevron-right"></i></a></li>
         </ul>
       </div>
@@ -146,14 +147,29 @@ window.currentGnb = 2; // 메뉴 유지
 
 // JSP 컬럼: 번호, mberId, mberNm, emailAdres, bizNo, entNm, entClsNm, acctRegDtm, withdrwlRegDtm, 관리
 const data = [
-  { no:12, mberId:'kim_mj',   mberNm:'김민준', emailAdres:'kim_mj@kev100.com',    bizNo:'123-45-67890', entNm:'(주)한국전기차',   entClsNm:'참여기업',   acctRegDtm:'2025-01-15 09:00', withdrwlRegDtm:'2026-03-29 10:00' },
-  { no:11, mberId:'park_jh',  mberNm:'박지호', emailAdres:'park_jh@eco.com',       bizNo:'234-56-78901', entNm:'에코에너지(주)',   entClsNm:'참여기업',   acctRegDtm:'2025-02-10 11:30', withdrwlRegDtm:'2026-03-28 14:30' },
-  { no:10, mberId:'jung_de',  mberNm:'정다은', emailAdres:'jung_de@green.com',     bizNo:'345-67-89012', entNm:'그린모빌리티',     entClsNm:'참여기업',   acctRegDtm:'2025-03-05 10:00', withdrwlRegDtm:'2026-03-25 09:15' },
-  { no:9,  mberId:'yun_js',   mberNm:'윤지성', emailAdres:'yun_js@smartev.com',    bizNo:'456-78-90123', entNm:'스마트EV',         entClsNm:'위탁수행기관', acctRegDtm:'2025-04-20 13:00', withdrwlRegDtm:'2026-03-20 16:45' },
-  { no:8,  mberId:'kang_mj',  mberNm:'강민지', emailAdres:'kang_mj@cleanmot.com',  bizNo:'567-89-01234', entNm:'클린모터스',       entClsNm:'참여기업',   acctRegDtm:'2025-05-18 09:30', withdrwlRegDtm:'2026-03-15 11:30' },
+  { no:20, mberId:'kim_mj',    mberNm:'김민준', emailAdres:'kim_mj@kev100.com',      bizNo:'123-45-67890', entNm:'(주)한국전기차',     entClsNm:'참여기업',     acctRegDtm:'2025-01-15 09:00', withdrwlRegDtm:'2026-03-29 10:00' },
+  { no:19, mberId:'park_jh',   mberNm:'박지호', emailAdres:'park_jh@eco.com',         bizNo:'234-56-78901', entNm:'에코에너지(주)',     entClsNm:'참여기업',     acctRegDtm:'2025-02-10 11:30', withdrwlRegDtm:'2026-03-28 14:30' },
+  { no:18, mberId:'jung_de',   mberNm:'정다은', emailAdres:'jung_de@green.com',       bizNo:'345-67-89012', entNm:'그린모빌리티',       entClsNm:'참여기업',     acctRegDtm:'2025-03-05 10:00', withdrwlRegDtm:'2026-03-25 09:15' },
+  { no:17, mberId:'yun_js',    mberNm:'윤지성', emailAdres:'yun_js@smartev.com',      bizNo:'456-78-90123', entNm:'스마트EV',           entClsNm:'위탁수행기관', acctRegDtm:'2025-04-20 13:00', withdrwlRegDtm:'2026-03-20 16:45' },
+  { no:16, mberId:'kang_mj',   mberNm:'강민지', emailAdres:'kang_mj@cleanmot.com',    bizNo:'567-89-01234', entNm:'클린모터스',         entClsNm:'참여기업',     acctRegDtm:'2025-05-18 09:30', withdrwlRegDtm:'2026-03-15 11:30' },
+  { no:15, mberId:'lee_sy',    mberNm:'이서연', emailAdres:'lee_sy@futurecar.com',     bizNo:'678-90-12345', entNm:'미래자동차(주)',     entClsNm:'참여기업',     acctRegDtm:'2025-06-01 08:45', withdrwlRegDtm:'2026-03-10 13:20' },
+  { no:14, mberId:'choi_ms',   mberNm:'최민서', emailAdres:'choi_ms@evcharge.com',     bizNo:'789-01-23456', entNm:'전기충전솔루션(주)', entClsNm:'참여기업',     acctRegDtm:'2025-06-22 10:15', withdrwlRegDtm:'2026-03-05 09:00' },
+  { no:13, mberId:'oh_jw',     mberNm:'오재원', emailAdres:'oh_jw@greencar.com',       bizNo:'890-12-34567', entNm:'한국그린카(주)',     entClsNm:'참여기업',     acctRegDtm:'2025-07-08 14:00', withdrwlRegDtm:'2026-02-28 16:00' },
+  { no:12, mberId:'lim_ty',    mberNm:'임태양', emailAdres:'lim_ty@mobsol.com',        bizNo:'901-23-45678', entNm:'미래모빌리티(주)',   entClsNm:'위탁수행기관', acctRegDtm:'2025-07-25 09:30', withdrwlRegDtm:'2026-02-20 11:45' },
+  { no:11, mberId:'shin_sh',   mberNm:'신소희', emailAdres:'shin_sh@keptech.com',      bizNo:'012-34-56789', entNm:'한국전력기술(주)',   entClsNm:'참여기업',     acctRegDtm:'2025-08-10 13:30', withdrwlRegDtm:'2026-02-15 10:30' },
+  { no:10, mberId:'han_jy',    mberNm:'한지윤', emailAdres:'han_jy@ecofuel.com',       bizNo:'111-22-33344', entNm:'에코연료(주)',       entClsNm:'참여기업',     acctRegDtm:'2025-08-28 11:00', withdrwlRegDtm:'2026-02-10 14:00' },
+  { no:9,  mberId:'bae_sc',    mberNm:'배성철', emailAdres:'bae_sc@cleanair.com',      bizNo:'222-33-44455', entNm:'클린에어시스템',     entClsNm:'참여기업',     acctRegDtm:'2025-09-12 09:00', withdrwlRegDtm:'2026-02-05 09:30' },
+  { no:8,  mberId:'jang_hr',   mberNm:'장혜린', emailAdres:'jang_hr@evmobility.com',   bizNo:'333-44-55566', entNm:'이브이모빌리티',     entClsNm:'참여기업',     acctRegDtm:'2025-09-30 10:30', withdrwlRegDtm:'2026-01-28 15:20' },
+  { no:7,  mberId:'kwon_tj',   mberNm:'권태준', emailAdres:'kwon_tj@greenenergy.com',  bizNo:'444-55-66677', entNm:'그린에너지파트너스', entClsNm:'위탁수행기관', acctRegDtm:'2025-10-15 14:00', withdrwlRegDtm:'2026-01-20 11:00' },
+  { no:6,  mberId:'ahn_ys',    mberNm:'안유선', emailAdres:'ahn_ys@smartmob.com',      bizNo:'555-66-77788', entNm:'스마트모빌리티(주)', entClsNm:'참여기업',     acctRegDtm:'2025-11-03 09:15', withdrwlRegDtm:'2026-01-15 13:45' },
+  { no:5,  mberId:'song_bk',   mberNm:'송병국', emailAdres:'song_bk@evlogis.com',      bizNo:'666-77-88899', entNm:'EV물류솔루션',       entClsNm:'참여기업',     acctRegDtm:'2025-11-20 11:45', withdrwlRegDtm:'2026-01-10 10:15' },
+  { no:4,  mberId:'moon_sg',   mberNm:'문성규', emailAdres:'moon_sg@kclean.com',        bizNo:'777-88-99900', entNm:'케이클린텍',         entClsNm:'참여기업',     acctRegDtm:'2025-12-05 10:00', withdrwlRegDtm:'2026-01-05 09:00' },
+  { no:3,  mberId:'ryu_jh',    mberNm:'류정현', emailAdres:'ryu_jh@nextenergy.com',    bizNo:'888-99-00011', entNm:'넥스트에너지(주)',   entClsNm:'참여기업',     acctRegDtm:'2025-12-18 13:00', withdrwlRegDtm:'2025-12-30 16:30' },
+  { no:2,  mberId:'cho_es',    mberNm:'조은서', emailAdres:'cho_es@futurenet.com',      bizNo:'999-00-11122', entNm:'퓨처넷(주)',         entClsNm:'위탁수행기관', acctRegDtm:'2025-12-22 09:30', withdrwlRegDtm:'2025-12-28 11:00' },
+  { no:1,  mberId:'yang_dk',   mberNm:'양동규', emailAdres:'yang_dk@ecogroup.com',      bizNo:'100-11-22233', entNm:'에코그룹(주)',       entClsNm:'참여기업',     acctRegDtm:'2024-06-10 09:00', withdrwlRegDtm:'2025-12-20 14:00' },
 ];
 
-document.getElementById('tbody').innerHTML = data.map(d => `
+document.getElementById('tbody').innerHTML = data.slice(0, 10).map(d => `
   <tr>
     <td>${d.no}</td>
     <td>${d.mberId}</td>
