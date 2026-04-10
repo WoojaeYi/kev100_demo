@@ -26,12 +26,11 @@ const MENU_DATA = [
                 children: [
                     { id: 271, name: '전체 현황', url: 'camp/camp_stat_all.html' },
                     { id: 272, name: '업종별 현황', url: 'camp/campstat_by_biz_cls_cd.html' },
-                    { id: 273, name: '날짜별 계정 신청 현황', url: 'camp/campstat_by_date_account.html' },
-                    { id: 2731, name: '날짜별 캠페인 신청 현황', url: 'camp/campstat_by_date_campaign.html' },
+                    { id: 273, name: '날짜별 신청 현황', url: 'camp/campstat_by_date_and_apl_typ_cd.html' },
                     { id: 274, name: '년도별 계획 현황', url: 'camp/campstat_plan.html' },
                     { id: 275, name: '년도별 실적 현황', url: 'camp/campstat_result.html' },
                     { id: 276, name: '기업별 상세 현황', url: 'camp/campstat_enterprise_list.html' },
-                    { id: 2711, name: '기업 일반 현황', url: 'camp/campstat_enterprise_general.html' },
+                    { id: 2711, name: '기업 일반 현황', url: 'camp/partnerent_stat_all.html' },
                 ]
             },
             {
@@ -49,7 +48,6 @@ const MENU_DATA = [
                 id: 61, name: '나의 캠페인 현황', icon: 'fa-list', open: true,
                 children: [
                     { id: 611, name: '캠페인 신청 내역', url: 'kor_campaign/campaignList.html' },
-                    { id: 612, name: '참여 기업 검색', url: 'kor_campaign/partnerentList.html' },
                 ]
             },
             {
@@ -67,10 +65,10 @@ const MENU_DATA = [
             {
                 id: 63, name: '계획 및 실적 관리', icon: 'fa-bar-chart',
                 children: [
-                    { id: 631, name: '계획 내역', url: 'kor_campaign/campplandetailRead.html' },
-                    { id: 632, name: '계획 제출', url: 'kor_campaign/campplandetailForm.html' },
-                    { id: 633, name: '실적 내역', url: 'kor_campaign/campresultRead.html' },
-                    { id: 634, name: '실적 제출', url: 'kor_campaign/campresultForm.html' },
+                    { id: 635, name: '신청서 수정',        url: 'kor_campaign/campaignForm_update.html' },
+                    { id: 636, name: '신청서 보완',        url: 'kor_campaign/campaignForm_complement.html' },
+                    { id: 637, name: '신청서 변경',        url: 'kor_campaign/campaignForm_modify.html' },
+                    { id: 638, name: '실적 제출(신청서형)', url: 'kor_campaign/campaignForm_result.html' },
                 ]
             }
         ]
