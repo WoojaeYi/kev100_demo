@@ -70,6 +70,14 @@ const MENU_DATA = [
                     { id: 637, name: '신청서 변경',        url: 'kor_campaign/campaignForm_modify.html' },
                     { id: 638, name: '실적 제출(신청서형)', url: 'kor_campaign/campaignForm_result.html' },
                 ]
+            },
+            {
+                id: 64, name: '계정 신청', icon: 'fa-user-circle-o',
+                children: [
+                    { id: 641, name: '약관동의', url: 'kor_campaign/accountAgreement.html' },
+                    { id: 642, name: '계정 신청', url: 'kor_campaign/accountApplyForm.html' },
+                    { id: 643, name: '담당자 변경 신청', url: 'kor_campaign/replaceManagerForm.html' },
+                ]
             }
         ]
     }

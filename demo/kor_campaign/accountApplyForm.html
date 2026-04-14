@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>계정 신청 | K-EV100</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<link href="../assets/kor-campaign.css" rel="stylesheet">
+<style>
+.req-note { font-size: 12px; color: #e74c3c; text-align: right; margin-bottom: 8px; }
+
+/* Input + button row */
+.input-with-btn { display: flex; gap: 6px; align-items: center; }
+.input-with-btn input { flex: 0 0 auto; width: 260px; }
+.input-with-btn .btn { white-space: nowrap; height: 36px; line-height: 1; }
+
+/* Label cells */
+.form_box table td.lb {
+  background: #f4f9fb;
+  font-weight: 600;
+  color: #333;
+  border-left: 1px solid #e0e0e0;
+  white-space: nowrap;
+}
+
+/* Input transition + focus */
+.form_box .form-control {
+  height: 36px;
+  padding: 6px 10px;
+  font-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.form_box .form-control:hover {
+  border-color: #aac8d6;
+}
+.form_box .form-control:focus {
+  border-color: #1f8dab;
+  box-shadow: 0 0 0 2px rgba(31, 141, 171, 0.18);
+  outline: none;
+}
+.form_box select.form-control { height: 36px; }
+.form_box input[type="file"].form-control { height: auto; padding: 5px 10px; }
+
+/* File input helper text */
+.file-hint { font-size: 12px; color: #888; margin-top: 4px; display: block; }
+
+/* Tab navigation */
+.tab-nav { display: flex; gap: 0; margin-bottom: 0; }
+.tab-nav .tab-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px 32px;
+  background: #e9ecef;
+  color: #666;
+  border: 1px solid #dee2e6;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  letter-spacing: 0.01em;
+}
+.tab-nav .tab-btn:hover:not(.active) {
+  background: #d0e8f0;
+  color: #1f8dab;
+  border-color: #b8d8e8;
+}
+.tab-nav .tab-btn.active {
+  background: #1f8dab;
+  color: #fff;
+  font-weight: 600;
+  border-color: #1f8dab;
+  box-shadow: 0 -2px 0 0 #1f8dab inset;
+}
+.tab-wrapper {
+  border: none;
+  padding: 10px 0 0;
+}
+
+/* Tab fade-in animation */
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.tab-content { display: none; }
+.tab-content.active {
+  display: block;
+  animation: tabFadeIn 0.18s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tab-content.active { animation: none; }
+}
+
+/* Disabled section — softer look with lock hint */
+.form_box[style*="pointer-events:none"],
+.form_box[style*="pointer-events: none"] {
+  opacity: 0.45;
+  filter: grayscale(20%);
+}
+
+/* Search result badge */
+#ex_searchResult, #rm_searchResult {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #1a7a4a;
+  background: #e8f5ee;
+  border: 1px solid #b2ddc5;
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-weight: 500;
+}
+
+/* Button hover/active states */
+.btn { cursor: pointer; transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease; }
+.btn-primary:hover  { background-color: #1a7a95; border-color: #1a7a95; box-shadow: 0 2px 6px rgba(31,141,171,0.25); }
+.btn-primary:active { background-color: #176880; transform: translateY(1px); }
+.btn-default:hover  { background-color: #dde4ea; border-color: #b0bec5; }
+.btn-default:active { background-color: #c8d3da; transform: translateY(1px); }
+</style>
+</head>
+<body>
+<div class="container body"><div class="main_container">
+
+  <div class="left_col menu_fixed"><div class="left_col scroll-view">
+    <div class="navbar nav_title"><a href="../index.html" class="site_title"><i class="fa fa-bolt"></i><span>K-EV100 관리자</span></a></div>
+    <div class="clearfix"></div>
+    <div class="profile clearfix">
+      <div class="profile_pic"><div class="profile_avatar">관</div></div>
+      <div class="profile_info"><span>Welcome,</span><h2>관리자</h2></div>
+    </div>
+    <div class="main_menu_side hidden-print main_menu"><div id="leftMenuSection" class="menu_section"></div></div>
+  </div></div>
+
+  <div class="top_nav"><div class="nav_menu">
+    <div class="nav toggle"><a id="menu_toggle"><i class="fa fa-bars"></i></a></div>
+    <div id="kecoGnb" class="keco-gnb"><ul class="keco-gnb-list" id="gnbList"></ul></div>
+    <nav class="nav navbar-nav"><ul class="navbar-right">
+      <li class="nav-item" style="padding-left:10px;">
+        <a href="#" class="user-profile"><div class="nav-avatar">관</div>관리자</a>
+      </li>
+    </ul></nav>
+  </div></div>
+
+  <div class="right_col" role="main">
+    <div class="row"><div class="col-md-12">
+      <div class="page-title"><span>계정 신청</span></div>
+      <div class="x_panel">
+        <div class="x_content" style="padding: 10px 40px;">
+          <!-- 탭 네비게이션 -->
+          <div class="tab-nav">
+            <button type="button" class="tab-btn active" onclick="fnSwitchTab('new', this)">신규사용자</button>
+            <button type="button" class="tab-btn" onclick="fnSwitchTab('existing', this)">기존사용자</button>
+          </div>
+          <div class="tab-wrapper">
+
+          <!-- ══ 기존사용자 탭 ══ -->
+          <div id="tab-existing" class="tab-content">
+          <form id="existingForm" class="campaign iner" onsubmit="return false;">
+            <p class="req-note"><span class="red">*</span> 표시는 필수 입력 항목입니다.</p>
+
+            <!-- ══ 참여기업 조회 ══ -->
+            <div class="campaign_title">참여기업 조회</div>
+            <div class="form_box">
+              <table>
+                <colgroup>
+                  <col style="width:20%"><col style="width:80%">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td class="lb">참여기업명 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="ex_entNm" name="entNm" class="form-control" placeholder="참여기업명을 입력하세요" style="width:260px;">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">사업자등록번호 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="ex_bizNo" name="bizNo" class="form-control" placeholder="숫자 10자리" style="width:260px;">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">기존 담당자 아이디 <span class="red">*</span></td>
+                    <td>
+                      <div class="input-with-btn">
+                        <input type="text" id="ex_oldMberId" name="oldMberId" class="form-control" placeholder="기존 담당자 아이디">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="fnFindExistingEnt()">
+                          <i class="fa fa-search mr-1"></i>참여기업 조회
+                        </button>
+                        <span id="ex_searchResult" style="display:none; color:#27ae60;">
+                          <i class="fa fa-check"></i> 정상 조회되었습니다.
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- ══ 담당자 변경정보 ══ -->
+            <div class="campaign_title">담당자 변경정보</div>
+            <div class="form_box" id="ex_mgrSection" style="opacity:0.5; pointer-events:none;">
+              <table>
+                <colgroup>
+                  <col style="width:20%"><col style="width:30%">
+                  <col style="width:20%"><col style="width:30%">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td class="lb">담당자명 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="ex_mgrNm" name="mgrNm" class="form-control" placeholder="담당자 성명">
+                    </td>
+                    <td class="lb">직위 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="ex_mgrPos" name="mgrPos" class="form-control" placeholder="예) 팀장">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">이메일 <span class="red">*</span></td>
+                    <td colspan="3">
+                      <div class="input-with-btn">
+                        <input type="email" id="ex_mgrEmail" name="mgrEmail" class="form-control" placeholder="manager@company.co.kr">
+                        <button type="button" class="btn btn-default btn-sm" onclick="fnSendAuthMailEx()">
+                          <i class="fa fa-envelope mr-1"></i>인증메일 발송
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">연락처(사무실) <span class="red">*</span></td>
+                    <td>
+                      <input type="tel" id="ex_mgrOfficeTel" name="mgrOfficeTel" class="form-control" placeholder="02-0000-0000">
+                    </td>
+                    <td class="lb">연락처(휴대전화) <span class="red">*</span></td>
+                    <td>
+                      <input type="tel" id="ex_mgrMblTel" name="mgrMblTel" class="form-control" placeholder="010-0000-0000">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">가입경로 <span class="red">*</span></td>
+                    <td colspan="3">
+                      <select id="ex_joinPath" name="joinPath" class="form-control" style="width:200px;">
+                        <option value="">선택</option>
+                        <option value="EMAIL">이메일</option>
+                        <option value="WEB">홈페이지</option>
+                        <option value="ETC">기타</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </form>
+          </div><!-- /tab-existing -->
+
+          <!-- ══ 신규사용자 탭 ══ -->
+          <div id="tab-new" class="tab-content active">
+          <form id="applyForm" class="campaign iner" onsubmit="return false;">
+
+            <p class="req-note"><span class="red">*</span> 표시는 필수 입력 항목입니다.</p>
+
+            <!-- ══ 섹션 1: 참여기업 기본정보 ══ -->
+            <div class="campaign_title">참여기업 기본정보</div>
+            <div class="form_box">
+              <table>
+                <colgroup>
+                  <col style="width:20%"><col style="width:30%">
+                  <col style="width:20%"><col style="width:30%">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td class="lb">기업명 <span class="red">*</span></td>
+                    <td colspan="3">
+                      <input type="text" id="entNm" name="entNm" class="form-control" placeholder="기업명을 입력하세요">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">사업자등록번호 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="bizRegNo" name="bizRegNo" class="form-control" placeholder="000-00-00000">
+                    </td>
+                    <td class="lb">기업분류 <span class="red">*</span></td>
+                    <td>
+                      <select id="entClsCd" name="entClsCd" class="form-control">
+                        <option value="">선택</option>
+                        <option value="SME">중소기업</option>
+                        <option value="MID">중견기업</option>
+                        <option value="LARGE">대기업</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">사업자등록증 <span class="red">*</span></td>
+                    <td colspan="3">
+                      <div class="input-with-btn">
+                        <input type="text" id="bizRegFileName" class="form-control" placeholder="선택된 파일 없음" readonly style="width:260px; background:#f8f9fa; cursor:default;">
+                        <button type="button" class="btn btn-default btn-sm" onclick="document.getElementById('bizRegFile').click()">
+                          <i class="fa fa-folder-open-o mr-1"></i>파일 선택
+                        </button>
+                        <input type="file" id="bizRegFile" name="bizRegFile" accept=".pdf,.jpg,.jpeg,.png" style="display:none;" onchange="fnFileChange(this)">
+                      </div>
+                      <span class="file-hint">PDF, JPG, PNG (최대 10MB)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">대표업종 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="repBizType" name="repBizType" class="form-control" placeholder="예) 자동차 부품 제조">
+                    </td>
+                    <td class="lb">대표자명 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="repNm" name="repNm" class="form-control" placeholder="대표자 성명">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">대표이사 이메일</td>
+                    <td>
+                      <input type="email" id="ceoEmail" name="ceoEmail" class="form-control" placeholder="ceo@company.co.kr">
+                    </td>
+                    <td class="lb">대표이사 연락처</td>
+                    <td>
+                      <input type="tel" id="ceoTel" name="ceoTel" class="form-control" placeholder="02-0000-0000">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- ══ 섹션 2: 담당자 정보 ══ -->
+            <div class="campaign_title">담당자 정보</div>
+            <div class="form_box">
+              <table>
+                <colgroup>
+                  <col style="width:20%"><col style="width:30%">
+                  <col style="width:20%"><col style="width:30%">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td class="lb">담당자명 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="mgrNm" name="mgrNm" class="form-control" placeholder="담당자 성명">
+                    </td>
+                    <td class="lb">직위 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="mgrPos" name="mgrPos" class="form-control" placeholder="예) 팀장">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">이메일 <span class="red">*</span></td>
+                    <td colspan="3">
+                      <div class="input-with-btn">
+                        <input type="email" id="mgrEmail" name="mgrEmail" class="form-control" placeholder="manager@company.co.kr">
+                        <button type="button" class="btn btn-default btn-sm" onclick="fnSendAuthMail()">
+                          <i class="fa fa-envelope mr-1"></i>인증메일 발송
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">연락처(사무실) <span class="red">*</span></td>
+                    <td>
+                      <input type="tel" id="mgrOfficeTel" name="mgrOfficeTel" class="form-control" placeholder="02-0000-0000">
+                    </td>
+                    <td class="lb">연락처(휴대전화) <span class="red">*</span></td>
+                    <td>
+                      <input type="tel" id="mgrMblTel" name="mgrMblTel" class="form-control" placeholder="010-0000-0000">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">가입경로 <span class="red">*</span></td>
+                    <td colspan="3">
+                      <select id="joinPath" name="joinPath" class="form-control" style="width:200px;">
+                        <option value="">선택</option>
+                        <option value="EMAIL">이메일</option>
+                        <option value="WEB">홈페이지</option>
+                        <option value="ETC">기타</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- ══ 섹션 3: 추가 담당자 정보 ══ -->
+            <div class="campaign_title">추가 담당자 정보</div>
+            <div class="form_box">
+              <table>
+                <colgroup>
+                  <col style="width:20%"><col style="width:30%">
+                  <col style="width:20%"><col style="width:30%">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td class="lb">이름 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="addMgrNm" name="addMgrNm" class="form-control" placeholder="추가 담당자 성명">
+                    </td>
+                    <td class="lb">직위 <span class="red">*</span></td>
+                    <td>
+                      <input type="text" id="addMgrPos" name="addMgrPos" class="form-control" placeholder="예) 과장">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">이메일 <span class="red">*</span></td>
+                    <td>
+                      <input type="email" id="addMgrEmail" name="addMgrEmail" class="form-control" placeholder="add@company.co.kr">
+                    </td>
+                    <td class="lb">연락처(사무실) <span class="red">*</span></td>
+                    <td>
+                      <input type="tel" id="addMgrOfficeTel" name="addMgrOfficeTel" class="form-control" placeholder="02-0000-0000">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lb">연락처(휴대전화)</td>
+                    <td colspan="3">
+                      <input type="tel" id="addMgrMblTel" name="addMgrMblTel" class="form-control" placeholder="010-0000-0000" style="width:200px;">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </form>
+          </div><!-- /tab-new -->
+
+          </div><!-- /tab-wrapper -->
+
+        </div>
+        <div class="text-center" style="border-top:1px solid #eee; background:#f5f5f5; padding:20px; margin:10px -40px -10px;">
+          <button type="button" class="btn btn-default" onclick="location.href='accountAgreement.html'">
+            <i class="fa fa-angle-left"></i> 이전
+          </button>
+          <button type="button" class="btn btn-primary" onclick="fnSubmitByTab()">
+            <i class="fa fa-check mr-1"></i>신청
+          </button>
+          <button type="button" class="btn btn-default" onclick="history.back()">
+            <i class="fa fa-close mr-1"></i>취소
+          </button>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <footer><div>K-EV100 서비스 포털 &copy; 2026</div></footer>
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../assets/menu.js"></script>
+<script src="../assets/main.js"></script>
+<script>
+window.currentGnb = 6;
+
+function fnSwitchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(function(el) {
+    el.classList.remove('active');
+  });
+  document.querySelectorAll('.tab-btn').forEach(function(el) {
+    el.classList.remove('active');
+  });
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+function fnSubmitByTab() {
+  if (document.getElementById('tab-existing').classList.contains('active')) {
+    fnSubmitExisting();
+  } else {
+    fnSubmit();
+  }
+}
+
+function fnFindExistingEnt() {
+  var entNm = $('#ex_entNm').val().trim();
+  var bizNo = $('#ex_bizNo').val().trim();
+  var oldId = $('#ex_oldMberId').val().trim();
+  if (!entNm) { alert('참여기업명을 입력해주세요.'); return; }
+  if (!bizNo) { alert('사업자등록번호를 입력해주세요.'); return; }
+  if (!oldId) { alert('기존 담당자 아이디를 입력해주세요.'); return; }
+  $('#ex_searchResult').show();
+  $('#ex_mgrSection').css({ opacity: '1', 'pointer-events': 'auto' });
+  alert('참여기업이 정상적으로 조회되었습니다.\n변경할 담당자 정보를 입력해주세요.');
+}
+
+function fnSendAuthMailEx() {
+  var email = $('#ex_mgrEmail').val().trim();
+  if (!email) { alert('이메일을 입력해주세요.'); return; }
+  alert('인증 메일이 발송되었습니다.');
+}
+
+function fnSubmitExisting() {
+  if ($('#ex_mgrSection').css('pointer-events') === 'none') {
+    alert('먼저 참여기업을 조회해주세요.');
+    return;
+  }
+  var required = [
+    { id: 'ex_entNm',        label: '참여기업명' },
+    { id: 'ex_bizNo',        label: '사업자등록번호' },
+    { id: 'ex_oldMberId',    label: '기존 담당자 아이디' },
+    { id: 'ex_mgrNm',        label: '담당자명' },
+    { id: 'ex_mgrPos',       label: '직위' },
+    { id: 'ex_mgrEmail',     label: '이메일' },
+    { id: 'ex_mgrOfficeTel', label: '연락처(사무실)' },
+    { id: 'ex_mgrMblTel',    label: '연락처(휴대전화)' },
+    { id: 'ex_joinPath',     label: '가입경로' },
+  ];
+  for (var i = 0; i < required.length; i++) {
+    var val = $('#' + required[i].id).val();
+    if (!val || !val.trim()) {
+      alert(required[i].label + '을(를) 입력해주세요.');
+      $('#' + required[i].id).focus();
+      return;
+    }
+  }
+  if (confirm('계정 신청을 제출하시겠습니까?')) {
+    alert('계정 신청이 완료되었습니다.\n관리자 승인 후 이용 가능합니다.');
+  }
+}
+
+function fnFileChange(input) {
+  var nameEl = document.getElementById('bizRegFileName');
+  nameEl.value = (input.files && input.files.length > 0) ? input.files[0].name : '';
+}
+
+function fnCheckId() {
+  var id = $('#mberId').val().trim();
+  if (!id) { alert('아이디를 입력해주세요.'); return; }
+  alert('사용 가능한 아이디입니다.');
+}
+
+function fnSendAuthMail() {
+  var email = $('#mgrEmail').val().trim();
+  if (!email) { alert('이메일을 입력해주세요.'); return; }
+  alert('인증 메일이 발송되었습니다.');
+}
+
+function fnSubmit() {
+  // 파일 입력은 별도 검증 (jQuery .val()은 file input에서 빈 문자열 반환)
+  var fileInput = document.getElementById('bizRegFile');
+  if (!fileInput.files || fileInput.files.length === 0) {
+    alert('사업자등록증을 선택해주세요.');
+    fileInput.focus();
+    return;
+  }
+  var required = [
+    { id: 'entNm',           label: '기업명' },
+    { id: 'bizRegNo',        label: '사업자등록번호' },
+    { id: 'entClsCd',        label: '기업분류' },
+    { id: 'repBizType',      label: '대표업종' },
+    { id: 'repNm',           label: '대표자명' },
+    { id: 'mgrNm',           label: '담당자명' },
+    { id: 'mgrPos',          label: '직위' },
+    { id: 'mgrEmail',        label: '이메일' },
+    { id: 'mgrOfficeTel',    label: '연락처(사무실)' },
+    { id: 'mgrMblTel',       label: '연락처(휴대전화)' },
+    { id: 'joinPath',        label: '가입경로' },
+    { id: 'addMgrNm',        label: '추가 담당자 이름' },
+    { id: 'addMgrPos',       label: '추가 담당자 직위' },
+    { id: 'addMgrEmail',     label: '추가 담당자 이메일' },
+    { id: 'addMgrOfficeTel', label: '추가 담당자 연락처(사무실)' },
+  ];
+  for (var i = 0; i < required.length; i++) {
+    var val = $('#' + required[i].id).val();
+    if (!val || !val.trim()) {
+      alert(required[i].label + '을(를) 입력해주세요.');
+      $('#' + required[i].id).focus();
+      return;
+    }
+  }
+  if (confirm('계정 신청을 제출하시겠습니까?')) {
+    alert('계정 신청이 완료되었습니다.\n관리자 승인 후 이용 가능합니다.');
+  }
+}
+</script>
+</body></html>
